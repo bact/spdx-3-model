@@ -8,7 +8,38 @@ Specifies a data package and its associated information.
 
 ## Description
 
-Metadata information that can be added to a dataset that may be used in a software or to train/test an AI package.
+Metadata information that can be added to a dataset that may be used in a
+software or to train/test an AI package.
+
+**Syntax**
+
+```json
+{
+  "@type": "DatasetPackage",
+  "@id": "urn:spdx.dev:dspkg-1",
+  "builtTime": "2024-04-24T11:22:05Z",
+  "originatedBy": "",
+  "releaseTime": "2024-05-18T14:53:12Z",
+  "software_downloadLocation": "",
+  "software_primaryPurpose": "Carbon dioxide levels in the atmosphere",
+  "dataset_anonymizationMethodUsed": "",
+  "dataset_confidentialityLevel": "amber",
+  "dataset_dataCollectionProcess": "",
+  "dataset_dataPreprocessing": "",
+  "dataset_datasetAvailability": "",
+  "dataset_datasetNoise": "",
+  "dataset_datasetSize": "128000",
+  "dataset_datasetType": "sensor",
+  "dataset_datasetType": "structured",
+  "dataset_datasetUpdateMechanism": "",
+  "dataset_hasSensitivePersonalInformation": "no",
+  "dataset_intendedUse": "",
+  "dataset_knownBias": "",
+  "dataset_sensor": {
+    "co2_sensor": "K30 (030-8-0006)"
+  }
+}
+```
 
 ## Metadata
 
