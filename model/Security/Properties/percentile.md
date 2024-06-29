@@ -8,7 +8,11 @@ The percentile of the current probability score.
 
 ## Description
 
-The percentile between 0 and 1 (0 and 100%) of the current probability score, the proportion of all scored vulnerabilities with the same or a lower EPSS score. [https://www.first.org/epss/data_stats](https://www.first.org/epss/data_stats)
+The percentile between 0 and 1 (0 and 100%) of the current probability score,
+the proportion of all scored vulnerabilities with the same or a lower
+probability score.
+
+See "percentile" at <https://www.first.org/epss/data_stats>.
 
 ## Metadata
 
