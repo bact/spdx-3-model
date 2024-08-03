@@ -101,16 +101,12 @@ software or to train/test an AI package.
 
 - /Core/Artifact/builtTime
   - minCount: 1
-  - maxCount: 1
 - /Core/Artifact/originatedBy
   - minCount: 1
   - maxCount: 1
 - /Core/Artifact/releaseTime
   - minCount: 1
-  - maxCount: 1
 - /Software/Package/downloadLocation
   - minCount: 1
-  - maxCount: 1
 - /Software/SoftwareArtifact/primaryPurpose
   - minCount: 1
-  - maxCount: 1
