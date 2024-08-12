@@ -12,9 +12,9 @@ A LicenseExpression enables the representation, in a single string, of a
 combination of one or more licenses, together with additions such as license
 exceptions.
 
-The syntax for a LicenseExpression string is set forth in the Annex D
-of the SPDX Specification
-(["SPDX license expressions"](../../../annexes/SPDX-license-expressions.md)).
+The syntax for a LicenseExpression string is set forth in the corresponding
+Annex of this specification
+(["SPDX license expressions"](../../../annexes/spdx-license-expressions.md)).
 A LicenseExpression string is not valid if it does not conform to the grammar
 set forth in that annex.
 
