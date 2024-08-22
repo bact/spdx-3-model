@@ -14,10 +14,6 @@ provides an element from which relationships can be created to describe the
 build's inputs, outputs, and related entities (e.g. builders, identities,
 etc.).
 
-Definitions of "buildType", "configSourceEntrypoint", "configSourceUri",
-"parameters" and "environment" follow those defined in
-[SLSA Provenance v0.2](https://slsa.dev/provenance/v0.2).
-
 ExternalIdentifier of type "urlScheme" may be used to identify build logs.
 In this case, the comment of the ExternalIdentifier should be "LogReference".
 
@@ -49,7 +45,7 @@ simplify creating reproducible builds.
 - configSourceDigest
   - type: /Core/Hash
   - minCount: 0
-- parameters
+- parameter
   - type: /Core/DictionaryEntry
   - minCount: 0
 - buildStartTime

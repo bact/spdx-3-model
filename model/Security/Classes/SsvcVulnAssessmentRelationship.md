@@ -10,14 +10,16 @@ Provides an SSVC assessment for a vulnerability.
 
 An SsvcVulnAssessmentRelationship describes the decision made using the
 Stakeholder-Specific Vulnerability Categorization (SSVC) decision tree as
-defined on [https://www.cisa.gov/stakeholder-specific-vulnerability-categorization-ssvc](https://www.cisa.gov/stakeholder-specific-vulnerability-categorization-ssvc).
+defined by
+[CISA Stakeholder-Specific Vulnerability Categorization Guide](https://www.cisa.gov/stakeholder-specific-vulnerability-categorization-ssvc).
+
 It is intended to communicate the results of using the CISA SSVC Calculator.
 
-**Constraints**
+*Constraints*
 
 - The relationship type must be set to hasAssessmentFor.
 
-**Syntax**
+*Example*
 
 ```json
 {
