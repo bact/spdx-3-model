@@ -11,14 +11,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
-      - uses: actions/setup-python@f677139bbe7f9c59b41e40162b753c062f5d49a3 # v5.2.0
+      - name: setup Python
+        uses: actions/setup-python@f677139bbe7f9c59b41e40162b753c062f5d49a3 # v5.2.0
         with:
-            python-version: "3.12"
+          python-version: "3.12"
+      - name: get spdx-3-model
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+        with:
+          repository: spdx/spdx-3-model
+          ref: main
+          path: spdx-3-model
       - name: get spec-parser
-        run: |
-          git clone --depth=1 --single-branch --branch=main https://github.com/spdx/spec-parser/ ${{ runner.temp }}/spec-parser
-          python ${{ runner.temp }}/spec-parser/main.py -h
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+        with:
+          repository: spdx/spec-parser
+          ref: main
+          path: spec-parser
+          fetch-depth: 1
       - name: run spec-parser to validate
-        run: |
-          python ${{ runner.temp }}/spec-parser/main.py -n model
+        run: python spec-parser/main.py --debug --nooutput spdx-3-model/model
