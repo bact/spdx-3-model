@@ -1,0 +1,14 @@
+{
+    "MD013": {
+        "severity": "warning"
+    },
+    "MD041": {
+        "severity": "warning"
+    },
+    "ul-style": {
+        "style": "dash"
+    },
+    "strong-style": {
+        "style": "asterisk"
+    }
+}
