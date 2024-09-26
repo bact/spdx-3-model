@@ -1,0 +1,13 @@
+{
+    "first-line-heading": false,
+    "line-length": false,
+    "no-bare-urls": false,
+    "no-emphasis-as-heading": false,
+    "reference-links-images": false,
+    "strong-style": {
+        "style": "asterisk"
+    },
+    "ul-style": {
+        "style": "dash"
+    }
+}

@@ -29,4 +29,3 @@ the following has to hold:
 2. for every `/AI/AIPackage` there MUST exist exactly one `/Core/Relationship`
    of type `hasDeclaredLicense` having that element as its `from` property
    and an `/SimpleLicensing/AnyLicenseInfo` as its `to` property.
-

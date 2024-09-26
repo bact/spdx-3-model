@@ -34,7 +34,7 @@ and the following are generated:
   - [Turtle format](https://en.wikipedia.org/wiki/Turtle_(syntax)):
     [spdx-model.ttl](https://spdx.org/rdf/3.0.1/spdx-model.ttl)
   - [JSON-LD format](https://json-ld.org/):
-    [spdx-model.jsonld](https://spdx.github.io/spdx-spec/v3.0.1/rdf/spdx-model.jsonld) 
+    [spdx-model.jsonld](https://spdx.github.io/spdx-spec/v3.0.1/rdf/spdx-model.jsonld)
 
 People who wish to read the current version of the information
 should be viewing the generated files, while anyone wanting to edit
@@ -120,7 +120,7 @@ snippets, and artifacts of the software application.
 
 See [CHANGELOG.md](CHANGELOG.md) for changes between versions.
 
-## Contribute!
+## Contribute
 
 For information about how to contribute to a specific profile,
 please see [Contributing.md](Contributing.md).
