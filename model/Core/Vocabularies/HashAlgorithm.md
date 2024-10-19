@@ -28,10 +28,10 @@ practically infeasible to invert.
 - falcon: [FALCON](https://falcon-sign.info/falcon.pdf)
 - md2: MD2 message-digest algorithm, as defined in [RFC 1319](https://datatracker.ietf.org/doc/rfc1319/).
 - md4: MD4 message-digest algorithm, as defined in [RFC 1186](https://datatracker.ietf.org/doc/rfc1186/).
-- md5: MD5 message-digest algorithm, as defined in [RFC 1321](https://datatracker.ietf.org/doc/rfc1321/).
+- md5: MD5 message-digest algorithm, as defined in [RFC 1321](https://datatracker.ietf.org/doc/rfc1321/). Note that use of MD5 is no longer recommended.
 - md6: [MD6 hash function](https://people.csail.mit.edu/rivest/pubs/RABCx08.pdf)
 - other: any hashing algorithm that does not exist in this list of entries
-- sha1: SHA-1, a secure hashing algorithm, as defined in [RFC 3174](https://datatracker.ietf.org/doc/rfc3174/).
+- sha1: SHA-1, a secure hashing algorithm, as defined in [RFC 3174](https://datatracker.ietf.org/doc/rfc3174/). Note that use of SHA1 is no longer recommended.
 - sha224: SHA-2 with a digest length of 224, as defined in [RFC 3874](https://datatracker.ietf.org/doc/rfc3874/).
 - sha256: SHA-2 with a digest length of 256, as defined in [RFC 6234](https://datatracker.ietf.org/doc/rfc6234/).
 - sha384: SHA-2 with a digest length of 384, as defined in [RFC 6234](https://datatracker.ietf.org/doc/rfc6234/).
