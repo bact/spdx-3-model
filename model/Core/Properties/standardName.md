@@ -10,6 +10,8 @@ The name of a relevant standard that may apply to an artifact.
 
 Various standards may be relevant to useful to capture for specific artifacts.
 
+Various standards may be relevant to capture for specific artifacts.
+
 ## Metadata
 
 - name: standardName
