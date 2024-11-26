@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:130.0) Gecko/20100101 Firefox/130.0" compressed="false" version="24.7.16" pages="11">
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:132.0) Gecko/20100101 Firefox/132.0" compressed="false" version="24.9.1" pages="11">
   <diagram id="MqBy92FNWJOg9jOokCTN" name="Core">
     <mxGraphModel dx="2049" dy="2024" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
       <root>
@@ -1378,7 +1378,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="94BUc9n49yC1GaN0mSHI" name="Security">
-    <mxGraphModel dx="1596" dy="1501" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1564" dy="1898" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -1649,10 +1649,10 @@
         <mxCell id="Ph6tY5Lm-QuVT2F2X-fe-33" value="VexAffectedVulnAssessmentRelationship" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=#fff2cc;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;strokeColor=#d6b656;" parent="1" vertex="1">
           <mxGeometry x="1020" y="270" width="271" height="82" as="geometry" />
         </mxCell>
-        <mxCell id="Ph6tY5Lm-QuVT2F2X-fe-34" value="+ actionStatement: xsd:string[0..1]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="Ph6tY5Lm-QuVT2F2X-fe-33" vertex="1">
+        <mxCell id="Ph6tY5Lm-QuVT2F2X-fe-34" value="+ actionStatement: xsd:string[1..1]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="Ph6tY5Lm-QuVT2F2X-fe-33" vertex="1">
           <mxGeometry y="26" width="271" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="Ph6tY5Lm-QuVT2F2X-fe-35" value="+ actionStatementTime: DateTime[0..*]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="Ph6tY5Lm-QuVT2F2X-fe-33" vertex="1">
+        <mxCell id="Ph6tY5Lm-QuVT2F2X-fe-35" value="+ actionStatementTime: DateTime[0..1]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="Ph6tY5Lm-QuVT2F2X-fe-33" vertex="1">
           <mxGeometry y="56" width="271" height="26" as="geometry" />
         </mxCell>
         <mxCell id="Ph6tY5Lm-QuVT2F2X-fe-36" value="VexFixedVulnAssessmentRelationship" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=#fff2cc;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;strokeColor=#d6b656;" parent="1" vertex="1">
