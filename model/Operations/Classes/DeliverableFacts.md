@@ -57,11 +57,9 @@ The deliverable facts are collected and update in all deliverable lifecycle phas
   - type: operatingSystemType
   - minCount: 1
   - maxCount: 1
-
 - consistsOf
   - type: Artifact
   - minCount: 1
-  - maxCount: n
 
 - developedBy
   - type: Agent
