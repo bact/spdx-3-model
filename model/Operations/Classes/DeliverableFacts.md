@@ -60,11 +60,9 @@ The deliverable facts are collected and update in all deliverable lifecycle phas
 - consistsOf
   - type: Artifact
   - minCount: 1
-
 - developedBy
   - type: Agent
   - minCount: 1
-  - maxCount: n
 
 - contact
   - type: Agent
