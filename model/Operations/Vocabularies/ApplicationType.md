@@ -1,10 +1,10 @@
 SPDX-License-Identifier: Community-Spec-1.0
 
-# applicationType
+# ApplicationType
 
 ## Summary
 
-The applicationType defines a list of known distribution/deployment contexts as central reference.
+The ApplicationType defines a list of known distribution/deployment contexts as central reference.
 
 ## Description
 
@@ -13,7 +13,7 @@ severity.
 
 ## Metadata
 
-- name: applicationType
+- name: ApplicationType
 
 ## Entries
 
