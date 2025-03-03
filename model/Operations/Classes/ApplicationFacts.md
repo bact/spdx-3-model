@@ -29,7 +29,7 @@ The Application Facts are collected all along the product lifecyle and contents 
 - productAccessURL
   - type: xsd:anyURI
   - maxCount: 1
-- commentComment
+- applicationFactsComment
   - type: xsd:string
   - maxCount: 1
 - distributedDeliverables
