@@ -4,7 +4,7 @@ SPDX-License-Identifier: Community-Spec-1.0
 
 ## Summary
 
-The Operations Profile defines fields for describing the business context of the software that cannot (or not yet) directly extracted from the source repository.
+The Operations Profile defines fields for describing the business context of the software that cannot (or not yet) be directly extracted from the source repository.
 
 ## Description
 
