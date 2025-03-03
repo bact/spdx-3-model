@@ -54,7 +54,6 @@ The Application Facts are collected all along the product lifecyle and contents 
   - maxCount: 1
 - supplyChainContext
   - type: supplyChainContextType
-  - minCount: 1
   - maxCount: 1
 - releaseCycles
   - type: releaseCyclesType
@@ -66,7 +65,6 @@ The Application Facts are collected all along the product lifecyle and contents 
   - maxCount: 1
 - contractSetup
   - type: contractSetupType
-  - minCount: 1
   - maxCount: 1
 - fossTermsTowardsCustomer
   - type: Artifact
