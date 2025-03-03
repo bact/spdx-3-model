@@ -19,42 +19,42 @@ The deliverable facts are collected and update in all deliverable lifecycle phas
 ## Properties
 
 - programmingLanguage
-  - type: programmingLanguageType
+  - type: ProgrammingLanguageType
   - minCount: 1
   - maxCount: n
 
 - dependencyManager
-  - type: dependencyManagerType
+  - type: DependencyManagerType
   - minCount: 1
   - maxCount: n
 
 - packageManager
-  - type: packageManagerType
+  - type: PackageManagerType
   - minCount: 1
   - maxCount: n
 
 - environmentFramework
-  - type: environmentFrameworkType
+  - type: EnvironmentFrameworkType
   - minCount: 1
   - maxCount: n
 
 - applicationCategory
-  - type: applicationCategoryType
+  - type: ApplicationCategoryType
   - minCount: 1
   - maxCount: 1
 
 - applicationType
-  - type: applicationTypeType
+  - type: ApplicationType
   - minCount: 1
   - maxCount: 1
 
 - distributionMethod
-  - type: distributionMethodType
+  - type: DistributionMethodType
   - minCount: 1
   - maxCount: n
 
 - operatingSystem
-  - type: operatingSystemType
+  - type: OperatingSystemType
   - minCount: 1
   - maxCount: 1
 - consistsOf
