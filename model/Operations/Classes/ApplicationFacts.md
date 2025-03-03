@@ -9,7 +9,6 @@ The Application facts summarize the business context metadata of an application.
 ## Description
 
 The Application Facts are collected all along the product lifecyle and contents may be updated when the product reaches a new phase.
-```
 
 ## Metadata
 
