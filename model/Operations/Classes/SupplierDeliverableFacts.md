@@ -13,7 +13,7 @@ The supplier relation can vary according to the terms and conditions agreed betw
 ## Metadata
 
 - name: SupplierDeliverableFacts
-- SubclassOf: tbd
+- SubclassOf: Delivery
 - Instantiability: Concrete
 
 ## Properties
