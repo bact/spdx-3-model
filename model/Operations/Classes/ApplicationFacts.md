@@ -71,6 +71,3 @@ The Application Facts are collected all along the product lifecyle and contents 
 - distributionTermsTowardsCustomer
   - type: /Core/Artifact
   - maxCount: 1
-- customerFossContact
-  - type: /Core/Agent
-  - maxCount: 1
