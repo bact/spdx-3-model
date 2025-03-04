@@ -13,7 +13,7 @@ The Application Facts are collected all along the product lifecyle and contents 
 ## Metadata
 
 - name: ApplicationFacts
-- SubclassOf: tbd
+- SubclassOf: Delivery
 - Instantiability: Concrete
 
 ## Properties
