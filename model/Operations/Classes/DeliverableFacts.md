@@ -47,13 +47,13 @@ The deliverable facts are collected and update in all deliverable lifecycle phas
   - minCount: 1
   - maxCount: 1
 - consistsOf
-  - type: Artifact
+  - type: /Core/Artifact
   - minCount: 1
 - developedBy
-  - type: Agent
+  - type: /Core/Agent
   - minCount: 1
 - contact
-  - type: Agent
+  - type: /Core/Agent
   - minCount: 1
 - linkToArchitecture
   - type: xsd:anyURI
