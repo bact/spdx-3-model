@@ -14,4 +14,4 @@ URL of existing product documentation
 
 - name: documentationLink
 - Nature: DataProperty
-- Range: xsd:string
+- Range: xsd:anyURI
