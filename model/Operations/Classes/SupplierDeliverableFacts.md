@@ -19,20 +19,20 @@ The supplier relation can vary according to the terms and conditions agreed betw
 ## Properties
 
 - supplierName
-  - type: Agent
+  - type: /Core/Agent
   - minCount: 1
 - deliverableFromSupplier
-  - type: Artifact
+  - type: /Core/Artifact
   - minCount: 1
 - fossTermsTowardsSupplier
-  - type: Artifact
+  - type: /Core/Artifact
   - maxCount: 1
 - distributionTermsFromSupplier
-  - type: Artifact
+  - type: /Core/Artifact
   - maxCount: 1
 - fossComplianceBundleConsumption
   - type: fossComplianceBundleProvisionType
   - minCount: 1
 - supplierFossContact
-  - type: Agent
+  - type: /Core/Agent
   - minCount: 1
