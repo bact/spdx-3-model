@@ -13,7 +13,7 @@ The deliverable facts are collected and update in all deliverable lifecycle phas
 ## Metadata
 
 - name: DeliverableFacts
-- SubclassOf: tbd
+- SubclassOf: Delivery
 - Instantiability: Concrete
 
 ## Properties
