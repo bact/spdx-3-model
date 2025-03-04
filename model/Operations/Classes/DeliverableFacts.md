@@ -70,7 +70,7 @@ The deliverable facts are collected and update in all deliverable lifecycle phas
 - reviews
   - type: xsd:anyURI
   - minCount: 1
-- comment
+- deliverableComment
   - type: xsd:string
   - maxCount: 1
 - supplierDeliverableFacts
