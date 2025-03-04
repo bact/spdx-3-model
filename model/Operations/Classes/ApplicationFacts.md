@@ -33,7 +33,7 @@ The Application Facts are collected all along the product lifecyle and contents 
   - type: xsd:string
   - maxCount: 1
 - distributedDeliverables
-  - type: Artifact
+  - type: /Core/Artifact
   - minCount: 1
 - technicalDeploymnent
   - type: deploymentType
