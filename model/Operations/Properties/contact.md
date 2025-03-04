@@ -14,4 +14,4 @@ contact details of contact person for urgent incidents
 
 - name: contact
 - Nature: DataProperty
-- Range: xsd:string
+- Range: /Core/Agent
