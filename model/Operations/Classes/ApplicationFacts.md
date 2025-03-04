@@ -66,11 +66,11 @@ The Application Facts are collected all along the product lifecyle and contents 
   - type: contractSetupType
   - maxCount: 1
 - fossTermsTowardsCustomer
-  - type: Artifact
+  - type: /Core/Artifact
   - maxCount: 1
 - distributionTermsTowardsCustomer
-  - type: Artifact
+  - type: /Core/Artifact
   - maxCount: 1
 - customerFossContact
-  - type: Agent
+  - type: /Core/Agent
   - maxCount: 1
