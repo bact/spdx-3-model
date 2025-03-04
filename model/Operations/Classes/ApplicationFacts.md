@@ -40,7 +40,7 @@ The Application Facts are collected all along the product lifecyle and contents 
   - minCount: 1
   - maxCount: 1
 - contact
-  - type: Agent
+  - type: /Core/Agent
   - minCount: 1
   - maxCount: 1
 - scope
