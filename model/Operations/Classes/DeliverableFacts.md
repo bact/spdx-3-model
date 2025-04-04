@@ -73,6 +73,3 @@ The deliverable facts are collected and update in all deliverable lifecycle phas
 - deliverableComment
   - type: xsd:string
   - maxCount: 1
-- supplierDeliverableFacts
-  - type: Delivery
-  - minCount: 0

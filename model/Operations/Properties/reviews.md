@@ -12,6 +12,6 @@ This field provides the links to the review reports
 
 ## Metadata
 
-- name: relationType
+- name: reviews
 - Nature: DataProperty
 - Range: xsd:anyURI

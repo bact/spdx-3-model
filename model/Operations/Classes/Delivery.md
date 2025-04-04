@@ -13,5 +13,5 @@ tbd
 ## Metadata
 
 - name: Delivery
-- SubclassOf: Core/Relationship
+- SubclassOf: /Core/Relationship
 - Instantiability: Concrete

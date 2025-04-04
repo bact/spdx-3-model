@@ -35,7 +35,7 @@ The Application Facts are collected all along the product lifecyle and contents 
 - distributedDeliverables
   - type: /Core/Artifact
   - minCount: 1
-- technicalDeploymnent
+- technicalDeployment
   - type: deploymentType
   - minCount: 1
   - maxCount: 1
