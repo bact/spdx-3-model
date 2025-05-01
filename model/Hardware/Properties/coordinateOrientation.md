@@ -4,11 +4,11 @@ SPDX-License-Identifier: Community-Spec-1.0
 
 ## Summary
 
-The Coordinate orientation System.
+The coordinate orientation system.
 
 ## Description
 
-The Coordinate orientation System use by XYZ axis.
+The coordinate orientation system use by XYZ axis.
 
 ## Metadata
 
