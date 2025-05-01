@@ -8,7 +8,7 @@ The Creation Process refers to the abstract process class used to produce produc
 
 ## Description
 
-The creation process refers to the systematic steps involved in bringing something new into existence. This can apply to products, ideas, businesses, art, software, and even life itself. 
+The creation process refers to the systematic steps involved in bringing something new into existence. This can apply to products, ideas, businesses, art, software, and even life itself.
 
 Relationship:
 

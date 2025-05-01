@@ -8,7 +8,7 @@ Additional relevance information.
 
 ## Description
 
-This elemtent provides relevant information to the action.
+This element provides relevant information to the action.
 
 ## Metadata
 

@@ -4,7 +4,7 @@ SPDX-License-Identifier: Community-Spec-1.0
 
 ## Summary
 
-Class that describes a instance of HBOMDimensions.
+Class that describes an instance of HBOMDimensions.
 
 ## Description
 

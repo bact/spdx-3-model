@@ -10,8 +10,9 @@ Products are created using the Creation Action.
 
 To create a product you use the Creation Action.
 
-Relationship: 
-For Each `CreateAction` there is at least one `/Core/Relationship` class or subclass with the relationshipType of 'hasOutput’ on the from and an `/Core/Element` class or subclass on the to. 
+Relationship:
+
+For each `CreateAction` there is at least one `/Core/Relationship` class or subclass with the relationshipType of 'hasOutput’ on the from and a `/Core/Element` class or subclass on the to.
 
 ## Metadata
 

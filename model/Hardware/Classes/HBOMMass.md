@@ -4,11 +4,11 @@ SPDX-License-Identifier: Community-Spec-1.0
 
 ## Summary
 
-Class that describes a instance of HBOMPhysical.
+Class that describes an instance of HBOMPhysical.
 
 ## Description
 
-Describes the physical mass characteristics of hardware. 
+Describes the physical mass characteristics of hardware.
 
 ## Metadata
 

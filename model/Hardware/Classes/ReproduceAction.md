@@ -10,8 +10,9 @@ Reproduction is the biological process by which organisms generate new individua
 
 Reproduction involves the act of replicating or reproducing a product. This includes producing new products related to husbandry, agriculture, and fishing.
 
-Relationship: 
-For Each `ReproduceAction` there is at least one `/Core/Relationship` class or subclass with the relationshipType of 'hasInput’ on the from and an `/Core/Element` class or subclass on the to. 
+Relationship:
+
+For each `ReproduceAction` there is at least one `/Core/Relationship` class or subclass with the relationshipType of 'hasInput’ on the from and a `/Core/Element` class or subclass on the to.
 
 ## Metadata
 
