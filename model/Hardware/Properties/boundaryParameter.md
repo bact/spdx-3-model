@@ -1,6 +1,6 @@
 SPDX-License-Identifier: Community-Spec-1.0
 
-# boundaryParameters
+# boundaryParameter
 
 ## Summary
 
@@ -12,6 +12,6 @@ A boundary parameter refers to a limiting condition, constraint, or predefined v
 
 ## Metadata
 
-- name: boundaryParameters
+- name: boundaryParameter
 - Nature: ObjectProperty
 - Range: /Core/DictionaryEntry
