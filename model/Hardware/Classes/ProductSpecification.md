@@ -4,7 +4,7 @@ SPDX-License-Identifier: Community-Spec-1.0
 
 ## Summary
 
-A product specification (product spec) is a detailed document that outlines the technical, functional, and design requirements of a product. 
+A product specification (product spec) is a detailed document that outlines the technical, functional, and design requirements of a product.
 
 ## Description
 

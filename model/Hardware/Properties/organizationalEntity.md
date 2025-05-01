@@ -8,7 +8,7 @@ Product Manufacture Name and related information
 
 ## Description
 
-The Agent is responsible for defining the PartNumber, batchNumber or serialNumber of unit of hardware.
+The Agent is responsible for defining the partNumber, batchNumber or serialNumber of unit of hardware.
 
 ## Metadata
 

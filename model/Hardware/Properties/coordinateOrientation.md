@@ -8,7 +8,7 @@ The Coordinate orientation System.
 
 ## Description
 
-The Coordinate orientation System use by XYZ axis. 
+The Coordinate orientation System use by XYZ axis.
 
 ## Metadata
 

@@ -13,5 +13,5 @@ Hazards are potential sources of harm, danger, or adverse effects to people, pro
 ## Metadata
 
 - name: hazardType
-- Nature:  DataProperty
+- Nature: DataProperty
 - Range: xsd:string

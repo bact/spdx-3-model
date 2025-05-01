@@ -8,7 +8,7 @@ An UID of the requirement.
 
 ## Description
 
-An UID of the requirement. This can be defined in a different system. 
+An UID of the requirement. This can be defined in a different system.
 
 ## Metadata
 

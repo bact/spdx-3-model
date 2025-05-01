@@ -8,7 +8,7 @@ Version identifier for the hardware product
 
 ## Description
 
-Describes the specific hardware version. 
+Describes the specific hardware version.
 
 ## Metadata
 

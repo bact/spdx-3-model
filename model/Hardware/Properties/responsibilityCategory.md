@@ -4,7 +4,7 @@ SPDX-License-Identifier: Community-Spec-1.0
 
 ## Summary
 
-Requirements can be categorized into various types based on their focus, purpose, and scope. 
+Requirements can be categorized into various types based on their focus, purpose, and scope.
 
 ## Description
 

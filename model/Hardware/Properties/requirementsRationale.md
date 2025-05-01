@@ -4,7 +4,7 @@ SPDX-License-Identifier: Community-Spec-1.0
 
 ## Summary
 
-This is the rationale of why this requirement must exist. 
+This is the rationale of why this requirement must exist.
 
 ## Description
 

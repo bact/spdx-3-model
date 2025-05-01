@@ -4,7 +4,7 @@ SPDX-License-Identifier: Community-Spec-1.0
 
 ## Summary
 
-ResponsibilityChangeProcess refers to the process of transferring responsibility from one party to another. 
+ResponsibilityChangeProcess refers to the process of transferring responsibility from one party to another.
 
 ## Description
 

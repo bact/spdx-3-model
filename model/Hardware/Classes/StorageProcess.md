@@ -21,4 +21,3 @@ Products are stored for various reasons between production, use and destruction.
 - plannedStorageLocation
   - type: /Core/Location
   - minCount: 0
-

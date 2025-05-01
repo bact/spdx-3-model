@@ -8,7 +8,7 @@ Date of product release.
 
 ## Description
 
-This is the first date associated to a specific product release. 
+This is the first date associated to a specific product release.
 
 ## Metadata
 

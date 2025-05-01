@@ -11,7 +11,10 @@ A PlanAction involves the execution of a plan in relation to a PlanProcess.
 A PlanAction involves the execution of a plan in relation to a PlanProcess.
 
 The description of the PlanAction is a mandatory property.
-For Each `PlanAction` there is at least one `/Core/Relationship` class or subclass with the relationshipType of 'Generated’ on the to and an `planProcess` class or subclass on the from. 
+
+Relationship:
+
+For each `PlanAction` there is at least one `/Core/Relationship` class or subclass with the relationshipType of 'generates’ on the to and a `PlanProcess` class or subclass on the from.
 
 ## Metadata
 

@@ -8,7 +8,7 @@ Information related to massOfHardware physical hardware.
 
 ## Description
 
-Mass is defined as an intrinsic property of a body for describing a physical hardware component. 
+Mass is defined as an intrinsic property of a body for describing a physical hardware component.
 
 ## Metadata
 

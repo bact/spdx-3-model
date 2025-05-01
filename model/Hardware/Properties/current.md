@@ -4,7 +4,7 @@ SPDX-License-Identifier: Community-Spec-1.0
 
 ## Summary
 
-This is the individual, business, or organization who currently manages goods, services, or assets. 
+This is the individual, business, or organization who currently manages goods, services, or assets.
 
 ## Description
 

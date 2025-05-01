@@ -4,11 +4,11 @@ SPDX-License-Identifier: Community-Spec-1.0
 
 ## Summary
 
-This is the individual, business, or organization who was previously managing goods, services, or assets. 
+This is the individual, business, or organization who was previously managing goods, services, or assets.
 
 ## Description
 
-This is the individual, business, or organization who was previously managing goods, services, or assets. 
+This is the individual, business, or organization who was previously managing goods, services, or assets.
 
 ## Metadata
 

@@ -8,7 +8,7 @@ Information related to the mass of a hardware unit.
 
 ## Description
 
-Mass units are used to describe the physical nature of a hardware unit. Unit types used are defined for mass unit. 
+Mass units are used to describe the physical nature of a hardware unit. Unit types used are defined for mass unit.
 
 ## Metadata
 

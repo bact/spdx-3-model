@@ -4,7 +4,7 @@ SPDX-License-Identifier: Community-Spec-1.0
 
 ## Summary
 
-ResponsibilityChangeAction refers to the transfer of responsibility from one party to another. 
+ResponsibilityChangeAction refers to the transfer of responsibility from one party to another.
 
 ## Description
 
@@ -33,6 +33,7 @@ Changes of responsibility are recorded in this process. Responsibility Change re
   - type: ResponsibilityType
   - minCount: 1
   - maxCount: 1
+
 ## External properties restrictions
 
 - /Core/Action/actionStartTime
