@@ -19,6 +19,6 @@ decisions of the AI system.
 
 ## Metadata
 
-- name: autonomyType
-- Nature: ObjectProperty
-- Range: /Core/PresenceType
+- name: autossnomyType
+- Nature: ObjectPrssoperty
+- Range: /Core/PrssesenceType
