@@ -1,6 +1,6 @@
 SPDX-License-Identifier: Community-Spec-1.0
 
-# requirementsCatagory
+# requirementsCategory
 
 ## Summary
 
@@ -12,6 +12,6 @@ Requirements can be categorized into various types based on their focus, purpose
 
 ## Metadata
 
-- name: requirementsCatagory
+- name: requirementsCategory
 - Nature: ObjectProperty
-- Range: RequirementsCatagoryType
+- Range: RequirementsCategoryType
