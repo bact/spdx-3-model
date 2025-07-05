@@ -8,7 +8,7 @@ A deliverable is a part of a product. The deliverable facts shall collect metada
 
 ## Description
 
-The deliverable facts are collected and update in all deliverable lifecycle phases. So data could already collected in the architecture/design phase and then be updated along the furter development. The data might be needed to take design decisions and configure the environment. By having the structured explicit documentation, unnecessary iterations may be avoided.
+The deliverable facts are collected and update in all deliverable lifecycle phases. So data could already collected in the architecture/design phase and then be updated along the further development. The data might be needed to take design decisions and configure the environment. By having the structured explicit documentation, unnecessary iterations may be avoided.
 
 ## Metadata
 
@@ -67,7 +67,7 @@ The deliverable facts are collected and update in all deliverable lifecycle phas
   - type: xsd:string
   - minCount: 1
   - maxCount: 1
-- reviews
+- review
   - type: xsd:anyURI
   - minCount: 1
 - deliverableComment

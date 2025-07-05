@@ -4,12 +4,12 @@ SPDX-License-Identifier: Community-Spec-1.0
 
 ## Summary
 
-link to the latest reviews
+Link to the latest review.
 
 ## Description
 
-link to the latest reviews (e.g. Open Source dependency review, snippet review, security review ,… ) 
-each different review may be added as separate item 
+Link to the latest review (e.g. open source dependency review, snippet review, security review).
+Each different review may be added as separate item.
 
 ## Metadata
 

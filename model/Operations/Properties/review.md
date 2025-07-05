@@ -1,17 +1,17 @@
 SPDX-License-Identifier: Community-Spec-1.0
 
-# reviews
+# review
 
 ## Summary
 
-Link to the review reports
+Link to a review report.
 
 ## Description
 
-This field provides the links to the review reports
+This field provides a link to a review report.
 
 ## Metadata
 
-- name: reviews
+- name: review
 - Nature: DataProperty
 - Range: xsd:anyURI
