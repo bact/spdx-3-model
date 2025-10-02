@@ -35,11 +35,11 @@ a language model, to guide it in generating a specific response or action.
   - type: xsd:string
   - minCount: 0
   - maxCount: 1
-- hasRAGContext
-  - type: xsd:boolean
+- /Dataset/hasSensitivePersonalInformation
+  - type: /Core/PresenceType
   - minCount: 0
   - maxCount: 1
-- hasSensitivePersonalInformation
-  - type: /Core/PresenceType
+- hasRAGContext
+  - type: xsd:boolean
   - minCount: 0
   - maxCount: 1
