@@ -48,6 +48,6 @@ The `contentIdentifier` property identifies the prompt's content.
 
 ## External properties restrictions
 
-- /Software/contentIdentifier
+- /Software/SoftwareArtifact/contentIdentifier
   - type: /Software/ContentIdentifier
   - minCount: 1
