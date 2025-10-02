@@ -31,7 +31,7 @@ a language model, to guide it in generating a specific response or action.
   - type: xsd:string
   - minCount: 0
   - maxCount: 1
-- /Dataset/dataCollectionProcess
+- /Dataset/dataPreprocessing
   - type: xsd:string
   - minCount: 0
   - maxCount: 1
