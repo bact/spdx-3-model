@@ -1,0 +1,47 @@
+@startuml Prompt
+
+set separator /
+
+abstract "Software/SoftwareArtifact" {
+    + additionalPurpose : SoftwarePurpose [0..*]
+    + artifactSize : xsd:nonNegativeInteger [0..1]
+    + attributionText : xsd:string [0..*]
+    + contentIdentifier : ContentIdentifier [0..*]
+    + copyrightText : xsd:string [0..*]
+    + primaryPurpose : SoftwarePurpose [0..*]
+}
+
+' Subclass Prompt from SoftwareArtifact as it represents a reasonable unit
+' of content that can be attributed to a specific source.
+' It is ligther than a DatasetPackage and requires less modification
+' to the external properties restrictions.
+class "AI/Prompt" extends "Software/SoftwareArtifact" {
+    + /Software/contentIdentifier : /Software/ContentIdentifier [1..*]
+    ---
+    + /Core/inLanguage : /Core/LanguageTag [0..*]
+    + /Core/modality : /Core/Modality [0..*]
+    + /Dataset/dataCollectionProcess : xsd:string [0..1]
+    + /Dataset/dataPreProcessing : xsd:string [0..1]
+    + /Dataset/hasSensitivePersonalInformation : /Core/PresenceType [0..1]
+    + hasRAGContext : xsd:boolean [0..1]
+}
+
+enum "Core/Modality" {
+    audioSpeech
+    audioNonSpeech
+    code
+    geometry2d
+    geometry3d
+    gesturePose
+    hapticTactile
+    image
+    other
+    tabular
+    text
+    timeseries
+    video
+}
+
+' Prompt::modality ..> Modality
+
+@enduml
