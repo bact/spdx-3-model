@@ -10,11 +10,11 @@ Indicates the modality of the interaction or content.
 
 Indicates the modality of the interaction or content.
 
-Use "other" if the modality is not listed in the ModalityType and optionally
-provide the modality in the "comment" property.
+Use "other" if the modality is not listed in the Modality vocabulary and
+optionally provide the modality in the "comment" property.
 
 ## Metadata
 
 - name: modality
 - Nature: ObjectProperty
-- Range: ModalityType
+- Range: Modality
