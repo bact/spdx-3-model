@@ -1,6 +1,6 @@
 SPDX-License-Identifier: Community-Spec-1.0
 
-# ModalityType
+# Modality
 
 ## Summary
 
@@ -9,7 +9,7 @@ A controlled vocabulary used to classify the nature of the data channel
 
 ## Description
 
-The ModalityType defines a standardized classification for the distinct data
+The Modality defines a standardized classification for the distinct data
 channels or sensory types through which information is communicated, perceived,
 or processed by agents and software.
 
@@ -25,7 +25,7 @@ form in which information is exchanged, serving functions such as:
 
 ## Metadata
 
-- name: ModalityType
+- name: Modality
 
 ## Entries
 
