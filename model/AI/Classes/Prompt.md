@@ -4,14 +4,16 @@ SPDX-License-Identifier: Community-Spec-1.0
 
 ## Summary
 
-Specifies a prompt content and its associated information.
+Specifies the content of a prompt and its associated information.
 
 ## Description
 
-Specifies a prompt content and its associated information.
+Specifies the content of a prompt and its associated information.
 
-A prompt is the input or instruction given to a foundational model, including
+A prompt is the input or instruction given to a foundation model, including
 a language model, to guide it in generating a specific response or action.
+
+The `contentIdentifier` property identifies the prompt's content.
 
 ## Metadata
 
@@ -43,3 +45,9 @@ a language model, to guide it in generating a specific response or action.
   - type: xsd:boolean
   - minCount: 0
   - maxCount: 1
+
+## External properties restrictions
+
+- /Software/contentIdentifier
+  - type: /Software/ContentIdentifier
+  - minCount: 1
