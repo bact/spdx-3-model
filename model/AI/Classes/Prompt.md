@@ -24,6 +24,9 @@ a language model, to guide it in generating a specific response or action.
 - /Core/inLanguage
   - type: /Core/LanguageTag
   - minCount: 0
+- /Core/modality
+  - type: /Core/Modality
+  - minCount: 0
 - /Dataset/dataCollectionProcess
   - type: xsd:string
   - minCount: 0
@@ -44,6 +47,3 @@ a language model, to guide it in generating a specific response or action.
   - type: /Core/PresenceType
   - minCount: 0
   - maxCount: 1
-- modality
-  - type: /Core/Modality
-  - minCount: 0
