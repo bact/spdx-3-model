@@ -4,12 +4,12 @@ SPDX-License-Identifier: Community-Spec-1.0
 
 ## Summary
 
-Describes the preprocessing steps that were applied to the raw data.
+Describes the preprocessing steps that were applied to the input data.
 
 ## Description
 
 A free-form text that describes the various preprocessing steps
-that were applied to the raw data.
+that were applied to the input data.
 
 Examples include standardization, normalization, deduplication, tokenization,
 and removal of tokens.
