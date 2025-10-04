@@ -10,10 +10,11 @@ Specifies the content of a prompt and its associated information.
 
 Specifies the content of a prompt and its associated information.
 
-A prompt is the input or instruction given to a foundation model, including
-a language model, to guide it in generating a specific response or action.
-
 The `contentIdentifier` property identifies the prompt's content(s).
+
+When `isContextAugmented` is set to `true`, a Relationship of type `usesTool`
+can be optionally used to describe the augmentation mechanism or tool employed.
+For example, referencing a Retrieval-Augmented Generation tool.
 
 ## Metadata
 
