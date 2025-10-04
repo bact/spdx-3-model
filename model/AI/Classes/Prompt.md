@@ -41,7 +41,7 @@ The `contentIdentifier` property identifies the prompt's content(s).
   - type: /Core/PresenceType
   - minCount: 0
   - maxCount: 1
-- hasRAGContext
+- isContextAugmented
   - type: xsd:boolean
   - minCount: 0
   - maxCount: 1
