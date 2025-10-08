@@ -3,7 +3,7 @@
 ' Created: 2025-10-08
 ' Last updated: 2025-10-08
 
-@startuml AIAgent
+@startuml ai-aiagent
 
 set separator /
 

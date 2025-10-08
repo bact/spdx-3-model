@@ -15,7 +15,7 @@ utilizing models and heuristics to perform goal-directed activities.
 An AI agent's actions can involve varying degrees of automation or human
 oversight.
 
-The following relationship types are also used to describe an AIAgent's
+The following relationship types are also used to describe an AI agent's
 functionalities and interactions:
 
 - hasPersistentMemory: Describes a relationship from the Agent to an
