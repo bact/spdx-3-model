@@ -29,7 +29,7 @@ functionalities and interactions:
 ## Metadata
 
 - name: AIAgent
-- SubclassOf: /Core/Agent
+- SubclassOf: /Core/SoftwareAgent
 - Instantiability: Concrete
 
 ## Properties
