@@ -1,0 +1,30 @@
+' RAG diagram
+' With relevant classes and enums
+' Created: 2025-10-08
+' Last updated: 2025-10-08
+
+@startuml ai-rag
+
+set separator /
+
+abstract "Software/SoftwareArtifact" {
+    + additionalPurpose : SoftwarePurpose [0..*]
+    + attributionText : xsd:string [0..*]
+    + contentIdentifier : ContentIdentifier [0..*]
+    + copyrightText : xsd:string [0..1]
+    + primaryPurpose : SoftwarePurpose [0..1]
+}
+
+class "AI/RAG" extends "Software/SoftwareArtifact" {
+    + chunkSize : xsd:nonNegativeInteger [0..1]
+    + dataSource : DatasetPackage [0..*]
+    + embeddingModel: AIPackage [0..*]
+    + indexingType : Specification [0..*]
+    + knowledgeRepresentationType : xsd:string [0..1]
+    + metric : DictionaryEntry [0..*]
+    + queryTransformationMethod : Specification [0..*]
+    + retrievalMethod : Specification [0..*]
+    + retrievalEvaluationMethod : Specification [0..*]
+}
+
+@enduml
