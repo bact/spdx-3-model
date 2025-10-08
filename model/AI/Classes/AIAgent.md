@@ -16,13 +16,15 @@ An AI agent's actions can involve varying degrees of automation or human
 oversight.
 
 The following relationship types are also used to describe an AIAgent's
-interactions:
+functionalities and interactions:
 
+- hasPersistentMemory: Describes a relationship from the Agent to an
+  Element that functions as a persistent or long-term memory store.
 - invokedBy: Describes a relationship from any Element back to the Agent that
   initiated its use or execution. (e.g., a Package is invokedby an AIAgent;
   an AIAgent is invokedBy a Person).
-- usesTool: Describes a relationship from an AIAgent to an Element that
-  functions as an external tool to extend the agent's capabilities.
+- usesTool: Describes a relationship from the AIAgent to an Element that
+  functions as a tool to expand the agent's capabilities.
 
 ## Metadata
 
