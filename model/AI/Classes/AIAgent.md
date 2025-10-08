@@ -41,6 +41,12 @@ functionalities and interactions:
   - type: xsd:boolean
   - minCount: 0
   - maxCount: 1
+- /Software/inputModality
+  - type: /Core/Modality
+  - minCount: 0
+- /Software/outputModality
+  - type: /Core/Modality
+  - minCount: 0
 - automationLevel
   - type: AutomationLevel
   - minCount: 0

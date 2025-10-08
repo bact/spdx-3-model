@@ -13,6 +13,8 @@ abstract "Core/SoftwareAgent" {
 class "AI/AIAgent" extends "Core/SoftwareAgent" {
     + /Core/suppliedBy : /Core/Agent [0..*]
     + /Software/enabledByDefault : xsd:boolean [0..1]
+    + /Software/inputModality : Core/Modality [0..*]
+    + /Software/outputModality : Core/Modality [0..*]
     + automationLevel : AutomationLevel [0..1]
 }
 
@@ -24,6 +26,22 @@ enum "AI/AutomationLevel" {
     partialAutomation
     assistiveAutomation
     notAutomated
+}
+
+enum "Core/Modality" {
+    audioSpeech
+    audioNonSpeech
+    code
+    geometry2d
+    geometry3d
+    gesturePose
+    hapticTactile
+    image
+    other
+    tabular
+    text
+    timeseries
+    video
 }
 
 @enduml
