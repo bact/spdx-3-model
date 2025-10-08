@@ -37,11 +37,11 @@ functionalities and interactions:
 - /Core/suppliedBy
   - type: /Core/Agent
   - minCount: 0
-- automationLevel
-  - type: AutomationLevel
+- /Software/enabledByDefault
+  - type: xsd:boolean
   - minCount: 0
   - maxCount: 1
-- enabledByDefault
-  - type: xsd:boolean
+- automationLevel
+  - type: AutomationLevel
   - minCount: 0
   - maxCount: 1
