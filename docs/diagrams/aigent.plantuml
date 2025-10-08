@@ -1,0 +1,34 @@
+' Diagram for AI Agent schema
+' Created: 2025-10-08
+' Last updated: 2025-10-08
+
+@startuml AIAgent
+
+left to right direction
+
+package Core {
+    abstract Agent {
+    }
+}
+
+package AI {
+    class AIAgent {
+        + /Core/suppliedBy : /Core/Agent [0..*]
+        + automationLevel : AutomationLevel [0..1]
+    }
+
+    enum AutomationLevel {
+        autonomous
+        fullAutomation
+        highAutomation
+        conditionalAutomation
+        partialAutomation
+        assistiveAutomation
+        notAutomated
+    }
+}
+
+AIAgent --|> Agent
+AIAgent::automationLevel ..> AutomationLevel
+
+@enduml
