@@ -13,6 +13,7 @@ abstract "Core/SoftwareAgent" {
 class "AI/AIAgent" extends "Core/SoftwareAgent" {
     + /Core/suppliedBy : /Core/Agent [0..*]
     + automationLevel : AutomationLevel [0..1]
+    + enabledByDefault : xsd:boolean [0..1]
 }
 
 enum "AI/AutomationLevel" {

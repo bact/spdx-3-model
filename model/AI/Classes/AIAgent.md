@@ -21,7 +21,7 @@ functionalities and interactions:
 - hasPersistentMemory: Describes a relationship from the Agent to an
   Element that functions as a persistent or long-term memory store.
 - invokedBy: Describes a relationship from any Element back to the Agent that
-  initiated its use or execution. (e.g., a Package is invokedby an AIAgent;
+  initiated its use or execution. (e.g., a Package is invokedBy an AIAgent;
   an AIAgent is invokedBy a Person).
 - usesTool: Describes a relationship from the AIAgent to an Element that
   functions as a tool to expand the agent's capabilities.
@@ -39,5 +39,9 @@ functionalities and interactions:
   - minCount: 0
 - automationLevel
   - type: AutomationLevel
+  - minCount: 0
+  - maxCount: 1
+- enabledByDefault
+  - type: xsd:boolean
   - minCount: 0
   - maxCount: 1
