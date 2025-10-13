@@ -46,7 +46,7 @@ For example, referencing a Retrieval-Augmented Generation tool.
   - type: xsd:boolean
   - minCount: 0
   - maxCount: 1
-- reasoningtPattern
+- promptPattern
   - type: xsd:string
   - minCount: 0
 
