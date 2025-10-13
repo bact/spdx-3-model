@@ -1,7 +1,7 @@
 ' Prompt class diagram
 ' With relevant classes and enums
 ' Created: 2025-10-02
-' Last updated: 2025-10-08
+' Last updated: 2025-10-14
 
 @startuml ai-prompt
 
@@ -25,6 +25,7 @@ class "AI/Prompt" extends "Software/SoftwareArtifact" {
     ---
     + /Core/inLanguage : /Core/LanguageTag [0..*]
     + /Core/contentModality : /Core/Modality [0..*]
+    + /Software/contentType: /Core/MediaType [0..*]
     + /Dataset/dataCollectionProcess : xsd:string [0..1]
     + /Dataset/dataPreprocessing : xsd:string [0..1]
     + /Dataset/hasSensitivePersonalInformation : /Core/PresenceType [0..1]
@@ -33,18 +34,13 @@ class "AI/Prompt" extends "Software/SoftwareArtifact" {
 }
 
 enum "Core/Modality" {
-    audioSpeech
-    audioNonSpeech
-    code
-    geometry2d
-    geometry3d
+    audio
     gesturePose
     hapticTactile
     image
+    noAssertion
     other
-    tabular
     text
-    timeseries
     video
 }
 

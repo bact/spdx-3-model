@@ -16,17 +16,17 @@ initiate and guide its generated output.
 Properties and relationship types can be used for describing the prompt.
 For example:
 
-- The `contentModality` property can be used to describe the modality intended
-  for the communication of the prompt, such as `text`, `image`, `audio`, or
-  `video`.
-- The `/Software/contentIdentifier` property can be used to identify the
-  prompt's content(s).
-- The `/Core/contentType` property can be used to describe the prompt's
-  physical content type, such as `text/plain`, `text/markdown`, `image/png`, or
-  `application/json`.
 - The `/Software/primaryPurpose` and `/Software/additionalPurpose` properties
   can be used to describe the purpose of the prompt. For example, a system
   prompt's purpose might be described as "configuration" or "specification."
+- The `/Software/contentIdentifier` property can be used to identify the
+  prompt's content(s).
+- The `/Core/contentModality` property can be used to describe the modality
+  intended for the communication of the prompt content,
+  such as `audio`, `image`, `text`, or `video`.
+- The `/Core/contentType` property can be used to describe the prompt's
+  physical content type, as stored in a computer memory, such as
+  `application/json`, `image/png`, `text/markdown`, or `text/plain`.
 - When `isContextAugmented` is set to `true`, a Relationship of type `usesTool`
   can be optionally used to describe the augmentation mechanism or tool
   employed. For example, referencing a retrieval-augmented generation tool.
