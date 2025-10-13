@@ -46,6 +46,9 @@ For example, referencing a Retrieval-Augmented Generation tool.
   - type: xsd:boolean
   - minCount: 0
   - maxCount: 1
+- reasoningtPattern
+  - type: xsd:string
+  - minCount: 0
 
 ## External properties restrictions
 
