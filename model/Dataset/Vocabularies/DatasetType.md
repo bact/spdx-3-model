@@ -8,10 +8,11 @@ Enumeration of dataset types.
 
 ## Description
 
-Describes the different structures of data within a given dataset. A dataset
-can have multiple types of data, or even a single type of data but still match
-multiple types, for example sensor data could also be timeseries or labeled
-image data could also be considered categorical.
+Describes the different structures or kinds of data within a given dataset.
+
+A dataset can have multiple data types.
+Even a single data point can have multiple data types.
+For example, a labeled image could also be considered categorical.
 
 ## Metadata
 
@@ -19,17 +20,22 @@ image data could also be considered categorical.
 
 ## Entries
 
-- audio: Data is audio based, such as a collection of music from the 80s.
-- categorical: Data that is classified into a discrete number of categories, such as the eye color of a population of people.
-- graph: Data is in the form of a graph where entries are somehow related to each other through edges, such a social network of friends.
-- image: Data is a collection of images such as pictures of animals.
-- noAssertion: Data type is not known.
-- numeric: Data consists only of numeric entries.
-- other: Data is of a type not included in this list.
-- sensor: Data is recorded from a physical sensor, such as a thermometer reading or biometric device.
-- structured: Data is stored in tabular format or retrieved from a relational database.
-- syntactic: Data describes the syntax or semantics of a language or text, such as a parse tree used for natural language processing.
-- text: Data consists of unstructured text, such as a book, a Wikipedia article (without images), or a transcript.
-- timeseries: Data is recorded in an ordered sequence of timestamped entries, such as the price of a stock over the course of a day.
-- timestamp: Data is recorded with a timestamp for each entry, but not necessarily ordered or at specific intervals, such as when a taxi ride starts and ends.
-- video: Data is video based, such as a collection of movie clips featuring Tom Hanks.
+- audio: Audio-based data. If known, use the more specific audioNonSpeech or audioSpeech.
+- audioNonSpeech: Non-speech sounds (e.g., music, environmental sounds, audio alerts).
+- audioSpeech: Spoken language captured as audio data (e.g., voice commands, recorded dialogue).
+- categorical: Data classified into a discrete number of categories (e.g., car models).
+- code: A sequence of characters governed by formal rules, intended for instructing a machine or defining a data structure.
+- geometry2d: Two-dimensional spatial data (e.g., floor plans, maps, blueprints).
+- geometry3d: Three-dimensional data (e.g., point clouds, meshes, CAD models).
+- graph: Data in the form of a graph where entries are related to each other through edges (e.g., social networks).
+- image: Still images (e.g., pictures of animals, paintings).
+- noAssertion: The data type is not known.
+- numeric: Data consisting only of numeric entries.
+- other: Data of a type not included in this list.
+- sensor: Data recorded from a physical sensor (e.g., thermometer readings).
+- structured: Data stored in a tabular format or retrieved from a relational database.
+- syntactic: Data that describes the syntax or semantics of a language or text (e.g., parse trees).
+- text: Unstructured text data (e.g., books, Wikipedia articles, transcripts).
+- timeseries: Data ordered by time (e.g., stock prices, time sheets).
+- timestamp: Data where each entry is recorded with a timestamp, but not necessarily ordered or at specific intervals.
+- video: Video-based data (e.g., movie clips).
