@@ -29,6 +29,7 @@ class "AI/Prompt" extends "Software/SoftwareArtifact" {
     + /Dataset/dataPreprocessing : xsd:string [0..1]
     + /Dataset/hasSensitivePersonalInformation : /Core/PresenceType [0..1]
     + isContextAugmented : xsd:boolean [0..1]
+    + promptPattern : xsd:string [0..*]
 }
 
 enum "Core/Modality" {
