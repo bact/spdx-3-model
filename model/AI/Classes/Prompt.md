@@ -4,7 +4,7 @@ SPDX-License-Identifier: Community-Spec-1.0
 
 ## Summary
 
-Specifies the content of a prompt and its associated information.
+Specifies the prompt content and its associated information.
 
 ## Description
 
