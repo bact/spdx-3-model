@@ -4,11 +4,14 @@ SPDX-License-Identifier: Community-Spec-1.0
 
 ## Summary
 
-Specifies the prompt content and its associated information.
+Specifies a prompt content and its associated information.
 
 ## Description
 
-Specifies the content of a prompt and its associated information.
+Specifies a prompt content and its associated information.
+
+A prompt is the input text or instruction given to an AI model to initiate and
+guide its generated output.
 
 The `contentIdentifier` property identifies the prompt's content(s).
 
