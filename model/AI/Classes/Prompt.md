@@ -10,14 +10,26 @@ Specifies a prompt content and its associated information.
 
 Specifies a prompt content and its associated information.
 
-A prompt is the input text or instruction given to an AI model to initiate and
-guide its generated output.
+A prompt is the input text, instruction, or data given to an AI model to
+initiate and guide its generated output.
 
-The `contentIdentifier` property identifies the prompt's content(s).
+Properties and relationship types can be used for describing the prompt.
+For example:
 
-When `isContextAugmented` is set to `true`, a Relationship of type `usesTool`
-can be optionally used to describe the augmentation mechanism or tool employed.
-For example, referencing a Retrieval-Augmented Generation tool.
+- The `contentModality` property can be used to describe the modality intended
+  for the communication of the prompt, such as `text`, `image`, `audio`, or
+  `video`.
+- The `/Software/contentIdentifier` property can be used to identify the
+  prompt's content(s).
+- The `/Core/contentType` property can be used to describe the prompt's
+  physical content type, such as `text/plain`, `text/markdown`, `image/png`, or
+  `application/json`.
+- The `/Software/primaryPurpose` and `/Software/additionalPurpose` properties
+  can be used to describe the purpose of the prompt. For example, a system
+  prompt's purpose might be described as "configuration" or "specification."
+- When `isContextAugmented` is set to `true`, a Relationship of type `usesTool`
+  can be optionally used to describe the augmentation mechanism or tool
+  employed. For example, referencing a retrieval-augmented generation tool.
 
 ## Metadata
 
@@ -30,8 +42,11 @@ For example, referencing a Retrieval-Augmented Generation tool.
 - /Core/inLanguage
   - type: /Core/LanguageTag
   - minCount: 0
-- /Core/modality
+- /Core/contentModality
   - type: /Core/Modality
+  - minCount: 0
+- /Core/contentType
+  - type: /Core/MediaType
   - minCount: 0
 - /Dataset/dataCollectionProcess
   - type: xsd:string

@@ -24,7 +24,7 @@ class "AI/Prompt" extends "Software/SoftwareArtifact" {
     + /Software/contentIdentifier : /Software/ContentIdentifier [1..*]
     ---
     + /Core/inLanguage : /Core/LanguageTag [0..*]
-    + /Core/modality : /Core/Modality [0..*]
+    + /Core/contentModality : /Core/Modality [0..*]
     + /Dataset/dataCollectionProcess : xsd:string [0..1]
     + /Dataset/dataPreprocessing : xsd:string [0..1]
     + /Dataset/hasSensitivePersonalInformation : /Core/PresenceType [0..1]
