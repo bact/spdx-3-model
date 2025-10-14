@@ -28,8 +28,10 @@ For example:
   physical content type, as stored in a computer memory, such as
   `application/json`, `image/png`, `text/markdown`, or `text/plain`.
 - When `isContextAugmented` is set to `true`, a Relationship of type `usesTool`
-  can be optionally used to describe the augmentation mechanism or tool
-  employed. For example, referencing a retrieval-augmented generation tool.
+  can be optionally used to describe the context augmentation mechanism or tool
+  employed (e.g., referencing a retrieval-augmented generation tool).
+  Context is the information provided to the model that shapes or influences
+  its generated output.
 
 ## Metadata
 

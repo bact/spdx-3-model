@@ -4,14 +4,14 @@ SPDX-License-Identifier: Community-Spec-1.0
 
 ## Summary
 
-Describes how the data was collected.
+Describes the process of data collection.
 
 ## Description
 
-A free-form text that describes how a data was collected.
+A free-form text that describes how data was collected.
 
-Examples include the sources from which a data was scrapped and
-the interview protocol that was used for data collection.
+Examples include the sources from which data was scraped and the interview
+protocol that was used for data collection.
 
 ## Metadata
 
