@@ -1,7 +1,7 @@
 ' AI Agent diagram
 ' With relevant classes and enums
 ' Created: 2025-10-08
-' Last updated: 2025-10-08
+' Last updated: 2025-10-14
 
 @startuml ai-aiagent
 
@@ -29,18 +29,13 @@ enum "AI/AutomationLevel" {
 }
 
 enum "Core/Modality" {
-    audioSpeech
-    audioNonSpeech
-    code
-    geometry2d
-    geometry3d
+    audio
     gesturePose
     hapticTactile
     image
+    noAssertion
     other
-    tabular
     text
-    timeseries
     video
 }
 
