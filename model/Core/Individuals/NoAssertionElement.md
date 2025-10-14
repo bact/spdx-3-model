@@ -5,7 +5,7 @@ SPDX-License-Identifier: Community-Spec-1.0
 ## Summary
 
 An Individual Value for Element representing a set of Elements of unknown
-identify or cardinality (number).
+identity or cardinality (number).
 
 ## Description
 
@@ -36,7 +36,7 @@ no assertion is being made about any potential descendants of Element1.
 
 ## Summary @ja
 
-不明な識別子やカーディナリティ (数) を持つ要素の集合を表す個別の値。  
+不明な識別子やカーディナリティ (数) を持つ要素の集合を表す個別の値。
 
 ## Description @ja
 

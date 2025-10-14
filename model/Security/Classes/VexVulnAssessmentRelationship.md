@@ -4,7 +4,7 @@ SPDX-License-Identifier: Community-Spec-1.0
 
 ## Summary
 
-Abstract ancestor class for all VEX relationships
+Abstract ancestor class for all VEX relationships.
 
 ## Description
 

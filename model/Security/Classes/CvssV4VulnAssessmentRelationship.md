@@ -49,7 +49,7 @@ It is intended to communicate the results of using a CVSS calculator.
     },
   ],
   "suppliedBy": "urn:spdx.dev:agent-my-security-vendor",
-  "publishedTime": "2023-10-05T23:09:13Z"
+  "security_publishedTime": "2023-10-05T23:09:13Z"
 },
 {
   "type": "Relationship",
@@ -127,7 +127,7 @@ It is intended to communicate the results of using a CVSS calculator.
     },
   ],
   "suppliedBy": "urn:spdx.dev:agent-my-security-vendor",
-  "publishedTime": "2023-10-05T23:09:13Z"
+  "security_publishedTime": "2023-10-05T23:09:13Z"
 },
 {
   "type": "Relationship",
