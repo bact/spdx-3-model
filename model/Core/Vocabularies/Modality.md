@@ -33,7 +33,7 @@ form in which information is exchanged, serving functions such as:
 - gesturePose: Body movement, hand gestures, facial expressions, or full-body pose estimation.
 - hapticTactile: Touch, force, or tactile feedback data (e.g., vibrations, surface pressure, grip data).
 - image: Still visual data (e.g., photographs, drawings, diagrams, charts).
-- noAssertion: The modality is not known or cannot be reasonably determined, or the creator has made no attempt to determine this field, or the creator has intentionally provided no information (no meaning should be implied by doing so).
+- noAssertion: The modality is not known or cannot be reasonably determined, or the creator has made no attempt to determine this field, or the creator has intentionally provided no information (no meaning shall be implied by doing so).
 - other: Any other modality not defined in this list.
 - text: A sequence of characters intended to convey meaning in a natural human language.
-- video: Temporal visual data (sequences of still visual data), which may associated time-synchronized data such as audio tracks or transcriptions.
+- video: Temporal visual data (sequences of still visual data), which can associated time-synchronized data such as audio tracks or transcriptions.
