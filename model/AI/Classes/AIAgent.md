@@ -51,3 +51,7 @@ functionalities and interactions:
   - type: AutomationLevel
   - minCount: 0
   - maxCount: 1
+- ageagentCapabilitiesn
+  - type: xsd:string
+  - mincount: 0
+  - maxcount: 1
