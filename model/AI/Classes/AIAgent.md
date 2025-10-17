@@ -55,3 +55,7 @@ functionalities and interactions:
   - type: xsd:string
   - mincount: 0
   - maxcount: 1
+- agentExternalTools
+  - type: /Core/DictionaryEntry
+  - mincount: 0
+  - maxcount: 1
