@@ -59,3 +59,7 @@ functionalities and interactions:
   - type: /Core/DictionaryEntry
   - mincount: 0
   - maxcount: 1
+- agentMemoryMode
+  - type: xsd: anyURI
+  - mincount: 0
+  - maxcount: 1
