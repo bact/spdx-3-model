@@ -60,6 +60,6 @@ functionalities and interactions:
   - mincount: 0
   - maxcount: 1
 - agentMemoryMode
-  - type: xsd: anyURI
+  - type: xsd:anyURI
   - mincount: 0
   - maxcount: 1
