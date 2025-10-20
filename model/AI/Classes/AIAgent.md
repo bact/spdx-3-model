@@ -51,3 +51,15 @@ functionalities and interactions:
   - type: AutomationLevel
   - minCount: 0
   - maxCount: 1
+- agentCapabilities
+  - type: xsd:string
+  - minCount: 0
+  - maxCount: 1
+- agentExternalTools
+  - type: /Core/DictionaryEntry
+  - minCount: 0
+  - maxCount: 1
+- agentMemoryMode
+  - type: xsd:anyURI
+  - minCount: 0
+  - maxCount: 1
