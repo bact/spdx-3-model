@@ -16,4 +16,4 @@ Some examples include episodic (step/run-level logs and outcomes), semantic (vec
 
 - name: agentMemoryMode
 - Nature: DataProperty
-- Range: xsd: anyURI
+- Range: xsd:anyURI
