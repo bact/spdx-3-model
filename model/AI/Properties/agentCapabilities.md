@@ -23,4 +23,4 @@ Recommended notation: <capability>: <purpose> -> <tool references>
 
 - name: agentCapabilities
 - Nature: DataProperty
-- Range: xsd: string
+- Range: xsd:string
