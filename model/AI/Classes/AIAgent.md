@@ -53,8 +53,8 @@ functionalities and interactions:
   - maxCount: 1
 - agentCapabilities
   - type: xsd:string
-  - mincount: 0
-  - maxcount: 1
+  - minCount: 0
+  - maxCount: 1
 - agentExternalTools
   - type: /Core/DictionaryEntry
   - mincount: 0
