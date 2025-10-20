@@ -47,19 +47,13 @@ functionalities and interactions:
 - /Software/outputModality
   - type: /Core/Modality
   - minCount: 0
-- automationLevel
-  - type: AutomationLevel
-  - minCount: 0
-  - maxCount: 1
-- agentCapabilities
+- agentCapability
   - type: xsd:string
   - minCount: 0
-  - maxCount: 1
-- agentExternalTools
-  - type: /Core/DictionaryEntry
-  - minCount: 0
-  - maxCount: 1
 - agentMemoryMode
-  - type: xsd:anyURI
+  - type: xsd:string
+  - minCount: 0
+- automationLevel
+  - type: AutomationLevel
   - minCount: 0
   - maxCount: 1
