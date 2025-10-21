@@ -23,6 +23,6 @@ NoAssertionLicense shall be used if
 - type: IndividualLicensingInfo
 - IRI: https://spdx.org/rdf/3.1/terms/Licensing/NoAssertion
 
-## Property Values
+## Property values
 
 - name: "NOASSERTION"

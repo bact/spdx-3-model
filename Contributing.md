@@ -1,4 +1,4 @@
-# Contributing to the SPDX 3 Model
+# Contributing to the SPDX 3 model
 
 ## General
 
@@ -62,7 +62,7 @@ This method of development was agreed upon by the SPDX Tech team on 2023-01-17.
 Translations of model descriptions are welcome.
 Please see [translation.md][translation] for details.
 
-## Profile Maintainers
+## Profile maintainers
 
 In accordance with the development model described above,
 each profile has at least one maintainer in charge of merging profile-specific

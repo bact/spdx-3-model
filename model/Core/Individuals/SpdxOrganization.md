@@ -20,6 +20,6 @@ List, as well as individuals defined in the specification.
 - type: Organization
 - IRI: https://spdx.org/
 
-## Property Values
+## Property values
 
 - name: "SPDX Project"

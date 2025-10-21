@@ -30,6 +30,6 @@ no assertion is being made about any potential descendants of Element1.
 - name: NoAssertionElement
 - type: IndividualElement
 
-## Property Values
+## Property values
 
 - name: "NOASSERTION"

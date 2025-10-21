@@ -1,4 +1,4 @@
-# Change Log
+# Change log
 
 ## Post-3.0.1 (2025-04-24)
 

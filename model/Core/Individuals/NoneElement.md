@@ -24,6 +24,6 @@ Element1 has no descendants.
 - name: NoneElement
 - type: IndividualElement
 
-## Property Values
+## Property values
 
 - name: "NONE"
