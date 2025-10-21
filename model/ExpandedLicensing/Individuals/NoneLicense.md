@@ -18,7 +18,7 @@ available for this Artifact.
 - type: IndividualLicensingInfo
 - IRI: https://spdx.org/rdf/3.0/terms/Licensing/None
 
-## Property Values
+## Property values
 
 - name: "NONE"
 

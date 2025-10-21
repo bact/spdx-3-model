@@ -311,7 +311,7 @@ A named individual of Element class that representing none.
 - name: NoneElement
 - type: Element
 
-## Property Values
+## Property values
 
 - name: "NONE"
 ```
