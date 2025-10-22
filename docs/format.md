@@ -287,7 +287,7 @@ Allowed headings:
   - name: \<individual_name\>
   - type: \<class_name\>
   - IRI: \<IRI\>
-- Property Values
+- Property values
   - \<property_name\>: \<property_value\>
   - ...
 
@@ -489,7 +489,7 @@ recommendations when writing paragraph text and incorporating links.
     [RFC 3986](https://www.rfc-editor.org/rfc/rfc3986)
     ```
 
-- **Code Highlighting.**
+- **Code highlighting.**
 
     When using code blocks, specify the appropriate computer language code.
     For instance, use `json` for JSON, `yaml` for YAML, and `text` for plain
