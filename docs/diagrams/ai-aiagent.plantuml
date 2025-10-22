@@ -1,7 +1,7 @@
 ' AI Agent diagram
 ' With relevant classes and enums
 ' Created: 2025-10-08
-' Last updated: 2025-10-14
+' Last updated: 2025-10-22
 
 @startuml ai-aiagent
 
@@ -15,6 +15,8 @@ class "AI/AIAgent" extends "Core/SoftwareAgent" {
     + /Software/enabledByDefault : xsd:boolean [0..1]
     + /Software/inputModality : Core/Modality [0..*]
     + /Software/outputModality : Core/Modality [0..*]
+    + agentCapability: xsd:string [0..*]
+    + agentMemoryMode: xsd:string [0..*]
     + automationLevel : AutomationLevel [0..1]
 }
 
