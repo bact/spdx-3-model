@@ -13,7 +13,7 @@ defined within the JSON-LD syntax specifications. Any properties not listed
 below should be serialized as part of the SpdxDocument element itself within
 the JSON-LD serialized data.
 
-Deserialization of any JSON-LD serialized SPDX content MUST expand the inverse
+Deserialization of any JSON-LD serialized SPDX content shall expand the inverse
 of these native mappings such that the logical SpdxDocument element directly
 contains its full set of properties.
 
@@ -42,7 +42,7 @@ discussion).
 
 ## Context file
 
-The SPDX organization provides a global JSON-LD @context file that MUST be used
+The SPDX organization provides a global JSON-LD @context file that shall be used
 universally for all SPDX JSON-LD files of a given SPDX version.
 
 The context is available under <https://spdx.org/rdf/3.0/spdx-context.jsonld>

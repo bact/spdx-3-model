@@ -28,14 +28,14 @@ There are a few tools that are known to work, which are described below
 
 [ajv](https://ajv.js.org/) is a Node.js implementation of a JSON schema
 validator. It is the recommended validation tool as it has been shown to be
-fast and helpful in its error messages. To get started, the tool must first be
+fast and helpful in its error messages. To get started, the tool shall first be
 installed from NPM:
 
 ```shell
 npm install --global ajv-cli
 ```
 
-Unfortunately, `ajv` does not allow referencing a schema from a URL, so it must
+Unfortunately, `ajv` does not allow referencing a schema from a URL, so it shall
 first be downloaded locally in order to do validation:
 
 ```shell
@@ -175,5 +175,5 @@ For example,
 
 ### Cardinality
 
-A property with a cardinality greater than 1 must be represented as an array in
+A property with a cardinality greater than 1 shall be represented as an array in
 JSON, regardless of the actual number of values it holds.
