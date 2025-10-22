@@ -15,7 +15,7 @@ All use cases supported by the prior version are supported here as well.
 This repository holds the model for the information captured in SPDX version 3
 standard.
 
-Translations of the information model may be available.
+Translations of the information model can be available.
 English remains the normative language in all cases.
 
 ## Branch Structure
@@ -37,7 +37,7 @@ The branches in use are:
   (SemVer) conventions.
   Once any changes are accepted and released, the support branch will be tagged
   and merged into both `develop` and `main` branches.
-- General feature or fix branches - there may be feature branches made for
+- General feature or fix branches - there can be feature branches made for
   specific enhancements or fixes to the spec.
   These will be short-lived and merged into either a `support` branch or the
   `develop` branch.

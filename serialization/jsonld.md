@@ -10,7 +10,7 @@ The JSON-LD is an RDF format and follows the serialization rules of the
 
 The following SpdxDocument properties are mapped to native JSON-LD mechanisms
 defined within the JSON-LD syntax specifications. Any properties not listed
-below should be serialized as part of the SpdxDocument element itself within
+below shall be serialized as part of the SpdxDocument element itself within
 the JSON-LD serialized data.
 
 Deserialization of any JSON-LD serialized SPDX content shall expand the inverse
@@ -46,7 +46,7 @@ The SPDX organization provides a global JSON-LD @context file that shall be used
 universally for all SPDX JSON-LD files of a given SPDX version.
 
 The context is available under <https://spdx.org/rdf/3.0/spdx-context.jsonld>
-and should be included in serialized files on top-level via
+and shall be included in serialized files on top-level via
 
 ```json
 "@context": "https://spdx.org/rdf/3.0/spdx-context.jsonld"

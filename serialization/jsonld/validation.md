@@ -53,7 +53,7 @@ ajv validate --spec=draft2020 -s spdx-3-schema.json -d <DOCUMENT>
 [check-jsonschema](https://check-jsonschema.readthedocs.io/en/stable/) is a
 Python based command line tool to validate a JSON schema built on top of the
 [jsonschema](https://python-jsonschema.readthedocs.io/en/stable/) library. It
-is not as fast as `ajv` (especially for large documents), but may be useful in
+is not as fast as `ajv` (especially for large documents), but can be useful in
 places where using NPM is not desired, or if you want to be able to reference
 the schema directly from a URL.
 

@@ -21,7 +21,7 @@ An explicit conformance requirement specifying details of an SPDX-valid relation
 
 In SPDX 3.0 these constraints are expressed using the W3C SHACL language.
 
-One example could be the requirement of a specific hash algorithm to be present.
+One example can be the requirement of a specific hash algorithm to be present.
 
 ## Core
 
@@ -113,4 +113,4 @@ The action of checking or proving that instance data content conforms to the exp
 
 In SPDX 3.0, automated validation of RDF-based serialized content can be accomplished with various freely available SHACL validation engines such as pyshacl.
 
-Custom validation engines could also implement automated validation of non-RDF-based serializations against the defined SHACL shapes within SPDX 3.0.
+Custom validation engines can also implement automated validation of non-RDF-based serializations against the defined SHACL shapes within SPDX 3.0.

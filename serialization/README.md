@@ -76,7 +76,7 @@ elements and relationships step-by-step:
     element using VEX (Vulnerability Exploitability eXchange) (see the
     serialized examples listed in *Example* under each vulnerability assessment
     relationship class definition)
-  - How a vulnerability element may be fixed for a particular software package
+  - How a vulnerability element can be fixed for a particular software package
     element
   - Results of a vulnerability scan or audit
 - Adding `foundBy`, `publishedBy`, `reportedBy` relationships between an agent

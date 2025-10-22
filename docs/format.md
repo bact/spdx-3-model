@@ -422,8 +422,8 @@ recommendations when writing paragraph text and incorporating links.
 
     While descriptive link text is generally preferred for better readability
     and accessibility,
-    there may be specific instances where bare URLs might be necessary.
-    This could include cases where URLs need to be clearly visible in both
+    there can be specific instances where bare URLs are necessary.
+    This can include cases where URLs need to be clearly visible in both
     digital and print formats or when the URL serves as a metadata value.
 
     The IRI field in the Metadata section shall use a bare URL:

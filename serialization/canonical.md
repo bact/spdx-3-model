@@ -14,7 +14,7 @@ Such a canonical form normalizes things like ordering and formatting.
 
 1. true, false and null: the literal names shall be lowercase; no other literal names are allowed
 
-1. integers: represented in base 10 using decimal digits. Contains an integer component that may be prefixed with an optional minus sign. Leading zeros are not allowed.
+1. integers: represented in base 10 using decimal digits. Contains an integer component that can be prefixed with an optional minus sign. Leading zeros are not allowed.
 
 1. strings: UTF-8 representation without specific canonicalisation. A string begins and ends with quotation marks (%x22). Any Unicode characters may be placed within the quotation marks, except for the characters that shall be escaped: quotation mark, reverse solidus, and the control characters (U+0000 through U+001F).
 
