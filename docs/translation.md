@@ -24,7 +24,7 @@ the Latin script).
 
 These textual descriptions are encoded as a
 ["language-tagged string"][language-tagged-string] in RDF.
-Therefore, the language tag used to identify the language must follow the
+Therefore, the language tag used to identify the language shall follow the
 well-formedness rules defined in [IETF BCP 47 (RFC 5646)][rfc5646].
 Appendix A of that document provides examples of valid language tags.
 

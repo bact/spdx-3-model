@@ -105,7 +105,7 @@ In SPDX 3 these shapes are expressed using the W3C SHACL language.
 
 In previous editions of the specification, SPDX meant "Software Package Data Exchange".
 
-Starting with V3.0, the scope of SPDX has expanded beyond software and now means "System Package Data Exchange".
+Starting with version 3.0, the scope of SPDX has expanded beyond software and now means "System Package Data Exchange".
 
 ## Validation
 

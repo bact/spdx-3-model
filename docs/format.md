@@ -76,8 +76,8 @@ from the location of the file:
 - Model file names are case-sensitive and shall be identical to the element they
   represent.
 - All model files shall be located within the `model/` directory.
-- Profiles should be organised into subdirectories (e.g., `Core/`, `Dataset/`).
-- Elements should be categorised by their type in subdirectories (e.g.,
+- Profiles shall be organised into subdirectories (e.g., `Core/`, `Dataset/`).
+- Elements shall be categorised by their type in subdirectories (e.g.,
   `Classes/`, `Datatypes/`, `Individuals/`, `Properties/`, `Vocabularies/`).
 
 File and directory organisation:
@@ -325,7 +325,7 @@ Allowed headings:
   - name: \<individual_name\>
   - type: \<class_name\>
   - IRI: \<IRI\>
-- Property Values
+- Property values
   - \<property_name\>: \<property_value\>
   - ...
 
@@ -526,7 +526,7 @@ recommendations when writing paragraph text and incorporating links.
 
     While descriptive link text is generally preferred for better readability
     and accessibility,
-    there may be specific instances where bare URLs might be necessary.
+    there can be specific instances where bare URLs are necessary.
     This could include cases where URLs need to be clearly visible in both
     digital and print formats or when the URL serves as a metadata value.
 
@@ -544,7 +544,7 @@ recommendations when writing paragraph text and incorporating links.
     clickable links.
 
     To ensure that URLs remain clickable on the specification website,
-    you should enclose them within angle brackets (`<` and `>`).
+    they shall be enclosed within angle brackets (`<` and `>`).
 
     Here's an example of a **clickable** URL:
 
@@ -593,7 +593,7 @@ recommendations when writing paragraph text and incorporating links.
     [RFC 3986](https://www.rfc-editor.org/rfc/rfc3986)
     ```
 
-- **Code Highlighting.**
+- **Code highlighting.**
 
     When using code blocks, specify the appropriate computer language code.
     For instance, use `json` for JSON, `yaml` for YAML, and `text` for plain
