@@ -1,5 +1,5 @@
 ---
-SPDX-FileCopyrightText: 2024 SPDX Project
+SPDX-FileCopyrightText: 2024-2025 SPDX Project
 SPDX-License-Identifier: Community-Spec-1.0
 ---
 
@@ -66,11 +66,11 @@ from the location of the file:
 
 - Each element (class, datatype, individual, property, and vocabulary)
   is defined in a distinct file.
-- Model file names are case-sensitive and must be identical to the element they
+- Model file names are case-sensitive and shall be identical to the element they
   represent.
-- All model files must be located within the `model/` directory.
-- Profiles should be organised into subdirectories (e.g., `Core/`, `Dataset/`).
-- Elements should be categorised by their type in subdirectories (e.g.,
+- All model files shall be located within the `model/` directory.
+- Profiles shall be organised into subdirectories (e.g., `Core/`, `Dataset/`).
+- Elements shall be categorised by their type in subdirectories (e.g.,
   `Classes/`, `Datatypes/`, `Individuals/`, `Properties/`, `Vocabularies/`).
 
 File and directory organisation:
@@ -105,28 +105,28 @@ is the best reference.
 
 ## File content structure and formatting
 
-Each model file must adhere to a strict content structure:
+Each model file shall adhere to a strict content structure:
 
-- All files must be encoded in UTF-8.
-- Each file must start with SPDX license information:
+- All files shall be encoded in UTF-8.
+- Each file shall start with SPDX license information:
   `SPDX-License-Identifier: Community-Spec-1.0`
   and follows by one blank line.
-- The content immediately after the license information must begin with an
+- The content immediately after the license information shall begin with an
   H1 heading containing the element's name.
 - Each element type has a predefined set of [allowed H2 headings](#syntax) and
-  labeled lists that must be used to structure its content.
+  labeled lists that shall be used to structure its content.
 
 Additionally, since MkDocs uses a strict
 [Python-Markdown](https://python-markdown.github.io/#differences),
-each model file must adhere to specific formatting guidelines:
+each model file shall adhere to specific formatting guidelines:
 
 - Blank lines:
-  - There must be a blank line before and after a heading.
-  - There must be a blank line before and after a list.
+  - There shall be a blank line before and after a heading.
+  - There shall be a blank line before and after a list.
 - Indentation:
   - Use spaces instead of tabs.
   - When a list item consists of multiple paragraphs, each subsequent paragraph
-    in a list item must be indented by 4 spaces. This applies to any
+    in a list item shall be indented by 4 spaces. This applies to any
     block-level elements nested in a list, including paragraphs, sub-lists,
     blockquotes, code blocks, etc.
 
@@ -193,7 +193,7 @@ Allowed headings:
 - Description
 - Metadata
   - name: \<class_name\>
-  - SubclassOf: \<class_name\> OR "none" *(Must have one if Instantiability is "Concrete")*
+  - SubclassOf: \<class_name\> OR "none" *(Shall have one if Instantiability is "Concrete")*
   - Instantiability: "Abstract" OR "Concrete" *(Default: Concrete)*
 - Properties *(Optional)*
   - \<property_name\>
@@ -362,7 +362,7 @@ Allowed headings:
   - \<entry_name\>: \<entry_description\>
   - ...
 
-Each entry in Entries must be written in a single line.
+Each entry in Entries shall be written in a single line.
 
 #### Vocabulary example
 
@@ -426,7 +426,7 @@ recommendations when writing paragraph text and incorporating links.
     This could include cases where URLs need to be clearly visible in both
     digital and print formats or when the URL serves as a metadata value.
 
-    The IRI field in the Metadata section MUST use a bare URL:
+    The IRI field in the Metadata section shall use a bare URL:
 
     ```markdown
     ## Metadata
@@ -440,7 +440,7 @@ recommendations when writing paragraph text and incorporating links.
     clickable links.
 
     To ensure that URLs remain clickable on the specification website,
-    you should enclose them within angle brackets (`<` and `>`).
+    they shall be enclosed within angle brackets (`<` and `>`).
 
     Here's an example of a **clickable** URL:
 
