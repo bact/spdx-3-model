@@ -14,14 +14,6 @@ For example, you can represent a relationship between two different Files,
 between a Package and a File, between two Packages, or between one SpdxDocument
 and another SpdxDocument.
 
-A relationship can be either directional or non-directional (directionless).
-
-The direction of a relationship is always from the `from` Element to the
-`to` Element, as defined in the relationship type entry's description.
-
-If a relationship is non-directional, the order of the `from` and `to`
-Elements does not matter.
-
 ## Metadata
 
 - name: RelationshipType
