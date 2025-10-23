@@ -9,15 +9,18 @@ Information about the relationship between two Elements.
 ## Description
 
 Provides information about the relationship between two Elements.
+
 For example, you can represent a relationship between two different Files,
 between a Package and a File, between two Packages, or between one SpdxDocument
 and another SpdxDocument.
 
-Relationship names should be descriptive enough to easily deduce the correct direction
-from their name. The best way to do this is to make sure that the relationship
-name completes the sentence:
+A relationship can be either directional or non-directional (directionless).
 
-`from` (is) (a) `RELATIONSHIP` `to`
+The direction of a relationship is always from the `from` Element to the
+`to` Element, as defined in the relationship type entry's description.
+
+If a relationship is non-directional, the order of the `from` and `to`
+Elements does not matter.
 
 ## Metadata
 
