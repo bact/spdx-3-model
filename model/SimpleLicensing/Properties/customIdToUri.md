@@ -4,15 +4,17 @@ SPDX-License-Identifier: Community-Spec-1.0
 
 ## Summary
 
-**DEPRECATED**
+**DEPRECATED since SPDX 3.1.**
+Use [customIdToLicense](./customIdToLicense.md) instead.
 
 Maps a LicenseRef or AdditionRef string for a Custom License or a Custom
 License Addition to its URI ID.
 
-## Description
+**NOTE:**
+This property is deprecated and only included for backward compatibility.
+New documents should use [customIdToLicense](./customIdToLicense.md) instead.
 
-**NOTE** This field is deprecated and only included for backward compatibility.
-New documents should use customIdToLicense instead.
+## Description
 
 Within a License Expression, references can be made to a Custom License or a
 Custom License Addition.
