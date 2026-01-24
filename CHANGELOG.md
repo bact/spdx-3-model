@@ -2,7 +2,7 @@
 
 ## 3.1-rc1 (TBA)
 
-The SPDX 3.1 model expands beyond software to include hardware, supply chain,
+The SPDX 3.1 model expands beyond software to include safety, hardware, supply chain,
 operations, and more. This release candidate is for testing and validation;
 it may contain changes that could be modified or reverted before the
 final release.
