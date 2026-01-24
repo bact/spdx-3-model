@@ -4,7 +4,7 @@ SPDX-License-Identifier: Community-Spec-1.0
 
 ## Summary
 
-**DEPRECATED since SPDX 3.1.**
+**DEPRECATED in SPDX 3.1.**
 Use [customIdToLicense](./customIdToLicense.md) instead.
 
 Maps a LicenseRef or AdditionRef string for a Custom License or a Custom
