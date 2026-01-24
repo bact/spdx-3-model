@@ -4,7 +4,7 @@ SPDX-License-Identifier: Community-Spec-1.0
 
 ## Summary
 
-**DEPRECATED since SPDX 3.1.**
+**DEPRECATED in SPDX 3.1.**
 Use [/Core/isoAutomationLevel](../../Core/Properties/isoAutomationLevel.md)
 instead.
 
