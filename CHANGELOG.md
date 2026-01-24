@@ -1,6 +1,6 @@
 # Change Log
 
-## 3.1-rc1 (TBA)
+## 3.1-RC1 (2026-01-24)
 
 The SPDX 3.1 model expands beyond software to include safety, hardware, supply chain,
 operations, and more. This release candidate is for testing and validation;
@@ -68,8 +68,8 @@ semantic changes to the model and may affect compatibility.
 
 ### Release notes
 
-Release notes for the 3.1-rc1 model, detailing all changes from 3.0.1
-through 3.1-rc1, are available at:
+Release notes for the 3.1-RC1 model, detailing all changes from 3.0.1
+through 3.1-RC1, are available at:
 <https://github.com/spdx/spdx-3-model/releases/tag/3.1-rc1>.
 
 ## 3.0.1 (2024-12-10)
