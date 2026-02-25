@@ -19,6 +19,9 @@ artificial intelligence capabilities.
 
 ## Properties
 
+- /Core/energyConsumption
+  - type: /Core/EnergyConsumption
+  - minCount: 0
 - /Core/isoAutomationLevel
   - type: /Core/IsoAutomationLevel
   - minCount: 0

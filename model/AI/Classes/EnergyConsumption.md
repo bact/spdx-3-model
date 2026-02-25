@@ -7,30 +7,28 @@ SPDX-License-Identifier: Community-Spec-1.0
 A class for describing the energy consumption incurred by an AI model in
 different stages of its lifecycle.
 
+**DEPRECATED in SPDX 3.1.** Use `/Core/energyConsumption` instead.
+
 ## Description
 
 A class to denote the known or estimated energy consumption of an AI model
 during its training, fine-tuning, and inference stages.
 
+This AI-scoped class is deprecated. Migrate data to `/Core/energyConsumption`
+where each consumption measurement is represented by a `/Core/EnergyConsumption`
+instance with `measure` and optional `lifecycleScope`.
+
 *Example*
 
 ```json
 {
-  "type": "ai_EnergyConsumption",
-  "ai_trainingEnergyConsumption": [
-    {
-      "type": "ai_EnergyConsumptionDescription",
-      "ai_energyQuantity": "36.5",
-      "ai_energyUnit": "kilowattHour"
-    }
-  ],
-  "ai_inferenceEnergyConsumption": [
-    {
-      "type": "ai_EnergyConsumptionDescription",
-      "ai_energyQuantity": "0.042",
-      "ai_energyUnit": "kilowattHour"
-    }
-  ]
+  "type": "EnergyConsumption",
+  "measure": {
+    "type": "MeasureOfEnergy",
+    "quantity": "36.5",
+    "unitQUDT": "http://qudt.org/vocab/unit/KiloWattHour"
+  },
+  "lifecycleScope": "training"
 }
 ```
 
