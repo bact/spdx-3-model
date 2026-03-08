@@ -32,6 +32,7 @@ ExternalRefType specifies the type of an external reference.
 - dynamicAnalysisReport: A reference to a dynamic analysis report for a package.
 - eolNotice: A reference to the End Of Sale (EOS) and/or End Of Life (EOL) information related to a package.
 - exportControlAssessment: A reference to an export control assessment for a package.
+- fundamentalRightsImpactAssessment: A reference to a fundamental human rights impact assessment for a package.
 - funding: A reference to funding information related to a package.
 - issueTracker: A reference to the issue tracker for a package.
 - mailingList: A reference to the mailing list used by the maintainer for a package.
@@ -41,7 +42,7 @@ ExternalRefType specifies the type of an external reference.
 - nuget: A reference to a NuGet package. The package locator format is defined in the [NuGet documentation](https://docs.nuget.org) and looks like `package/version`.
 - license: A reference to additional license information related to an artifact.
 - other: Used when the type does not match any of the other options.
-- privacyAssessment: A reference to a privacy assessment for a package.
+- privacyAssessment: A reference to a privacy assessment or a data protection impact assessment for a package.
 - productMetadata: A reference to additional product metadata such as reference within organization's product catalog.
 - purchaseOrder: A reference to a purchase order for a package.
 - qualityAssessmentReport: A reference to a quality assessment for a package.
