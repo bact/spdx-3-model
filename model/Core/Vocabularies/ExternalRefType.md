@@ -26,6 +26,7 @@ ExternalRefType specifies the type of an external reference.
 - chat: A reference to the instant messaging system used by the maintainer for a package.
 - certificationReport: A reference to a certification report for a package from an accredited/independent body.
 - componentAnalysisReport: A reference to a Software Composition Analysis (SCA) report.
+- croissant: A reference to a machine learning dataset information in the [Croissant](https://mlcommons.org/croissant) format.
 - cwe: [Common Weakness Enumeration](https://csrc.nist.gov/glossary/term/common_weakness_enumeration). A reference to a source of software flaw defined within the official [CWE List](https://cwe.mitre.org/data/) that conforms to the [CWE specification](https://cwe.mitre.org/).
 - documentation: A reference to the documentation for a package.
 - dynamicAnalysisReport: A reference to a dynamic analysis report for a package.
