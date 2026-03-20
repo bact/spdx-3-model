@@ -256,7 +256,7 @@ First release of SPDX 3.0 model.
 
 Also referred to as version 3.0.0.
 
-## [3.0-rc2] - 20234-02-17
+## [3.0-rc2] - 2024-02-17
 
 The second in a series of releases that will lead to
 the general availability of SPDX 3.0 model.
