@@ -23,6 +23,8 @@ final release.
 
 ### Added
 
+- `doi`, `eli`, `isni`, and other intellectual property/regulatory identifiers
+  to `/Core/ExternalIdentifierType` vocabulary ([#1187][])
 - `bom` entry to `/Core/ExternalRefType` vocabulary ([#1201][])
 - `/Core/rationale` property ([#1218][])
 - Guidelines for creating an spdxId for an SPDX document (informative)
@@ -66,6 +68,7 @@ final release.
     release candidate and were never part of an official release.
   - Replaced with `/Core/rationale` property.
 
+[#1187]: https://github.com/spdx/spdx-3-model/pull/1187
 [#1201]: https://github.com/spdx/spdx-3-model/pull/1201
 [#1213]: https://github.com/spdx/spdx-3-model/pull/1213
 [#1215]: https://github.com/spdx/spdx-3-model/pull/1215
