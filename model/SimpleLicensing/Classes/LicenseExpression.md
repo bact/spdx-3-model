@@ -37,7 +37,7 @@ will be removed in a future release.
   - minCount: 1
   - maxCount: 1
 - licenseListVersion
-  - type: /Core/SemVer
+  - type: /Core/Version
   - maxCount: 1
 - customIdToUri
   - type: /Core/DictionaryEntry

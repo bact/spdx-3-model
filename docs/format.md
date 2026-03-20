@@ -310,7 +310,7 @@ A DateTime is a string representation of a specific date and time.
 
 ## Format
 
-- pattern: ^\d\d\d\d-\d\d-\d\dT\d\d:\d\d:\d\dZ$
+- pattern: ^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$
 ```
 
 ### Individuals
