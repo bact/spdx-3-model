@@ -7,16 +7,16 @@ SPDX-License-Identifier: Community-Spec-1.0
 A class for describing the energy consumption incurred by an AI model in
 different stages of its lifecycle.
 
-**DEPRECATED in SPDX 3.1.** Use `/Core/energyConsumption` instead.
+**DEPRECATED in SPDX 3.1.**
+Use `/Core/EnergyConsumption` instead.
 
 ## Description
 
 A class to denote the known or estimated energy consumption of an AI model
 during its training, fine-tuning, and inference stages.
 
-This AI-scoped class is deprecated. Migrate data to `/Core/energyConsumption`
-where each consumption measurement is represented by a `/Core/EnergyConsumption`
-instance with `measure` and optional `lifecycleScope`.
+This class is deprecated.
+Migrate to `/Core/EnergyConsumption` for each consumption measurement.
 
 *Example*
 

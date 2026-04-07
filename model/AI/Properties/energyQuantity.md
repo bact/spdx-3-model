@@ -6,7 +6,8 @@ SPDX-License-Identifier: Community-Spec-1.0
 
 Energy quantity.
 
-**DEPRECATED in SPDX 3.1.** Use `/Core/MeasureOfEnergy` (property `quantity`) instead.
+**DEPRECATED in SPDX 3.1.**
+Use `/Core/MeasureOfEnergy` (property `quantity`) instead.
 
 ## Description
 

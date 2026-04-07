@@ -7,8 +7,8 @@ SPDX-License-Identifier: Community-Spec-1.0
 The class that helps note down the quantity of energy consumption and the unit
 used for measurement.
 
-**DEPRECATED in SPDX 3.1.** Use `/Core/energyConsumption` with
-`/Core/MeasureOfEnergy` instead.
+**DEPRECATED in SPDX 3.1.**
+Use `/Core/EnergyConsumption` instead.
 
 ## Description
 
@@ -25,17 +25,17 @@ property `energyQuantity`, and `"kilowattHour"` as a value for property
 *Migration guidance*
 
 Migrate instances to `/Core/energyConsumption` by placing the numeric value in
-`measure.quantity` and mapping the unit token to a QUDT `unitQUDT` value. If
-the AI token is `other`, record a concrete QUDT URI or include a note in
+`measure.quantity` and mapping the unit token to a QUDT `unitQUDT` value.
+If the AI token is `other`, record a concrete QUDT URI or include a note in
 `/Core/EnergyConsumption.description`.
 
 *Example (migrated)*
 
 ```json
 {
-  "type": "Core_EnergyConsumption",
+  "type": "EnergyConsumption",
   "measure": {
-    "type": "Core_MeasureOfEnergy",
+    "type": "MeasureOfEnergy",
     "quantity": "0.042",
     "unitQUDT": "http://qudt.org/vocab/unit/KiloWattHour"
   },

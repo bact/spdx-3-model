@@ -4,11 +4,15 @@ SPDX-License-Identifier: Community-Spec-1.0
 
 ## Summary
 
-UnitofMeasure specify information structures through industry standards for Units of Measure, Quantity Kinds, Dimensions and Data Types.
+UnitofMeasure specify information structures through industry standards for
+quantity kinds, units of measure, dimensions and types.
 
 ## Description
 
-The QUDT, or "Quantity, Unit, Dimension and Type" schema defines the base classes properties, and restrictions used for modeling physical quantities, units of measure, and their dimensions in various measurement systems.
+The QUDT, or "Quantity, Unit, Dimension and Type" schema
+defines the base classes properties, and restrictions used
+for modeling physical quantities, units of measure,
+and their dimensions in various measurement systems.
 
 ## Metadata
 
