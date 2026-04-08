@@ -13,6 +13,6 @@ Could be either "known" or "estimated".
 
 ## Metadata
 
-- name: measurementMethod
+- name: measurementCertainty
 - Nature: DataProperty
 - Range: xsd:string
