@@ -4,7 +4,8 @@ SPDX-License-Identifier: Community-Spec-1.0
 
 ## Summary
 
-Energy consumed during inference time by an AI model that is being used in the AI system.
+Energy consumed during inference time by an AI model
+that is being used in the AI system.
 
 **DEPRECATED in SPDX 3.1.** Use `/Core/energyConsumption` with `lifecycleScope`
 set to `runtime` or `inference` (if `inference` is added to

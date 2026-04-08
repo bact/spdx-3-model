@@ -21,15 +21,19 @@ uses `quantity` and `unitQUDT`).
 
 ## Properties
 
-- measure
-  - type: /Core/MeasureOfEnergy
-  - minCount: 1
+- description
+  - type: xsd:string
+  - minCount: 0
   - maxCount: 1
 - lifecycleScope
   - type: /Core/LifecycleScopeType
   - minCount: 0
   - maxCount: 1
-- description
+- measure
+  - type: /Core/MeasureOfEnergy
+  - minCount: 1
+  - maxCount: 1
+- measurementCertainty
   - type: xsd:string
   - minCount: 0
   - maxCount: 1

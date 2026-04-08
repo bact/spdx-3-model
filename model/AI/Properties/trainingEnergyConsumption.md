@@ -4,7 +4,8 @@ SPDX-License-Identifier: Community-Spec-1.0
 
 ## Summary
 
-Energy consumed when training the AI model that is being used in the AI system.
+Energy consumed when training the AI model that is
+being used in the AI system.
 
 **DEPRECATED in SPDX 3.1.** Use `/Core/energyConsumption` with `lifecycleScope`
 set to `training`.
