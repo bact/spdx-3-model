@@ -11,8 +11,10 @@ context.
 
 This class records an energy measurement together with an optional lifecycle
 scope to indicate the phase (for example manufacturing, training, runtime,
-transport). The `measure` property uses `/Core/MeasureOfEnergy` (which in turn
-uses `quantity` and `unitQUDT`).
+transport).
+
+The `measure` property shall hold an `/Core/UnitOfMeasure` object
+with the object's `unitQUDT` property be one of the energy units.
 
 ## Metadata
 
@@ -30,7 +32,7 @@ uses `quantity` and `unitQUDT`).
   - minCount: 0
   - maxCount: 1
 - measure
-  - type: /Core/MeasureOfEnergy
+  - type: /Core/UnitOfMeasure
   - minCount: 1
   - maxCount: 1
 - measurementCertainty
