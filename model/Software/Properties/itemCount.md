@@ -4,20 +4,21 @@ SPDX-License-Identifier: Community-Spec-1.0
 
 ## Summary
 
-Number of discrete items in a software artifact.
+Number of discrete constituent items within a software artifact.
 
 ## Description
 
-itemCount records the number of discrete items in a software artifact,
-such as images, records, data samples, or files.
+itemCount property records the total number of discrete constituent items
+contained within a software artifact. These items may include, but are not
+limited to, images, records, data samples, or files.
 
-Items need not correspond to individual files.
-They may be stored in a database, embedded in a container format,
-or represented as encoded binaries within a single file.
+The count shall represent logical items regardless of physical representation.
+Constituent items can be stored within a database, embedded in a container
+format, or represented as encoded binaries within a single file.
 
-The unit of count (e.g., images, records, files) is not encoded in this
-property. If the unit is not apparent from context, it shall be noted in
-the `description` property of the element.
+The unit of count is not encoded within this property.
+If the unit of count is not apparent from the context,
+the unit shall be specified in the `description` property of the element.
 
 ## Metadata
 
