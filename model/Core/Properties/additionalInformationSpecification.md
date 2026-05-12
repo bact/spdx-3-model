@@ -15,4 +15,4 @@ These are adopted to create uniformity and facilitate interoperability within in
 
 - name: additionalInformationSpecification
 - Nature: ObjectProperty
-- Range: /Core/Specification
+- Range: Specification
