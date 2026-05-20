@@ -35,7 +35,7 @@ name completes the sentence:
 - contains: The `from` Element contains each `to` Element.
 - coordinatedBy: The `from` Vulnerability is coordinatedBy the `to` Agent(s) (vendor, researcher, or consumer agent).
 - copiedTo: The `from` Element has been copied to each `to` Element.
-- createdBy: The `from` Element's Action or DefinedProcess is createdBy `to` Agent(s).
+- createdBy: The `from` Action or DefinedProcess is createdBy `to` Agent(s).
 - delegatedTo: The `from` Agent is delegating an action to the Agent of the `to` Relationship (which shall be of type invokedBy), during a LifecycleScopeType (e.g. the `to` invokedBy Relationship is being done on behalf of `from`).
 - dependsOn: The `from` Element depends on each `to` Element, during a LifecycleScopeType period.
 - descendantOf: The `from` Element is a descendant of each `to` Element.
@@ -51,7 +51,7 @@ name completes the sentence:
 - foundBy: Designates a `from` Vulnerability was originally discovered by the `to` Agent(s).
 - generates: The `from` Element generates each `to` Element.
 - hasAddedFile: Every `to` Element is a file added to the `from` Element (`from` hasAddedFile `to`).
-- hasAssessmentFor: Relates a `from` Vulnerability and each `to` Element with a security assessment. To be used with `VulnAssessmentRelationship` types.
+- hasAssessmentFor: Relates a `from` Vulnerability and each `to` Element with a security assessment. The use of the `hasAssessmentFor` type is constrained to `VulnAssessmentRelationship` classed relationships.
 - hasAssociatedVulnerability: Used to associate a `from` Artifact with each `to` Vulnerability.
 - hasConcludedLicense: The `from` Artifact is concluded by the SPDX data creator to be governed by each `to` AnyLicenseInfo. If the `to` of an Artifact's `hasConcludedLicense` is not the same as the `to` of its `hasDeclaredLicense`, a written explanation should be provided in the comment field of the `hasConcludedLicense` relationship.
 - hasContactPoint: The `from` Artifact has each `to` Agent as a contact point. The use of the `hasContactPoint` type is constrained to `ContactPointRelationship` classed relationships. The type of contact may be specified using a `contactType` property on the `to` Agent.
@@ -81,14 +81,14 @@ name completes the sentence:
 - hasVariant: Every `to` Element is a variant the `from` Element (`from` hasVariant `to`).
 - implementedBy: The `from` Requirement is implemented in the `to` Element(s).
 - invokedBy: The `from` Element was invoked by the `to` Agent, during a LifecycleScopeType period (for example, a Build element that describes a build step).
-- locatedAt: `from` element located at a specific `to` location. A time period is optional.
+- locatedAt: `from` Element located at a specific `to` Location. A time period is optional.
 - modifiedBy: The `from` Element is modified by each `to` Element.
 - other: Every `to` Element is related to the `from` Element where the relationship type is not described by any of the SPDX relationship types (this relationship is directionless).
 - packagedBy: Every `to` Element is a packaged instance of the `from` Element (`from` packagedBy `to`).
 - patchedBy: Every `to` Element is a patch for the `from` Element (`from` patchedBy `to`).
 - pretrainedOn: The `from` Element has been pretrained on the `to` Element(s).
-- providesSupportFor: The `from` Agent provides support for each `to` Artifact. Shall be a `SupportRelationship` type.
-- performedBy: Every `from` action is performedBy `to` Agent.
+- providesSupportFor: The `from` Agent provides support for each `to` Artifact. The use of the `providesSupportFor` type is constrained to `SupportRelationship` classed relationships.
+- performedBy: Every `from` Action is performedBy `to` Agent.
 - publishedBy: Designates a `from` Vulnerability was made available for public use or reference by each `to` Agent.
 - reportedBy: Designates a `from` Vulnerability was first reported to a project, vendor, or tracking database for formal identification by each `to` Agent.
 - republishedBy: Designates a `from` Vulnerability's details were tracked, aggregated, and/or enriched to improve context (i.e. NVD) by each `to` Agent.
