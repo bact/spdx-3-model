@@ -37,8 +37,8 @@ While the following are valid URL or URI schemes, they shall not be used as
 PURL types. They may be used as values within a PURL qualifier:
 
 - Special URL schemes defined in <https://url.spec.whatwg.org/>
-  (such as file://, https://, http://, and ftp://).
-- Version control system (VCS) URLs (such as git://, svn://, and hg://).
+  (such as `file://`, `ftp://`, `http://`, and `https://`).
+- Version control system (VCS) URLs (such as `git://`, `hg://`, and `svn://`).
 
 ## Metadata
 
