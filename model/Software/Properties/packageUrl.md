@@ -4,30 +4,41 @@ SPDX-License-Identifier: Community-Spec-1.0
 
 ## Summary
 
-Provides a place for the SPDX data creator to record the Package-URL string
-(in accordance with the Package-URL specification) for a software Package.
+Provides a place for the SPDX data creator to record the Package-URL
+for a software Package.
 
 ## Description
 
-A Package-URL (commonly pronounced and referred to as "PURL") is an attempt to standardize package representations
-in order to reliably identify and locate software packages.
-A packageUrl is a URL string which represents a package in a
-mostly universal and uniform way across programming languages, package
-managers, packaging conventions, tools, APIs and databases.
+A packageUrl property captures a Package-URL (PURL), which is a valid URL and
+URI to identify a software package, independently from their ecosystem or
+distribution channel, as specified in
+[ECMA-427](https://ecma-international.org/publications-and-standards/standards/ecma-427/).
 
-A packageUrl is composed of seven components:
+A PURL is composed of seven components:
 
 ```text
 scheme:type/namespace/name@version?qualifiers#subpath
 ```
 
-The definition for each component can be found in the corresponding
-[Annex](../../../annexes/pkg-url-specification.md) of this document.
-Known type definitions can be found in the
-Package-URL [type definitions](https://github.com/package-url/purl-spec/blob/main/types/README.md).
+The permitted characters, separators, character encodings, and rules for each
+component are defined in Section 5 of ECMA-427.
 
 Components are designed such that they form a hierarchy from the most
 significant on the left to the least significant components on the right.
+
+The PURL type component defines the ecosystem-specific structure and meaning
+for the other PURL components.
+
+The machine-readable definitions of all registered PURL types
+are maintained in the
+[PURL Type Definitions](https://github.com/package-url/purl-spec/blob/main/types/README.md).
+
+While the following are valid URL or URI schemes, they shall not be used as
+PURL types. They may be used as values within a PURL qualifier:
+
+- Special URL schemes defined in <https://url.spec.whatwg.org/>
+  (such as file://, https://, http://, and ftp://).
+- Version control system (VCS) URLs (such as git://, svn://, and hg://).
 
 ## Metadata
 
