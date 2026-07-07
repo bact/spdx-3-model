@@ -47,7 +47,7 @@ minor version from namespace IRIs ([#1277]).
   - *Non-breaking change*, as this property was introduced in the 3.1-RC1
     and was never part of an official release.
 - Renamed `/Core/SemVer` to `/Core/VersionNumber`;
-  relaxed the patch version requirement ([#1234], [#1265], [#1283)
+  relaxed the patch version requirement ([#1234], [#1265], [#1283])
   - *Non-breaking change*, as the type is used only for internal versioning
     (`/Core/specVersion`, `/SimpleLicensing/licenseListVersion`)
     and is not referenced elsewhere in the model.
