@@ -24,46 +24,49 @@ final release.
 ### Added
 
 - `doi`, `eli`, `isni`, and other intellectual property/regulatory identifiers
-  to `/Core/ExternalIdentifierType` vocabulary ([#1187][])
-- `bom` entry to `/Core/ExternalRefType` vocabulary ([#1201][])
-- `/Core/rationale` property ([#1218][])
+  to `/Core/ExternalIdentifierType` vocabulary ([#1187])
+- `bom` entry to `/Core/ExternalRefType` vocabulary ([#1201])
 - Guidelines for creating an spdxId for an SPDX document (informative)
-  ([#1215][])
+  ([#1215])
+- `/Core/rationale` property ([#1218])
+- Role ([#1221])
+- "symlink" entry to FileKindType vocabulary ([#1254])
 
 ### Changed
 
-- Refined `/Core/DateTime` datatype pattern ([#1213][])
+- Drop the minor version in namespace URIs ([#1277])
+- Refined `/Core/DateTime` datatype pattern ([#1213], [#1245])
   - Replaced `\d` with `[0-9]` to ensure intended behavior and improve
     regex portability.
 - Renamed `/Core/SemVer` to `/Core/Version`;
-  relaxed the patch version requirement ([#1234][])
+  relaxed the patch version requirement ([#1234])
   - Non-breaking change, as the type is used only for internal versioning
     (`/Core/specVersion`, `/SimpleLicensing/licenseListVersion`)
     and is not referenced elsewhere in the model.
-- Updated `/Core/startTime` and `/Core/endTime` descriptions ([#1217][])
+- Updated `/Core/startTime` and `/Core/endTime` descriptions ([#1217])
   - Expanded definitions to include support for actions and projects.
 - Renamed `/Operations/assessmentTimestamp` to
-  `/Operations/assessmentTime` ([#1219][])
+  `/Operations/assessmentTime` ([#1219])
   - Non-breaking change, as this property was introduced in the 3.1-RC1
     release candidate and was never part of an official release.
 
 ### Deprecated
 
-- `/Build/buildStartTime` and `/Build/buildEndTime` properties ([#1217][])
+- `/Build/buildStartTime` and `/Build/buildEndTime` properties ([#1217])
   - New documents should use `/Core/startTime` and `/Core/endTime` instead.
 
 ### Removed
 
 - Redundant start and end time properties:
   `/Core/actionStartTime`, `/Core/actionEndTime`,
-  `/Operations/projectStartTime`, and `/Operations/projectEndTime` ([#1217][])
+  `/Operations/projectStartTime`, and `/Operations/projectEndTime` ([#1217])
   - Non-breaking change, as these properties were introduced in the 3.1-RC1
     release candidate and were never part of an official release.
   - Replaced with `/Core/startTime` and `/Core/endTime` properties.
 - Redundant rationale properties:
   `/Core/processRationale`, `/Core/requirementRationale`,
   `/FunctionalSafety/evaluationRationale`, and
-  `/FunctionalSafety/verificationRationale` ([#1218][])
+  `/FunctionalSafety/verificationRationale` ([#1218])
   - Non-breaking change, as these properties were introduced in the 3.1-RC1
     release candidate and were never part of an official release.
   - Replaced with `/Core/rationale` property.
@@ -75,7 +78,11 @@ final release.
 [#1217]: https://github.com/spdx/spdx-3-model/pull/1217
 [#1218]: https://github.com/spdx/spdx-3-model/pull/1218
 [#1219]: https://github.com/spdx/spdx-3-model/pull/1219
+[#1221]: https://github.com/spdx/spdx-3-model/pull/1221
 [#1234]: https://github.com/spdx/spdx-3-model/pull/1234
+[#1245]: https://github.com/spdx/spdx-3-model/pull/1245
+[#1254]: https://github.com/spdx/spdx-3-model/pull/1254
+[#1277]: https://github.com/spdx/spdx-3-model/pull/1277
 
 ## [3.1-RC1] - 2026-01-24
 
