@@ -301,6 +301,5 @@ the general availability of SPDX 3.0 model.
 ---
 
 The format of this changelog is based on [Keep a Changelog][keepachangelog].
-## 3.0 (2024-04-15)
 
 [keepachangelog]: https://keepachangelog.com/
