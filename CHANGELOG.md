@@ -15,8 +15,8 @@ All notable changes to the SPDX 3 model will be documented in this file.
 The next in a series of releases that will lead to
 the general availability of SPDX 3.1 model.
 
-The SPDX 3.1 model expands beyond software to include safety,
-hardware, operations, supply chain, and more.
+The SPDX 3.1 model expands beyond software to include safety, hardware,
+operations, supply chain, and more.
 This release candidate is for testing and validation;
 it may contain changes that could be modified or reverted before the
 final release.
@@ -105,8 +105,8 @@ minor version from namespace IRIs ([#1277]).
 The first in a series of releases that will lead to
 the general availability of SPDX 3.1 model.
 
-The SPDX 3.1 model expands beyond software to include safety,
-hardware, operations, supply chain, and more.
+The SPDX 3.1 model expands beyond software to include safety, hardware,
+operations, supply chain, and more.
 This release candidate is for testing and validation;
 it may contain changes that could be modified or reverted before the
 final release.
