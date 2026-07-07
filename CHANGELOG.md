@@ -15,11 +15,14 @@ All notable changes to the SPDX 3 model will be documented in this file.
 The next in a series of releases that will lead to
 the general availability of SPDX 3.1 model.
 
-The SPDX 3.1 model expands beyond software to include functional safety,
+The SPDX 3.1 model expands beyond software to include safety,
 hardware, operations, supply chain, and more.
 This release candidate is for testing and validation;
 it may contain changes that could be modified or reverted before the
 final release.
+
+One of the major changes in this release candidate is the removal of
+minor version from namespace IRIs ([#1277]).
 
 ### Added
 
@@ -34,21 +37,28 @@ final release.
 
 ### Changed
 
-- Drop the minor version in namespace URIs ([#1277])
 - Refined `/Core/DateTime` datatype pattern ([#1213], [#1245])
   - Replaced `\d` with `[0-9]` to ensure intended behavior and improve
     regex portability.
-- Renamed `/Core/SemVer` to `/Core/Version`;
-  relaxed the patch version requirement ([#1234])
-  - Non-breaking change, as the type is used only for internal versioning
-    (`/Core/specVersion`, `/SimpleLicensing/licenseListVersion`)
-    and is not referenced elsewhere in the model.
 - Updated `/Core/startTime` and `/Core/endTime` descriptions ([#1217])
   - Expanded definitions to include support for actions and projects.
 - Renamed `/Operations/assessmentTimestamp` to
   `/Operations/assessmentTime` ([#1219])
-  - Non-breaking change, as this property was introduced in the 3.1-RC1
-    release candidate and was never part of an official release.
+  - *Non-breaking change*, as this property was introduced in the 3.1-RC1
+    and was never part of an official release.
+- Renamed `/Core/SemVer` to `/Core/VersionNumber`;
+  relaxed the patch version requirement ([#1234], [#1265], [#1283)
+  - *Non-breaking change*, as the type is used only for internal versioning
+    (`/Core/specVersion`, `/SimpleLicensing/licenseListVersion`)
+    and is not referenced elsewhere in the model.
+- Updated `/Core/DefinedProcess`, `/Hardware/Hardware`,
+  `/Hardware/ProductSpecification`, and `/Software/Package` to use
+  a generic `version` property (not a specific `xxxVersion`) ([#1265])
+  - *Non-breaking change*, as `/Core/DefinedProcess` and Hardware classes
+    were introduced in the 3.1-RC1 and was never part of an official
+    release. For `/Software/Package`, the `/Software/packageVersion` is
+    still available, but deprecated.
+- Removed the minor version in namespace IRIs ([#1277])
 
 ### Deprecated
 
@@ -60,16 +70,20 @@ final release.
 - Redundant start and end time properties:
   `/Core/actionStartTime`, `/Core/actionEndTime`,
   `/Operations/projectStartTime`, and `/Operations/projectEndTime` ([#1217])
-  - Non-breaking change, as these properties were introduced in the 3.1-RC1
-    release candidate and were never part of an official release.
+  - *Non-breaking change*, as these properties were introduced in the 3.1-RC1
+    and were never part of an official release.
   - Replaced with `/Core/startTime` and `/Core/endTime` properties.
 - Redundant rationale properties:
   `/Core/processRationale`, `/Core/requirementRationale`,
   `/FunctionalSafety/evaluationRationale`, and
   `/FunctionalSafety/verificationRationale` ([#1218])
-  - Non-breaking change, as these properties were introduced in the 3.1-RC1
-    release candidate and were never part of an official release.
+  - *Non-breaking change*, as these properties were introduced in the 3.1-RC1
+    and were never part of an official release.
   - Replaced with `/Core/rationale` property.
+
+### Fixed
+
+- Fixed typos, formatting issues, and broken examples; updated reference links.
 
 [#1187]: https://github.com/spdx/spdx-3-model/pull/1187
 [#1201]: https://github.com/spdx/spdx-3-model/pull/1201
@@ -82,14 +96,16 @@ final release.
 [#1234]: https://github.com/spdx/spdx-3-model/pull/1234
 [#1245]: https://github.com/spdx/spdx-3-model/pull/1245
 [#1254]: https://github.com/spdx/spdx-3-model/pull/1254
+[#1265]: https://github.com/spdx/spdx-3-model/pull/1265
 [#1277]: https://github.com/spdx/spdx-3-model/pull/1277
+[#1283]: https://github.com/spdx/spdx-3-model/pull/1283
 
 ## [3.1-RC1] - 2026-01-24
 
 The first in a series of releases that will lead to
 the general availability of SPDX 3.1 model.
 
-The SPDX 3.1 model expands beyond software to include functional safety,
+The SPDX 3.1 model expands beyond software to include safety,
 hardware, operations, supply chain, and more.
 This release candidate is for testing and validation;
 it may contain changes that could be modified or reverted before the
@@ -285,5 +301,6 @@ the general availability of SPDX 3.0 model.
 ---
 
 The format of this changelog is based on [Keep a Changelog][keepachangelog].
+## 3.0 (2024-04-15)
 
 [keepachangelog]: https://keepachangelog.com/
