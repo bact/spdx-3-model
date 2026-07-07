@@ -6,11 +6,11 @@ SPDX-License-Identifier: Community-Spec-1.0
 
 <!-- markdownlint-disable MD024 -->
 
-# Changelog
+# Change log
 
 All notable changes to the SPDX 3 model will be documented in this file.
 
-## [Unreleased]
+## 3.1-dev [Unreleased]
 
 The next in a series of releases that will lead to
 the general availability of SPDX 3.1 model.
