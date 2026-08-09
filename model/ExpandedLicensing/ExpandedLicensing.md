@@ -8,7 +8,8 @@ Fully expanded license expressions.
 
 ## Description
 
-This profile supports representing a fully expanded
+The ExpandedLicensing namespace provides the classes and properties used
+to represent a fully expanded
 [license expression](../../annexes/spdx-license-expressions.md)
 in object form.
 

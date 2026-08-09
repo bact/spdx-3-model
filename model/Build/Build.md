@@ -9,23 +9,24 @@ instance of a Software Build.
 
 ## Description
 
-A Software Build is defined here as the act of converting software inputs into
-software artifacts using software build tools. Inputs can include source code,
-config files, artifacts that are build environments, and build tools. Outputs
-can include intermediate artifacts to other build inputs or the final
+A software Build is defined as the act of converting software inputs into
+software artifacts using software build tools. Inputs may include source code,
+configuration files, artifacts that are build environments, and build tools.
+Outputs may include intermediate artifacts to other build inputs or the final
 artifacts.
 
-The Build profile provides a subclass of Element called Build.
+The Build namespace provides the Build class, which a subclass of Element.
 
-It also provides a minimum set of required Relationship Types from the Core
-profile:
+The Build instance is described using Relationship Types from the Core
+namespace. The following Relationship Types are required as a minimum set:
 
 - hasInput: Describes the relationship from the Build element to its inputs.
 - hasOutput: Describes the relationship from the Build element to its outputs.
-- invokedBy: Describes the relationship from the Build element to the Agent
-  that invoked it.
+- invokedBy: Describes the relationship from the Build element to the
+  /Core/Agent that invoked it.
 
-In addition, the following Relationship Types may be used to describe a Build.
+Additionally, the following optional Relationship Types may be used to describe
+a Build:
 
 - hasHost: Describes the relationship from the Build element to the build stage
   or host.
@@ -40,7 +41,7 @@ In addition, the following Relationship Types may be used to describe a Build.
 All relationships in the Build profile are scoped to the "build"
 LifecycleScopeType period.
 
-The `hasInput` relationship can be applied to a config file or a build tool if
+The `hasInput` relationship may be applied to a config file or a build tool if
 the nature of these inputs are not known at the creation of an SPDX document.
 
 ## Metadata

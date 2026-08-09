@@ -4,8 +4,8 @@ SPDX-License-Identifier: Community-Spec-1.0
 
 ## Summary
 
-The Dataset profile provides additional metadata, based on Software profile,
-that is useful for datasets.
+The Dataset profile provides a standardized way of documenting and
+sharing information about AI software packages (i.e. systems).
 
 ## Description
 
