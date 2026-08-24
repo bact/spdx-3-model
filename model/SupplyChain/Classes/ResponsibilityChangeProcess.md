@@ -26,7 +26,7 @@ The process changes of responsibility are recorded in this process. Responsibili
   - type: /Core/Agent
   - minCount: 0
   - maxCount: 1
-- plannedProductofResponsibilityChange
+- plannedProductOfResponsibilityChange
   - type: /Core/Element
   - minCount: 0
 - responsibilityCategory

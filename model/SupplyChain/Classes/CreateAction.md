@@ -8,7 +8,7 @@ CreationAction represents an event of product creation.
 
 ## Description
 
-CreationAction represents the lifecycle event of Product creation. A product could be manufactured, assembled, mined/extracted directly from the nature etc. 
+CreationAction represents the lifecycle event of Product creation. A product could be manufactured, assembled, mined/extracted directly from the nature etc.
 
 Relationship:
 
@@ -22,5 +22,5 @@ For each `CreateAction` there is at least one `/Core/Relationship` class or subc
 
 ## External properties restrictions
 
-- /Core/Action/actionStartTime
+- /Core/Action/startTime
   - minCount: 1
