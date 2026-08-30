@@ -33,13 +33,9 @@ If the AI token is `other`, record a concrete QUDT URI or include a note in
 
 ```json
 {
-  "type": "EnergyConsumption",
-  "measure": {
-    "type": "MeasureOfEnergy",
-    "quantity": "0.042",
-    "unitQUDT": "http://qudt.org/vocab/unit/KiloWattHour"
-  },
-  "lifecycleScope": "runtime"
+  "type": "ai_EnergyConsumptionDescription",
+  "ai_energyQuantity": "0.042",
+  "ai_energyUnit": "kilowattHour"
 }
 ```
 

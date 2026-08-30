@@ -22,13 +22,21 @@ Migrate to `/Core/EnergyConsumption` for each consumption measurement.
 
 ```json
 {
-  "type": "EnergyConsumption",
-  "measure": {
-    "type": "MeasureOfEnergy",
-    "quantity": "36.5",
-    "unitQUDT": "http://qudt.org/vocab/unit/KiloWattHour"
-  },
-  "lifecycleScope": "training"
+  "type": "ai_EnergyConsumption",
+  "ai_trainingEnergyConsumption": [
+    {
+      "type": "ai_EnergyConsumptionDescription",
+      "ai_energyQuantity": "36.5",
+      "ai_energyUnit": "kilowattHour"
+    }
+  ],
+  "ai_inferenceEnergyConsumption": [
+    {
+      "type": "ai_EnergyConsumptionDescription",
+      "ai_energyQuantity": "0.042",
+      "ai_energyUnit": "kilowattHour"
+    }
+  ]
 }
 ```
 
