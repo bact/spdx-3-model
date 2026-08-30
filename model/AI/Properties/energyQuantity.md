@@ -7,15 +7,14 @@ SPDX-License-Identifier: Community-Spec-1.0
 Energy quantity.
 
 **DEPRECATED in SPDX 3.1.**
-Use `/Core/MeasureOfEnergy` (property `quantity`) instead.
+Use `/Core/MeasureOfEnergy.quantity` instead.
 
 ## Description
 
 Provides the quantity information of the energy.
 
-This AI-scoped data property is deprecated. When migrating, place the numeric
-value into `/Core/MeasureOfEnergy.quantity` and use `/Core/MeasureOfEnergy.unitQUDT`
-for the corresponding unit.
+This property is deprecated.
+Use `/Core/MeasureOfEnergy.quantity` instead.
 
 ## Metadata
 

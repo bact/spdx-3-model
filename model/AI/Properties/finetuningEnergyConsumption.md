@@ -8,7 +8,7 @@ Energy consumed when finetuning the AI model that is
 being used in the AI system.
 
 **DEPRECATED in SPDX 3.1.**
-Use `/Core/energyConsumption` with `lifecycleScope` set to `update`.
+Use `/Core/energyConsumption` instead.
 
 ## Description
 

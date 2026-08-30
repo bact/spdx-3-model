@@ -22,14 +22,7 @@ For example, 0.042 kilowatt-hour of energy will have `0.042` as a value for
 property `energyQuantity`, and `"kilowattHour"` as a value for property
 `energyUnit`.
 
-*Migration guidance*
-
-Migrate instances to `/Core/energyConsumption` by placing the numeric value in
-`measure.quantity` and mapping the unit token to a QUDT `unitQUDT` value.
-If the AI token is `other`, record a concrete QUDT URI or include a note in
-`/Core/EnergyConsumption.description`.
-
-*Example (migrated)*
+*Example*
 
 ```json
 {

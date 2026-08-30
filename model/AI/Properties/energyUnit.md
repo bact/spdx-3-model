@@ -13,10 +13,8 @@ Use `/Core/MeasureOfEnergy.unitQUDT` instead.
 
 Provides the unit information of the energy.
 
-This AI-scoped property referenced an `EnergyUnitType` token. Migrate to
-QUDT `unitQUDT` values in `/Core/MeasureOfEnergy.unitQUDT`. If the AI token is
-`other`, record a concrete QUDT URI or provide a textual note in
-`/Core/EnergyConsumption.description`.
+This property is deprecated.
+Use `/Core/MeasureOfEnergy.unitQUDT` instead.
 
 ## Metadata
 
