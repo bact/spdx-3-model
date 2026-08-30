@@ -13,7 +13,7 @@ This class records an energy measurement together with an optional lifecycle
 scope to indicate the phase (for example manufacturing, training, runtime,
 transport).
 
-The `measure` property shall hold an `/Core/UnitOfMeasure` object
+The `measure` property shall hold a `/Core/UnitOfMeasure` object
 with the object's `unitQUDT` property be one of the energy units.
 
 ## Metadata

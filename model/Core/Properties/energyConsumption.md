@@ -4,20 +4,11 @@ SPDX-License-Identifier: Community-Spec-1.0
 
 ## Summary
 
-Core property to document energy consumption of an element or activity.
+Energy consumption of an element or action.
 
 ## Description
 
-This property allows authors to record one or more energy consumption
-measurements for an element (product, package, service, etc.). Each
-consumption entry is represented by a `/Core/EnergyConsumption` instance
-that pairs a `/Core/MeasureOfEnergy` with an optional `lifecycleScope` from
-`/Core/LifecycleScopeType`.
-
-`/Core/MeasureOfEnergy` uses `quantity` (numeric value) and `unitQUDT` (QUDT
-unit identifier). When migrating from older AI-scoped properties, map the
-existing `ai_energyQuantity` to `measure.quantity` and `ai_energyUnit` to
-`measure.unitQUDT` (see migration guidance).
+Energy consumption of an element or action.
 
 ## Metadata
 
