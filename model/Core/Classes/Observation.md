@@ -32,9 +32,11 @@ performed the observation.
 - marginOfError
   - type: xsd:string
   - minCount: 0
+  - maxCount: 1
 - observationType
   - type: ObservationType
   - minCount: 0
+  - maxCount: 1
 - observedProperty
   - type: anyURI
   - minCount: 1
