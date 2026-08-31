@@ -8,7 +8,7 @@ The class that helps note down the quantity of energy consumption and the unit
 used for measurement.
 
 **DEPRECATED in SPDX 3.1.**
-Use `/Core/EnergyConsumption` instead.
+Use `/Core/Observation` instead.
 
 ## Description
 
