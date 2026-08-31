@@ -35,7 +35,7 @@ property.
   - type: anyURI
   - minCount: 1
   - maxCount: 1
-- result
+- observedValue
   - type: UnitOfMeasure
   - minCount: 1
   - maxCount: 1
