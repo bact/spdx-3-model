@@ -33,6 +33,10 @@ performed the observation.
   - type: xsd:string
   - minCount: 0
   - maxCount: 1
+- observationProcedure
+  - type: xsd:string
+  - minCount: 0
+  - maxCount: 1
 - observationType
   - type: ObservationType
   - minCount: 0
