@@ -4,18 +4,22 @@ SPDX-License-Identifier: Community-Spec-1.0
 
 ## Summary
 
-An act of carrying out a procedure to measure, estimate, or calculate
-the value of a property of an Element.
+Execution of a procedure to measure, estimate, or calculate a property
+of an Element.
 
 ## Description
 
-The `Observation` class models the temporal event of quantifying a metric.
+The `Observation` class represents the temporal event of quantifying a metric.
 
-The entity being measured (the feature of interest) is linked to the
-`Observation` via incoming relationships of type "hasInput".
+The Element being measured (the feature of interest) shall be linked to
+the Observation via "hasInput" relationship ("Observation hasInput Element").
 
-The quantitative output of the measurement is captured via the `hasResult`
-property.
+The specific dimension or characteristic being quantified shall be identified
+by the `observedProperty` property, and the quantitative output shall be
+recorded intrinsically via the `observedValue` property.
+
+The "usesTool" relationship can be utilized to identify the tool that
+performed the observation.
 
 ## Metadata
 
