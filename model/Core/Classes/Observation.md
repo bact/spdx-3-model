@@ -35,10 +35,6 @@ the tool that performed the observation.
 
 ## Properties
 
-- marginOfError
-  - type: xsd:string
-  - minCount: 0
-  - maxCount: 1
 - observationProcedure
   - type: xsd:string
   - minCount: 0
