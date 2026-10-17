@@ -325,9 +325,15 @@ Allowed headings:
   - name: \<individual_name\>
   - type: \<class_name\>
   - IRI: \<IRI\>
+  - specVersion: \<version\>
+  - created: \<dateTime\>
 - Property Values
   - \<property_name\>: \<property_value\>
   - ...
+
+`specVersion` and `created` are required. They give the `specVersion` and
+`created` of the individual's `CreationInfo` as first released, and shall not
+change in later versions.
 
 #### Individual example
 
@@ -348,6 +354,8 @@ A named individual of Element class that representing none.
 
 - name: NoneElement
 - type: Element
+- specVersion: 3.0.1
+- created: 2024-11-22T03:00:01Z
 
 ## Property Values
 
