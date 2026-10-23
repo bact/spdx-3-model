@@ -16,6 +16,9 @@ potentially having different values.
 
 This is intended to be compatible with the CycloneDX property `properties`.
 
+An Element may have more than one CdxPropertiesExtension. Each one is a
+separate list of name-value pairs; consumers should not merge them.
+
 ## Metadata
 
 - name: CdxPropertiesExtension
