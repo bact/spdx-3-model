@@ -48,6 +48,15 @@ that do not expand to their vocabulary IRI (finding S-1).
 Run it with all three processors: they should agree. A difference between
 processors points to a processor bug (such as T-3 in rdflib).
 
+### `check_shacl_targets.py`: find shapes only pySHACL applies
+
+Lists class shapes with no explicit target, which select no focus nodes in a
+spec-conformant SHACL engine (finding S-3).
+
+```shell
+.venv/bin/python check_shacl_targets.py https://spdx.org/rdf/3.0.1/spdx-model.ttl
+```
+
 ### `roundtrip_spdx_python_model.py`: read and write with spdx-python-model
 
 Reads each document, writes it back, and reports whether the extension data
