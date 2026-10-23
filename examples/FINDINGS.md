@@ -769,10 +769,22 @@ The RDF decoder also reads IRIs, blank nodes and typed literals of extension
 properties into these types instead of dropping them. The new `Encoder`
 methods have defaults, so existing encoder subclasses keep working.
 
-Still open in the Python bindings: re-reading `valid-iri-node` after writing
-it picks `CdxPropertiesExtension` for the IRI-identified extension node
-(separate bug, not yet analysed); golang, rust and cpp templates are not
-changed.
+The same branch fixes two related bugs found with
+[valid-iri-node.spdx3.json](Extension/SyntheticData/documents/valid-iri-node.spdx3.json):
+
+- The serializer wrote every object with an IRI at the top level of
+  `@graph`, including a custom extension, which the JSON schema rejects
+  there (M-2). An object whose type is not in the model, referenced once, is
+  now kept inline.
+- The RDF reader decoded objects of unknown types at the top level before
+  reaching them through a property, so it guessed the first extensible class
+  (`CdxPropertiesExtension`) and then failed its required `cdxProperty`.
+  Such objects are now decoded after objects of known types, as blank nodes
+  already were, so the property's range picks the class.
+
+With the branch, every document of the example round-trips through JSON-LD
+and through RDF, with extension data unchanged and output that passes
+spdx3-validate. golang, rust and cpp templates are not changed.
 
 **Why the fix works.** Each JSON-LD value form then has a matching Python
 type and a matching encoder branch, so reading and writing is an identity
