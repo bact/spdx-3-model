@@ -394,13 +394,20 @@ scoped context, and logs a warning:
 ```
 
 The generated context changes only by these three mappings for 3.1-dev.
+An entry named like the vocabulary property itself, or like a keyword alias
+(`spdxId`, `type`) or the `spdx` prefix, cannot be mapped this way: the
+scoped term would replace the property term (and its `@type: @vocab`) or the
+alias in that scope. spec-parser logs an error for such an entry instead, so
+it gets renamed in the model. None exists in 3.1-dev.
 
 **specmd** ([branch](https://github.com/bact/specmd/tree/fix-vocab-term-collision), plus [T-4 branch](https://github.com/bact/specmd/tree/fix-empty-context-term)). specmd already maps
 every entry in the scoped context. The fix removes `@protected` from the
 top-level terms whose names are also vocabulary entry names (`extension`,
 `createdBy`, `requirementUID` in 3.1-dev), keeps it on all other terms, and
-logs a warning for each. A unit test builds a minimal graph with the
-`extension` clash and checks the rdflib expansion.
+logs a warning for each. It logs an error, and does not map the entry, for
+an entry named like a keyword alias or like its own property, as spec-parser
+does. Unit tests build minimal graphs with the `extension` clash (checking
+the rdflib expansion) and with the error cases.
 
 #### Why the fix works
 
@@ -583,7 +590,11 @@ Add `sh:targetClass <class>` to each class shape.
 
 **Why the fix works.** An explicit class target selects the same focus nodes
 (SHACL instances of the class, subclasses included) in every engine, so
-pySHACL results do not change, and other engines start validating. Like
+other engines start validating. pySHACL results change in one way: shapes
+that were not typed `sh:NodeShape` (the 15 in 3.0.1 with only `sh:property`
+or `sh:nodeKind`, such as `Person` and `Agent`) now have a target, so their
+constraints, e.g. `sh:nodeKind sh:IRI`, are checked too. Before, pySHACL did
+not treat them as shapes. Like
 every `sh:class` check, this needs the class hierarchy (`rdfs:subClassOf`) in
 the data graph (SHACL §2.1.3.2), so a validator should add the SPDX model to
 the data graph before validating; without it, subclass instances are missed
