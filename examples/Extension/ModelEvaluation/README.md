@@ -108,7 +108,7 @@ Tested 2026-10-23.
 | spdx3-validate | 0.0.7 | All 3.0.1 documents pass. Extension constraints not checked (T-2). |
 | spdx3-validate | `extension-class-check` branch, `--shacl` | Matches the extension SHACL column above. |
 | spdx-python-model | upstream | Cannot write any document: nested objects and value objects are kept as `dict` (T-1). |
-| spdx-python-model | shacl2code `fix-extensible-value-objects` branch | Cannot write nested `MetricResult` objects yet ("Unsupported embedded JSON-LD node object"; T-1, fix in progress). |
+| spdx-python-model | shacl2code `fix-extensible-value-objects` branch | All documents round-trip through JSON-LD and RDF, extension data unchanged, outputs valid. Nested `MetricResult` objects are read as `NodeObject` values. |
 | tools-java | 2.0.7 | Rejects every document (T-5). |
 | tools-java | `support-custom-extensions` branches | All documents round-trip, except `language-tagged-name` (language-tagged strings are rejected with an error). In `shared-by-iri`, the shared node is written inline under the other Relationship: a different JSON layout with the same RDF graph. |
 
@@ -120,4 +120,4 @@ Recorded in [examples/FINDINGS.md](../../FINDINGS.md):
   namespace coverage, SHACL).
 - M-2: sharing an extension by IRI is valid but undefined.
 - M-4: only Elements can have extensions.
-- T-1: nested custom objects in the Python bindings.
+- T-1: nested custom objects in the Python bindings (fixed on the branch).

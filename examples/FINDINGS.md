@@ -832,8 +832,17 @@ The same branch fixes two related bugs found with
   Such objects are now decoded after objects of known types, as blank nodes
   already were, so the property's range picks the class.
 
-With the branch, every document of the example round-trips through JSON-LD
-and through RDF, with extension data unchanged and output that passes
+[ModelEvaluation](Extension/ModelEvaluation/) then showed that nested
+objects of custom classes (an extension value that is itself a node object,
+such as `MetricResult`) were kept as plain dicts and could not be written.
+The branch adds a `NodeObject` value type for them (type, id, properties,
+read recursively), written back as a node object in JSON-LD and as a node
+with its triples in RDF. An unknown-type node used more than once is written
+inline where first used and referenced by IRI elsewhere, instead of at the
+top level of `@graph`.
+
+With the branch, every 3.0.1 document of both examples round-trips through
+JSON-LD and through RDF, with extension data unchanged and output that passes
 spdx3-validate. golang, rust and cpp templates are not changed.
 
 **Why the fix works.** Each JSON-LD value form then has a matching Python
