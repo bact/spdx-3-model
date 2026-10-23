@@ -978,6 +978,13 @@ URI value) and `{"@value", "@type"}` as a new `TypedLiteral` value type in
 spdx-java-core; write them back in the same form, and keep the `@id` of
 inlined nodes.
 
+Still open in the Java stack: an Element written inline in an extension
+value is moved to the top level on write and then added to the
+SpdxDocument's `element` list on the next read; `@language`, `@list` and
+untyped nested nodes in extension values are rejected with an error; and the
+3.0.1 Java model names `PROP_SECURITY_LOCATOR` `SecurityLocator` instead of
+`locator` (unrelated to extensions, found while testing).
+
 **Why the fix works.** The SPDX Java model already has an extension hook and
 an `Extension` base class; the store just never used them for unknown types.
 With a class for every custom type and a value type for every JSON-LD value
@@ -998,7 +1005,9 @@ is read with `asInt()`: `0.35` becomes `0`, silently.
 assumes an integer. The library also did not accept `Double` in lists.
 
 **Fix** ([`bact/spdx-java-v3jsonld-store` `fix-number-truncation`](https://github.com/bact/spdx-java-v3jsonld-store/tree/fix-number-truncation),
-with [`bact/Spdx-Java-Library` `fix-number-truncation`](https://github.com/bact/Spdx-Java-Library/tree/fix-number-truncation)).
+with branches of the same name in
+[`bact/Spdx-Java-Library`](https://github.com/bact/Spdx-Java-Library/tree/fix-number-truncation)
+and [`bact/spdx-java-core`](https://github.com/bact/spdx-java-core/tree/fix-number-truncation)).
 Type an untyped JSON number as JSON-LD does: `xsd:double` if it has a
 non-zero fraction or an absolute value of at least 10^21, otherwise
 `xsd:integer` (unbounded, so large integers are kept exactly). Write an
