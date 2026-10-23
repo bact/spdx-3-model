@@ -48,6 +48,15 @@ that do not expand to their vocabulary IRI (finding S-1).
 Run it with all three processors: they should agree. A difference between
 processors points to a processor bug (such as T-3 in rdflib).
 
+### `validate_declared_extensions.py`: check declared extensions (M-1)
+
+Prototype consumer for the proposed `ExtensionDefinition`: verifies each
+declared definition's hash, checks that every extension type is in a
+declared namespace, and validates with SHACL against the SPDX model and the
+definitions. See the
+[ModelEvaluation README](../Extension/ModelEvaluation/README.md#declared-extension-proposal-m-1)
+for a run.
+
 ### `check_shacl_targets.py`: find shapes only pySHACL applies
 
 Lists class shapes with no explicit target, which select no focus nodes in a

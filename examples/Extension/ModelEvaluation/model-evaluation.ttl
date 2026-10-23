@@ -1,0 +1,53 @@
+# SPDX-License-Identifier: Community-Spec-1.0
+#
+# OWL ontology and SHACL shapes for the example ModelEvaluation SPDX 3 extension.
+# Written by hand in the style of https://spdx.org/rdf/3.0.1/spdx-model.ttl
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix spdx-ext: <https://spdx.org/rdf/3.0.1/terms/Extension/> .
+@prefix me: <https://example.org/spdx3-ext/model-evaluation/> .
+
+<https://example.org/spdx3-ext/model-evaluation> a owl:Ontology ;
+    rdfs:label "ModelEvaluation SPDX 3 extension (example)"@en ;
+    owl:versionInfo "0.1.0" .
+
+me:EvaluationExtension a owl:Class, sh:NodeShape ;
+    sh:targetClass me:EvaluationExtension ;
+    rdfs:comment "Results of one evaluation of an AI model on the dataset(s) of a testedOn Relationship."@en ;
+    rdfs:subClassOf spdx-ext:Extension ;
+    sh:nodeKind sh:BlankNodeOrIRI ;
+    sh:property [
+            sh:path me:metricResult ;
+            sh:class me:MetricResult ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:minCount 1 ] .
+
+me:MetricResult a owl:Class, sh:NodeShape ;
+    sh:targetClass me:MetricResult ;
+    rdfs:comment "The value of one metric measured in an evaluation."@en ;
+    sh:nodeKind sh:BlankNodeOrIRI ;
+    sh:property [
+            sh:path me:metricName ;
+            sh:datatype xsd:string ;
+            sh:minCount 1 ;
+            sh:maxCount 1 ] ,
+        [
+            sh:path me:metricValue ;
+            sh:datatype xsd:decimal ;
+            sh:minCount 1 ;
+            sh:maxCount 1 ] .
+
+me:metricResult a owl:ObjectProperty ;
+    rdfs:comment "A metric measured in the evaluation."@en ;
+    rdfs:range me:MetricResult .
+
+me:metricName a owl:DatatypeProperty ;
+    rdfs:comment "Name of the metric, for example accuracy or F1."@en ;
+    rdfs:range xsd:string .
+
+me:metricValue a owl:DatatypeProperty ;
+    rdfs:comment "Measured value of the metric."@en ;
+    rdfs:range xsd:decimal .

@@ -1,0 +1,7 @@
+{
+  "documents/valid-ext-invalid.spdx3.json": {"spdx3-validate": "pass", "extension-shacl": "fail"},
+  "documents/valid-minimal.spdx3.json": {"spdx3-validate": "pass", "extension-shacl": "pass"},
+  "documents/valid-multi.spdx3.json": {"spdx3-validate": "pass", "extension-shacl": "pass"},
+  "known-issues/language-tagged-name.spdx3.json": {"spdx3-validate": "pass", "extension-shacl": "fail"},
+  "known-issues/shared-by-iri.spdx3.json": {"spdx3-validate": "pass", "extension-shacl": "pass"}
+}

@@ -1,0 +1,112 @@
+{
+  "@context": "https://spdx.org/rdf/3.0.1/spdx-context.jsonld",
+  "@graph": [
+    {
+      "type": "CreationInfo",
+      "@id": "_:creationinfo",
+      "created": "2026-10-23T00:00:00Z",
+      "createdBy": [
+        "https://example.org/spdx/agent/alice"
+      ],
+      "specVersion": "3.0.1"
+    },
+    {
+      "type": "Person",
+      "spdxId": "https://example.org/spdx/agent/alice",
+      "name": "Alice Example",
+      "creationInfo": "_:creationinfo"
+    },
+    {
+      "type": "SpdxDocument",
+      "spdxId": "https://example.org/spdx/doc/model-evaluation-shared",
+      "name": "ModelEvaluation extension example (one extension shared by two Elements)",
+      "creationInfo": "_:creationinfo",
+      "profileConformance": [
+        "core",
+        "software",
+        "ai",
+        "dataset"
+      ],
+      "rootElement": [
+        "https://example.org/spdx/model/sentiment-llm"
+      ],
+      "element": [
+        "https://example.org/spdx/agent/alice",
+        "https://example.org/spdx/model/sentiment-llm",
+        "https://example.org/spdx/dataset/review-test",
+        "https://example.org/spdx/rel/tested-on-review-test",
+        "https://example.org/spdx/rel/tested-on-tweet-test",
+        "https://example.org/spdx/dataset/tweet-test"
+      ]
+    },
+    {
+      "type": "ai_AIPackage",
+      "spdxId": "https://example.org/spdx/model/sentiment-llm",
+      "name": "sentiment-llm",
+      "software_packageVersion": "1.0",
+      "software_primaryPurpose": "model",
+      "creationInfo": "_:creationinfo"
+    },
+    {
+      "type": "dataset_DatasetPackage",
+      "spdxId": "https://example.org/spdx/dataset/review-test",
+      "name": "review-test",
+      "software_packageVersion": "2.0",
+      "software_primaryPurpose": "data",
+      "dataset_datasetType": [
+        "text"
+      ],
+      "creationInfo": "_:creationinfo"
+    },
+    {
+      "type": "dataset_DatasetPackage",
+      "spdxId": "https://example.org/spdx/dataset/tweet-test",
+      "name": "tweet-test",
+      "software_packageVersion": "1.0",
+      "software_primaryPurpose": "data",
+      "dataset_datasetType": [
+        "text"
+      ],
+      "creationInfo": "_:creationinfo"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "https://example.org/spdx/rel/tested-on-review-test",
+      "from": "https://example.org/spdx/model/sentiment-llm",
+      "relationshipType": "testedOn",
+      "to": [
+        "https://example.org/spdx/dataset/review-test"
+      ],
+      "creationInfo": "_:creationinfo",
+      "extension": [
+        {
+          "type": "https://example.org/spdx3-ext/model-evaluation/EvaluationExtension",
+          "@id": "https://example.org/spdx/evaluation/run-1",
+          "https://example.org/spdx3-ext/model-evaluation/metricResult": [
+            {
+              "type": "https://example.org/spdx3-ext/model-evaluation/MetricResult",
+              "https://example.org/spdx3-ext/model-evaluation/metricName": "accuracy",
+              "https://example.org/spdx3-ext/model-evaluation/metricValue": {
+                "@value": "0.91",
+                "@type": "http://www.w3.org/2001/XMLSchema#decimal"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "https://example.org/spdx/rel/tested-on-tweet-test",
+      "from": "https://example.org/spdx/model/sentiment-llm",
+      "relationshipType": "testedOn",
+      "to": [
+        "https://example.org/spdx/dataset/tweet-test"
+      ],
+      "creationInfo": "_:creationinfo",
+      "extension": [
+        "https://example.org/spdx/evaluation/run-1"
+      ]
+    }
+  ]
+}

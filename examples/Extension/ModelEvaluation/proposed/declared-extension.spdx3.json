@@ -1,0 +1,99 @@
+{
+  "@context": "https://spdx.org/rdf/3.1/spdx-context.jsonld",
+  "@graph": [
+    {
+      "type": "CreationInfo",
+      "@id": "_:creationinfo",
+      "created": "2026-10-23T00:00:00Z",
+      "createdBy": [
+        "https://example.org/spdx/agent/alice"
+      ],
+      "specVersion": "3.1"
+    },
+    {
+      "type": "Person",
+      "spdxId": "https://example.org/spdx/agent/alice",
+      "name": "Alice Example",
+      "creationInfo": "_:creationinfo"
+    },
+    {
+      "type": "SpdxDocument",
+      "spdxId": "https://example.org/spdx/doc/model-evaluation-declared",
+      "name": "ModelEvaluation extension example (declared with ExtensionDefinition)",
+      "creationInfo": "_:creationinfo",
+      "profileConformance": [
+        "core",
+        "software",
+        "ai",
+        "dataset"
+      ],
+      "rootElement": [
+        "https://example.org/spdx/model/sentiment-llm"
+      ],
+      "element": [
+        "https://example.org/spdx/agent/alice",
+        "https://example.org/spdx/model/sentiment-llm",
+        "https://example.org/spdx/dataset/review-test",
+        "https://example.org/spdx/rel/tested-on-review-test"
+      ],
+      "extensionDefinition": [
+        {
+          "type": "extension_ExtensionDefinition",
+          "extension_extensionNamespace": "https://example.org/spdx3-ext/model-evaluation/",
+          "locationHint": "https://example.org/spdx3-ext/model-evaluation/model-evaluation.ttl",
+          "verifiedUsing": [
+            {
+              "type": "Hash",
+              "algorithm": "sha256",
+              "hashValue": "2b023a57057d2c244ea9b381f42cb5a5dee9ce658d73b73928e896f2ab26b43f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ai_AIPackage",
+      "spdxId": "https://example.org/spdx/model/sentiment-llm",
+      "name": "sentiment-llm",
+      "software_packageVersion": "1.0",
+      "software_primaryPurpose": "model",
+      "creationInfo": "_:creationinfo"
+    },
+    {
+      "type": "dataset_DatasetPackage",
+      "spdxId": "https://example.org/spdx/dataset/review-test",
+      "name": "review-test",
+      "software_packageVersion": "2.0",
+      "software_primaryPurpose": "data",
+      "dataset_datasetType": [
+        "text"
+      ],
+      "creationInfo": "_:creationinfo"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "https://example.org/spdx/rel/tested-on-review-test",
+      "from": "https://example.org/spdx/model/sentiment-llm",
+      "relationshipType": "testedOn",
+      "to": [
+        "https://example.org/spdx/dataset/review-test"
+      ],
+      "creationInfo": "_:creationinfo",
+      "extension": [
+        {
+          "type": "https://example.org/spdx3-ext/model-evaluation/EvaluationExtension",
+          "https://example.org/spdx3-ext/model-evaluation/metricResult": [
+            {
+              "type": "https://example.org/spdx3-ext/model-evaluation/MetricResult",
+              "https://example.org/spdx3-ext/model-evaluation/metricName": "accuracy",
+              "https://example.org/spdx3-ext/model-evaluation/metricValue": {
+                "@value": "0.91",
+                "@type": "http://www.w3.org/2001/XMLSchema#decimal"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

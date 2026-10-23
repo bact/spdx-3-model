@@ -29,6 +29,7 @@ Add new findings at the end of the relevant section and keep IDs stable.
 | [M-1](#m-1-no-way-to-declare-which-extensions-a-document-uses) | No way to declare which extensions a document uses | Model design | Medium | 3.0, 3.1-dev | Model change proposed: [spdx-3-model branch](https://github.com/bact/spdx-3-model/tree/extension-definition) | No (model issue) |
 | [M-2](#m-2-extension-objects-cannot-be-top-level-and-their-sharing-is-unspecified) | Extension objects cannot be top-level, and their sharing is unspecified | Model design | Low | 3.0, 3.1-dev | Spec text proposed: [spdx-3-model branch](https://github.com/bact/spdx-3-model/tree/extension-semantics) | No (model issue) |
 | [M-3](#m-3-shacl-for-extension-is-a-deny-list) | SHACL for `extension` is a deny-list (3.0.1+), or rejects every custom extension (3.0.0) | Model / generator | **High** in 3.0.0, Low in 3.0.1+ | 3.0.0, 3.0.1, 3.1-dev | Validator check proposed: [spdx3-validate branch](https://github.com/bact/spdx3-validate/tree/extension-class-check) | No |
+| [M-4](#m-4-only-elements-can-have-extensions) | Only Elements can have extensions | Model design | Low | 3.0, 3.1-dev | Open (options listed) | No (model issue) |
 | [T-1](#t-1-spdx-python-model-cannot-write-json-ld-value-objects-in-extensions) | spdx-python-model cannot write JSON-LD value objects in extensions | Tool | Medium | spdx-python-model `v3_0_1`, `v3_1` | Fix proposed: [shacl2code branch](https://github.com/bact/shacl2code/tree/fix-extensible-value-objects) | n/a |
 | [T-2](#t-2-spdx3-validate-cannot-check-extension-constraints) | spdx3-validate cannot check extension constraints | Tool | Low | spdx3-validate 0.0.7 | Fix proposed: [spdx3-validate branch](https://github.com/bact/spdx3-validate/tree/extra-shacl) | n/a |
 | [T-3](#t-3-rdflib-does-not-let-a-property-scoped-context-override-a-protected-term) | rdflib does not let a property-scoped context override a `@protected` term (and JSON-LD 1.1 API step 4.2 omits the override) | Tool / spec | Medium | rdflib 7.6.0 and `main` (so spdx3-validate, pyshacl); JSON-LD 1.1 API | Open; issues drafted ([rdflib](issue-drafts/rdflib-protected-term-override.md), [json-ld-api](issue-drafts/json-ld-api-scalar-override-protected.md)); worked around in [specmd branch](https://github.com/bact/specmd/tree/fix-vocab-term-collision) | Affected (see S-1) |
@@ -611,6 +612,15 @@ namespace IRI of the extension), and the existing `locationHint` and
 `verifiedUsing` properties, as in `ExternalMap`. The branch passes
 spec-parser, and the generated context adds no collisions.
 
+Tried end to end with
+[ModelEvaluation/proposed/declared-extension.spdx3.json](Extension/ModelEvaluation/proposed/declared-extension.spdx3.json)
+and the prototype consumer
+[`tools/validate_declared_extensions.py`](tools/validate_declared_extensions.py):
+it verifies the definition's SHA-256, checks that every extension type is in
+a declared namespace, and validates the document against the SPDX shapes of
+the branch plus the declared definition. A wrong hash, an undeclared
+namespace and invalid extension data are each reported.
+
 **Why the fix works.**
 
 - A validator can fetch the declared definitions, check their hashes, and add
@@ -640,6 +650,13 @@ to import the definition. It has no provenance of its own.
 Related: [spdx-3-model#1204](https://github.com/spdx/spdx-3-model/issues/1204) (several extensions of the same
 type on one Element), [spdx-spec#1456](https://github.com/spdx/spdx-spec/issues/1456) (diagram shows
 `extension` as `[0..1]`).
+
+Evidence for sharing:
+[ModelEvaluation/known-issues/shared-by-iri.spdx3.json](Extension/ModelEvaluation/known-issues/shared-by-iri.spdx3.json)
+defines one extension with an IRI inline on one Relationship and refers to it
+from another. It passes spdx3-validate and the extension SHACL. The fixed
+Java store writes it back inlined under the other Relationship: the same RDF
+graph, a different JSON layout. What sharing means is not specified.
 
 **Why it happens.** `Extension` is modelled as a structured value of an
 Element (like `Hash` or `ExternalRef`), not as an Element. The JSON schema
@@ -724,6 +741,39 @@ subclass chain is known, so it cannot reject a valid extension, and it catches
 typos in an extension's `type` and values that are not extensions at all.
 The `rdfs:range` already carries the type information spec-parser#207 needs,
 without adding a constraint that would break custom extensions.
+
+### M-4. Only Elements can have extensions
+
+- **Found by:** [Extension/ModelEvaluation](Extension/ModelEvaluation/),
+  while choosing where to attach evaluation results.
+- **Affects:** SPDX 3.0, 3.1-dev.
+
+**Problem.** `extension` is a property of `Element` only. Structured values
+such as `ExternalIdentifier`, `ExternalRef`, `IntegrityMethod`,
+`CreationInfo` or `DictionaryEntry` cannot carry an extension, so data that
+belongs to one of them has to be attached to the enclosing Element and point
+back to the value, which has no identity (usually a blank node). For
+example, a tool cannot add a "verified at" timestamp to one `Hash` of a
+package.
+
+ModelEvaluation could attach its results to a Relationship because
+Relationship is an Element. The same design would not work for, say, a
+per-`ExternalIdentifier` annotation.
+
+**Why it happens.** Extension was designed to characterize Elements
+(the `Extension` description: "extended characterization of Elements"). Non-Element
+classes are treated as closed structured values.
+
+**Fix.** Not proposed yet; options to discuss:
+
+1. Keep it, and say so in the Extension description, with guidance (attach
+   to the Element; give the value an IRI if it must be referenced).
+2. Move `extension` to a common superclass of Element and the structured
+   values. This changes many classes and the JSON schema.
+3. Add `extension` only to the classes where users ask for it
+   (`ExternalIdentifier`, `ExternalRef`, `IntegrityMethod`).
+
+Option 1 costs nothing and removes the surprise; 3 can follow on demand.
 
 ---
 
@@ -1197,7 +1247,7 @@ follows this.
 
 ## Not yet tested
 
-Tools to run the example corpus through next: SPDX Online Tools, Pitloom
+Tools to run the example corpora through next: SPDX Online Tools, Pitloom
 (`loom fragment validate`).
 
 Scripts to rerun all checks are in [`tools/`](tools/README.md).
