@@ -17,7 +17,7 @@
     rdfs:label "SyntheticData SPDX 3 extension (example)"@en ;
     owl:versionInfo "0.1.0" .
 
-sd:SyntheticDataExtension a owl:Class, sh:NodeShape ;
+sd:SyntheticDataExtension a owl:Class, rdfs:Class, sh:NodeShape ;
     rdfs:comment "Describes how the content of a dataset was generated."@en ;
     rdfs:subClassOf spdx-ext:Extension ;
     sh:nodeKind sh:BlankNodeOrIRI ;

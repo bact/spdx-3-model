@@ -21,9 +21,10 @@ Knowing this matters for model quality ("model collapse"), for evaluation
 integrity, and for compliance with the terms of use of the generating model.
 
 SPDX 3.0 can say that an `ai_AIPackage` `generates` a `dataset_DatasetPackage`,
-but it cannot characterize the dataset itself as human-generated,
-machine-generated, or mixed, nor say how much of it is synthetic.
-`dataset_DatasetType` has no such entry.
+but it has no structured way to characterize the dataset itself as
+human-generated, machine-generated, or mixed, nor to say how much of it is
+synthetic. `dataset_DatasetType` has no such entry, and
+`dataset_dataCollectionProcess` is free text.
 
 ## Definitions (5)
 
@@ -49,7 +50,9 @@ Files:
 
 The SPDX JSON schema requires `@context` to be exactly
 `https://spdx.org/rdf/3.0.1/spdx-context.jsonld`, so an extension cannot add
-its own prefixes. Therefore:
+its own prefixes. (The specification text allows additional namespace
+mappings in `@context`; the schema does not. See S-2 in the findings.)
+Therefore:
 
 - `type` and the property keys are full IRIs.
 - An IRI value (a vocabulary entry or an Element reference) is written as
@@ -79,7 +82,8 @@ its own prefixes. Therefore:
 ## Test documents
 
 All documents use SPDX 3.0.1, the latest version supported by
-`spdx3-validate`.
+`spdx3-validate`, except `custom-extension-3-0-0`, which shows what 3.0.0 does
+with a custom extension.
 
 | File | Purpose | `spdx3-validate` | Extension SHACL |
 | --- | --- | --- | --- |
@@ -87,8 +91,9 @@ All documents use SPDX 3.0.1, the latest version supported by
 | [`documents/valid-full.spdx3.json`](documents/valid-full.spdx3.json) | All properties, reference to an `ai_AIPackage`, a second extension (`CdxPropertiesExtension`) on the same Element, plus a core `generates` Relationship | pass | pass |
 | [`documents/valid-iri-node.spdx3.json`](documents/valid-iri-node.spdx3.json) | Extension node identified by an IRI instead of a blank node | pass | pass |
 | [`documents/valid-ext-invalid.spdx3.json`](documents/valid-ext-invalid.spdx3.json) | Valid SPDX that breaks the extension: no `generationMethod`, `syntheticFraction` 1.5, `generatorModel` pointing at a Person | **pass** | fail (3 violations) |
-| [`known-issues/profile-conformance-extension.spdx3.json`](known-issues/profile-conformance-extension.spdx3.json) | Declares `profileConformance: "extension"` | **fail** | n/a |
+| [`known-issues/profile-conformance-extension.spdx3.json`](known-issues/profile-conformance-extension.spdx3.json) | Declares `profileConformance: "extension"` | **fail** | pass |
 | [`known-issues/plain-scalar-values.spdx3.json`](known-issues/plain-scalar-values.spdx3.json) | Extension values written as plain JSON strings and numbers | pass | fail (6 violations) |
+| [`known-issues/custom-extension-3-0-0.spdx3.json`](known-issues/custom-extension-3-0-0.spdx3.json) | `valid-minimal` with the SPDX 3.0.0 context: the 3.0.0 SHACL rejects every custom extension | **fail** | pass |
 
 ### How to validate
 
@@ -104,15 +109,30 @@ pyshacl -s synthetic-data.ttl -e synthetic-data.ttl -df json-ld documents/valid-
 loads `synthetic-data.ttl`, so extension constraints have to be checked
 separately (second command).
 
+Pass `synthetic-data.ttl` to pySHACL as the ontology too (`-e`): the
+`sh:class` checks on `generationMethod` need the vocabulary entries' types in
+the data graph. `synthetic-data.ttl` refers to SPDX 3.0.1 IRIs
+(`Extension/Extension`, `AI/AIPackage`); a 3.0.0 document needs a copy with
+3.0.0 IRIs.
+
+To check every document at once against [`expected.json`](expected.json):
+
+```bash
+python ../../tools/validate_example.py .
+```
+
+See [`../../tools/README.md`](../../tools/README.md) for setup and the other
+checks.
+
 ## Tool support matrix
 
 Tested 2026-10-23.
 
 | Tool | Version | Reads custom extension | Writes it back | Notes |
 | --- | --- | --- | --- | --- |
-| spdx3-validate | 0.0.7 | yes | n/a | Accepts any `type` IRI. Does not and cannot check extension constraints. |
+| spdx3-validate | 0.0.7 | yes (3.0.1); **no** (3.0.0) | n/a | With 3.0.1, accepts any `type` IRI not known to be a non-Extension SPDX class. With 3.0.0, rejects every custom extension (M-3). Cannot check extension constraints (T-2). |
 | spdx-python-model, `v3_0_1` bindings | `3d24398` (source) | yes | **no** for `{"@id"}` / `{"@value"}` values | Serializer raises `TypeError: Unsupported serialized type <class 'dict'>`. Plain scalars round-trip, but a JSON number comes back as a string (`0.35` becomes `"0.35"`). The `v3_1` bindings share the same code. |
-| spdx-tools-java | | not tested | | |
+| spdx-tools-java (spdx-java-v3jsonld-store) | 2.0.7 and `master` `86ddcc9` | **no** | **no** | `Verify` and `Convert` stop with `Missing type for core object` on every document with a custom extension: full-IRI types are not accepted, and `{"@id"}` values would fail next. Plain numbers in extension properties are truncated to integers (`0.35` becomes `0`); seen only after changing `type` to an SPDX class, since the custom type is rejected first. `CdxPropertiesExtension` round-trips correctly. |
 | SPDX Online Tools | | not tested | | |
 | Pitloom (`loom fragment validate`) | | not tested | | |
 
@@ -126,7 +146,8 @@ in [examples/FINDINGS.md](../../FINDINGS.md):
   The same name collision also hits `createdBy` and `requirementUID` in 3.1-dev.
 - S-2: extension values need JSON-LD value objects (`{"@id"}`, `{"@value"}`).
 - M-1: no way to declare which extensions a document uses.
-- M-2: extension objects cannot stand alone.
+- M-2: extension objects cannot be top-level in `@graph`, and their sharing
+  and multiplicity are unspecified.
 - M-3: SHACL for `extension` is a deny-list.
 - T-1: spdx-python-model cannot write extension value objects.
 - T-2: spdx3-validate cannot check extension constraints.

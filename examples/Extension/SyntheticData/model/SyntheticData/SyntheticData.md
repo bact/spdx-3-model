@@ -19,11 +19,11 @@ Datasets used to train or evaluate AI models are increasingly produced, in
 whole or in part, by other AI models (synthetic data, distillation). Knowing
 this matters for model quality (model collapse), for evaluation integrity, and
 for compliance with the terms of use of the generating model. SPDX 3.0 can
-express that an AI package `generates` a dataset, but cannot characterize the
-dataset itself as human-generated, machine-generated, or mixed, nor how much
-of it is synthetic.
+express that an AI package `generates` a dataset, but has no structured way
+to characterize the dataset itself as human-generated, machine-generated, or
+mixed, nor how much of it is synthetic.
 
 ## Metadata
 
-- id: https://example.org/spdx3-ext/synthetic-data/
+- id: https://example.org/spdx3-ext/synthetic-data
 - name: SyntheticData

@@ -24,14 +24,18 @@ Add new findings at the end of the relevant section and keep IDs stable.
 | ID | Title | Category | Severity | Affects | Status | In specmd 0.3.5 |
 | --- | --- | --- | --- | --- | --- | --- |
 | [S-1](#s-1-vocabulary-entries-that-share-a-name-with-a-context-term-expand-to-the-wrong-iri) | Vocabulary entries that share a name with a context term expand to the wrong IRI | Serialization | **High** | 3.0.0, 3.0.1, 3.1-dev | Fix proposed: [spec-parser branch](https://github.com/bact/spec-parser/tree/fix-vocab-term-collision), [specmd branch](https://github.com/bact/specmd/tree/fix-vocab-term-collision) | Partial |
-| [S-2](#s-2-extension-property-values-need-json-ld-value-objects) | Extension property values need JSON-LD value objects | Serialization | Medium | 3.0.1, 3.1-dev | Open | No |
-| [M-1](#m-1-no-way-to-declare-which-extensions-a-document-uses) | No way to declare which extensions a document uses | Model design | Medium | 3.0, 3.1-dev | Open | No (model issue) |
-| [M-2](#m-2-extension-objects-cannot-stand-alone) | Extension objects cannot stand alone | Model design | Low | 3.0, 3.1-dev | Open | No (model issue) |
-| [M-3](#m-3-shacl-for-extension-is-a-deny-list) | SHACL for `extension` is a deny-list | Model / generator | Low | 3.0.1, 3.1-dev | Open | No |
-| [T-1](#t-1-spdx-python-model-cannot-write-json-ld-value-objects-in-extensions) | spdx-python-model cannot write JSON-LD value objects in extensions | Tool | Medium | spdx-python-model `v3_0_1`, `v3_1` | Open | n/a |
-| [T-2](#t-2-spdx3-validate-cannot-check-extension-constraints) | spdx3-validate cannot check extension constraints | Tool | Low | spdx3-validate 0.0.7 | Open (needs M-1) | n/a |
-| [T-3](#t-3-rdflib-does-not-let-a-property-scoped-context-override-a-protected-term) | rdflib does not let a property-scoped context override a `@protected` term | Tool | Medium | rdflib 7.6.0 and `main` (so spdx3-validate, pyshacl) | Open; worked around in [specmd branch](https://github.com/bact/specmd/tree/fix-vocab-term-collision) | Affected (see S-1) |
+| [S-2](#s-2-extension-property-values-need-json-ld-value-objects) | Extension property values need JSON-LD value objects | Serialization | Medium | 3.0.1, 3.1-dev | Spec text proposed: [spdx-spec branch](https://github.com/bact/spdx-spec/tree/serialize-extensions) | No |
+| [M-1](#m-1-no-way-to-declare-which-extensions-a-document-uses) | No way to declare which extensions a document uses | Model design | Medium | 3.0, 3.1-dev | Model change proposed: [spdx-3-model branch](https://github.com/bact/spdx-3-model/tree/extension-definition) | No (model issue) |
+| [M-2](#m-2-extension-objects-cannot-be-top-level-and-their-sharing-is-unspecified) | Extension objects cannot be top-level, and their sharing is unspecified | Model design | Low | 3.0, 3.1-dev | Spec text proposed: [spdx-3-model branch](https://github.com/bact/spdx-3-model/tree/extension-semantics) | No (model issue) |
+| [M-3](#m-3-shacl-for-extension-is-a-deny-list) | SHACL for `extension` is a deny-list (3.0.1+), or rejects every custom extension (3.0.0) | Model / generator | **High** in 3.0.0, Low in 3.0.1+ | 3.0.0, 3.0.1, 3.1-dev | Validator check proposed: [spdx3-validate branch](https://github.com/bact/spdx3-validate/tree/extension-class-check) | No |
+| [T-1](#t-1-spdx-python-model-cannot-write-json-ld-value-objects-in-extensions) | spdx-python-model cannot write JSON-LD value objects in extensions | Tool | Medium | spdx-python-model `v3_0_1`, `v3_1` | Fix proposed: [shacl2code branch](https://github.com/bact/shacl2code/tree/fix-extensible-value-objects) | n/a |
+| [T-2](#t-2-spdx3-validate-cannot-check-extension-constraints) | spdx3-validate cannot check extension constraints | Tool | Low | spdx3-validate 0.0.7 | Fix proposed: [spdx3-validate branch](https://github.com/bact/spdx3-validate/tree/extra-shacl) | n/a |
+| [T-3](#t-3-rdflib-does-not-let-a-property-scoped-context-override-a-protected-term) | rdflib does not let a property-scoped context override a `@protected` term (and JSON-LD 1.1 API step 4.2 omits the override) | Tool / spec | Medium | rdflib 7.6.0 and `main` (so spdx3-validate, pyshacl); JSON-LD 1.1 API | Open; issues drafted ([rdflib](issue-drafts/rdflib-protected-term-override.md), [json-ld-api](issue-drafts/json-ld-api-scalar-override-protected.md)); worked around in [specmd branch](https://github.com/bact/specmd/tree/fix-vocab-term-collision) | Affected (see S-1) |
 | [T-4](#t-4-specmd-emits-an-empty-string-term-in-the-json-ld-context) | specmd emits an empty-string term in the JSON-LD context | Tool (generator) | **High** | specmd 0.3.5 | Fix proposed: [specmd branch](https://github.com/bact/specmd/tree/fix-empty-context-term) | Affected |
+| [T-5](#t-5-spdx-java-library-rejects-every-custom-extension-type) | SPDX Java library rejects every custom extension type | Tool | **High** | spdx-java-v3jsonld-store (tools-java 2.0.7, `master`) | Fix proposed: [store branch](https://github.com/bact/spdx-java-v3jsonld-store/tree/support-custom-extensions) (+ library, core) | n/a |
+| [T-6](#t-6-spdx-java-library-truncates-numbers-in-extension-properties) | SPDX Java library truncates numbers in extension properties | Tool | Medium | spdx-java-v3jsonld-store | Fix proposed: [store branch](https://github.com/bact/spdx-java-v3jsonld-store/tree/fix-number-truncation) (+ library) | n/a |
+| [T-7](#t-7-tools-java-verify-does-not-check-shacl) | tools-java `Verify` does not check SHACL | Tool | Low | tools-java 2.0.7, `master` | Open | n/a |
+| [T-8](#t-8-rdflib-types-json-numbers-by-notation-not-by-value) | rdflib types JSON numbers by notation, not by value | Tool | Low | rdflib 7.6.0 (so pyshacl, spdx3-validate) | Open | n/a |
 
 Severity:
 
@@ -63,7 +67,7 @@ generating the 3.1-dev model with specmd and running the same tests.
 | [spdx/spdx-spec#1312](https://github.com/spdx/spdx-spec/issues/1312) Use `@protected` rather than a fixed `@context` | open | S-2, T-3 | Would let extensions add terms (fixes much of S-2). If done with option A of S-1, rdflib must handle property-scoped overrides (T-3). |
 | [spdx/spdx-3-model#1476](https://github.com/spdx/spdx-3-model/issues/1476) NamespaceMap collides with JSON Schema validation | open | S-2 | Same cause as S-2: the fixed `@context` blocks prefixes. |
 | [spdx/spdx-spec#650](https://github.com/spdx/spdx-spec/issues/650) Support for additional properties disabled in JSON schema | open | S-2 | Earlier (2.x) form of the same need: carrying data beyond the spec. |
-| [spdx/spdx-3-model#1017](https://github.com/spdx/spdx-3-model/issues/1017) Does the JSON schema support serialization of Extensions? | closed | S-2, M-3 | Confirms extensions need a full-IRI `type`; led to spec-parser#186 and a re-publication of the 3.0.1 SHACL (precedent for S-1 errata). Asked for "Adding Extensions" documentation, still missing. |
+| [spdx/spdx-3-model#1017](https://github.com/spdx/spdx-3-model/issues/1017) Does the JSON schema support serialization of Extensions? | closed | S-2, M-3 | Confirms extensions need a full-IRI `type`; led to spec-parser#186 and an in-place re-publication of the 3.0.1 SHACL (see P-4: a precedent not to repeat). Asked for "Adding Extensions" documentation, still missing. |
 | [spdx/spdx-spec#1456](https://github.com/spdx/spdx-spec/issues/1456) Correct extension from [0..1] to [0..*] | open | M-2 | The Core diagram shows `Element.extension` as `[0..1]`; the model says `[0..*]`. |
 | [spdx/spdx-3-model#1348](https://github.com/spdx/spdx-3-model/issues/1348) Specify programmatic profile-conformance checking via SHACL | open | S-1, M-1 | Profile conformance checking depends on `profileConformance` values expanding correctly (S-1), and on knowing which extension shapes apply (M-1). |
 | [spdx/spdx-3-model#1358](https://github.com/spdx/spdx-3-model/issues/1358) Add round-trip validation CI for new-namespace examples | open | S-1, T-1 | Asks for exactly the schema + JSON-LD + round-trip checks that found S-1 and T-1; `tools/check_vocab_term_collisions.py` can be one of them. |
@@ -87,11 +91,8 @@ JPEWdev/spdx3-validate and RDFLib/rdflib.
   declaring `profileConformance: ["extension"]`.
 - **Affects:** every SPDX 3 version so far (see table).
 - **Fix proposed:**
-  - spec-parser: [`bact/spec-parser` `fix-vocab-term-collision`](https://github.com/bact/spec-parser/tree/fix-vocab-term-collision)
-    (commit `c949ad2`).
-  - specmd: [`bact/specmd` `fix-vocab-term-collision`](https://github.com/bact/specmd/tree/fix-vocab-term-collision) (commit
-    `b936393`), together with [`fix-empty-context-term`](https://github.com/bact/specmd/tree/fix-empty-context-term) (commit
-    `8040c73`, T-4).
+  - spec-parser: [`bact/spec-parser` `fix-vocab-term-collision`](https://github.com/bact/spec-parser/tree/fix-vocab-term-collision).
+  - specmd: [`bact/specmd` `fix-vocab-term-collision`](https://github.com/bact/specmd/tree/fix-vocab-term-collision), together with [`fix-empty-context-term`](https://github.com/bact/specmd/tree/fix-empty-context-term) (T-4).
 - **Related:** [spdx-3-model#1167](https://github.com/spdx/spdx-3-model/issues/1167),
   [spdx-3-model#1274](https://github.com/spdx/spdx-3-model/issues/1274),
   [spec-parser#204](https://github.com/spdx/spec-parser/issues/204) / [#205](https://github.com/spdx/spec-parser/pull/205).
@@ -179,7 +180,7 @@ reject (T-4).
 Expanded RDF:
 
 ```turtle
-<doc> spdx:Core/profileConformance
+<doc> <https://spdx.org/rdf/3.0.1/terms/Core/profileConformance>
     <https://spdx.org/rdf/3.0.1/terms/Core/ProfileIdentifierType/core> ,
     <https://spdx.org/rdf/3.0.1/terms/Core/extension> .   # wrong
 ```
@@ -292,22 +293,12 @@ allows**. With `@id`, `"NoAssertionElement"` is a relative IRI:
 | pyld | `https://spdx.org/rdf/3.0.1/terms/Core/NoAssertionElement` | `https://example.org/NoAssertionElement` (resolved against the document URL) |
 | jsonld.js | `https://spdx.org/rdf/3.0.1/terms/Core/NoAssertionElement` | `NoAssertionElement` (relative IRI kept, no base) |
 
-If #205 is merged, it should also give each such property a scoped context
-that maps the allowed short names to their individuals, for example:
-
-```json
-"to": {
-  "@id": "https://spdx.org/rdf/3/terms/Core/to",
-  "@type": "@id",
-  "@context": {
-    "NoAssertionElement": {"@id": "https://spdx.org/rdf/3/terms/Core/NoAssertionElement"}
-  }
-}
-```
-
-Note that a term is still not used for `@id`-typed values, so this needs
-`"@type": "@vocab"` again in practice. The trade-off should be settled in
-spec-parser#204 before merging.
+A scoped context that maps the short names to their individuals does not
+help with `"@type": "@id"`: IRI expansion of `@id`-typed values does not use
+terms (JSON-LD 1.1 API, IRI Expansion with *vocab* false). The short names
+work under `@id` only as compact IRIs, such as `"spdx:Core/NoAssertionElement"`,
+which the schema accepts and which expand the same under `@vocab` and `@id`.
+The trade-off should be settled in spec-parser#204 before merging.
 
 #### How tools disagree
 
@@ -319,7 +310,8 @@ it. Tested 2026-10-23 with collision 1 (`profileConformance: "extension"`,
 | --- | --- | --- | --- |
 | JSON Schema validator | SPDX 3.0.0 and 3.0.1 JSON schema | a string in the allowed enum | valid |
 | Code generated from the model, using its own name table | spdx-python-model `v3_0_1` | `ProfileIdentifierType/extension` (intended) | valid |
-| JSON-LD processor (expansion, toRDF) | rdflib 7.6.0, pyld 3.3.0, jsonld.js 8.3.3 | `Core/extension` (the property) | n/a (no validation) |
+| Java library reading JSON directly | tools-java 2.0.7 and `master` (spdx-java-v3jsonld-store) | `ProfileIdentifierType/extension` (intended); `Convert` writes `"extension"` back | valid (`Verify`), on a copy of the repro without the custom extension (tools-java rejects custom extensions first, T-5) |
+| JSON-LD processor (expansion, toRDF) | rdflib 7.6.0, pyld 3.3.0, jsonld.js 8.3.3 and 9.0.0 | `Core/extension` (the property) | n/a (no validation) |
 | SHACL validator on the RDF | spdx3-validate 0.0.7 (pyshacl over rdflib) | `Core/extension` | **invalid** (`Value does not have class ProfileIdentifierType`) |
 | JSON-LD writer (compaction) of the correct IRI | pyld, jsonld.js | writes `"spdx:Core/ProfileIdentifierType/extension"` | **invalid** under the JSON schema (not in the enum) |
 
@@ -354,8 +346,8 @@ contexts.
 | Option | JSON documents | JSON schema | Generated bindings | rdflib | pyld | jsonld.js | Compaction writes | Verdict |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | **A. Explicit mapping** of each colliding entry in the property's scoped context ([branch](https://github.com/bact/spec-parser/tree/fix-vocab-term-collision)) | unchanged | unchanged | unchanged | correct | correct | correct | `"extension"` | **Recommended** |
-| A+. Explicit mapping of **every** entry ([spdx-3-model#1167](https://github.com/spdx/spdx-3-model/issues/1167), specmd) | unchanged | unchanged | unchanged | correct (if not `@protected`) | correct | correct | `"extension"` | Good; larger context. Fails in rdflib if combined with `@protected` (T-3) |
-| B. Reset the scoped context: `"@context": [null, {"@vocab": ...}]` | unchanged | unchanged | unchanged | correct | **string literal** | **string literal** | n/a | Rejected: processors disagree |
+| A+. Explicit mapping of **every** entry ([spdx-3-model#1167](https://github.com/spdx/spdx-3-model/issues/1167), specmd) | unchanged | unchanged | unchanged | correct (if not `@protected`) | correct | correct | `"extension"` | Good; larger context. With `@protected` top-level terms, it is a protected term redefinition per the expansion algorithm (step 4.2, see T-3), and rdflib expands to the wrong IRI |
+| B. Reset the scoped context: `"@context": [null, {"@vocab": ...}]` | unchanged | unchanged | unchanged | IRI (deviates from the spec) | **string literal** | **string literal** | n/a | Rejected: per the spec, the reset also drops the property's `@vocab` type mapping, so values become string literals (pyld, jsonld.js); rdflib's IRI result is a processor deviation |
 | C. Rename the entry or the property in the model | **changed** | changed | regenerated | correct | correct | correct | new name | Breaking for 3.0.x data; acceptable only for the unreleased 3.1 cases |
 | D. Accept full IRIs in the JSON schema | optional new form | changed | partly | correct for the full IRI | correct | correct | still compact IRI | Does not fix the short name; only a partial workaround |
 | E. `"@type": "@id"` for class ranges ([spec-parser#205](https://github.com/spdx/spec-parser/pull/205)) | unchanged | unchanged | unchanged | not affected | not affected | not affected | n/a | Does not touch vocabulary properties; does not fix S-1 |
@@ -430,14 +422,12 @@ logs a warning for each. A unit test builds a minimal graph with the
 1. **Apply option A in the generator** and regenerate the 3.1 context:
    [bact/spec-parser `fix-vocab-term-collision`](https://github.com/bact/spec-parser/tree/fix-vocab-term-collision). It logs a warning
    for each collision, so new ones are visible when the model is built.
-2. **Errata for 3.0.x.** Add the same `extension` mapping to the published
-   3.0.0 and 3.0.1 contexts (or publish it in a 3.0.2). This only changes the
-   expansion of a value that is invalid today, so no valid document breaks.
-   There is a precedent: the 3.0.1 SHACL was re-published in place in 2025
-   to accept extensions ([spdx-3-model#1017](https://github.com/spdx/spdx-3-model/issues/1017)). The
-   publication policy is open in [spdx-spec#1427](https://github.com/spdx/spdx-spec/issues/1427).
-   Processors that cached the old context keep the old behavior until they
-   refresh it.
+2. **3.0.x: publish a fixed context as a new version (3.0.2)**, not by
+   editing the published 3.0.0 or 3.0.1 contexts in place; see
+   [P-4](#p-4-do-not-change-published-contexts-publish-a-new-version). The
+   fix only changes the expansion of a value that is invalid today, so no
+   valid document breaks when moving to 3.0.2. The publication policy is open
+   in [spdx-spec#1427](https://github.com/spdx/spdx-spec/issues/1427).
 3. **Prevent recurrence.** Run
    [`tools/check_vocab_term_collisions.py`](tools/check_vocab_term_collisions.py)
    in CI for spdx-3-model against the generated context, as part of the
@@ -487,8 +477,8 @@ context URL, so an extension cannot add its own terms or prefixes. Therefore:
 This is correct JSON-LD, but it is verbose, it is not mentioned anywhere in
 the spec, and most SPDX tools do not handle it (see T-1).
 
-Writing plain JSON values instead looks natural, passes `spdx3-validate`, and
-round-trips through tools, but in RDF the IRIs become string literals and the
+Writing plain JSON values instead looks natural and passes `spdx3-validate`
+(though tools also lose plain numbers: T-1, T-6), but in RDF the IRIs become string literals and the
 decimal becomes a double or a string. Repro:
 [plain-scalar-values.spdx3.json](Extension/SyntheticData/known-issues/plain-scalar-values.spdx3.json)
 (6 violations against the extension's own SHACL).
@@ -496,8 +486,12 @@ decimal becomes a double or a string. Repro:
 So today there is no compact form that is both semantically correct and
 supported by tools.
 
-**Why it happens.** The spec (serialization clause) and the JSON schema fix
-`@context` to the single SPDX context URL. This keeps the JSON keys
+**Why it happens.** The JSON schema fixes `@context` to the single SPDX
+context URL (`"const"`). The spec text does not: the 3.0.1 serialization
+clause says "Additional namespace mappings may be defined within a separate
+object within the context", so spec and schema contradict each other
+([spdx-3-model#1476](https://github.com/spdx/spdx-3-model/issues/1476)).
+Conformance requires schema validity, so the schema wins in practice. This keeps the JSON keys
 predictable, which JSON Schema validation needs. But the SPDX context only
 defines terms for SPDX. An extension's properties therefore have no term (so
 keys must be full IRIs) and no type coercion (so a value's IRI-ness or
@@ -509,7 +503,11 @@ fixed `@context`), [spdx-3-model#1476](https://github.com/spdx/spdx-3-model/issu
 fixed `@context`), [spdx-spec#650](https://github.com/spdx/spdx-spec/issues/650),
 [spdx-3-model#1017](https://github.com/spdx/spdx-3-model/issues/1017).
 
-**Fix.**
+**Fix.** The spec text is proposed in
+[`bact/spdx-spec` `serialize-extensions`](https://github.com/bact/spdx-spec/tree/serialize-extensions): a new "Extensions" section in the JSON serialization
+chapter, and a note that the SPDX schema and ontology do not validate custom
+extension data. A user guide is proposed for spdx/using:
+[`bact/using` `extension-guide`](https://github.com/bact/using/tree/extension-guide).
 
 - Spec: document in the Extension profile how extension data is serialized in
   JSON, with the value-object rules above.
@@ -549,7 +547,7 @@ a closed SPDX vocabulary (and `extension` itself is broken, see S-1).
 
 Evidence:
 [valid-ext-invalid.spdx3.json](Extension/SyntheticData/documents/valid-ext-invalid.spdx3.json)
-breaks every rule of the extension, and still passes `spdx3-validate`.
+breaks three of the extension's constraints, and still passes `spdx3-validate`.
 
 Related: [spdx-3-model#1348](https://github.com/spdx/spdx-3-model/issues/1348) (programmatic profile
 conformance checking), [spdx-spec#1458](https://github.com/spdx/spdx-spec/issues/1458) (validators are
@@ -563,10 +561,12 @@ extensions in advance. The model has a mechanism to point to external
 for external *definitions* (ontologies, shapes). `profileConformance` only
 names SPDX's own profiles.
 
-**Fix.** Add a way to declare the extensions used, for example an optional
-property on `SpdxDocument` listing extension definitions, each with the
-extension namespace IRI, an optional location of its OWL/SHACL definition,
-and an optional `verifiedUsing` hash.
+**Fix** ([`bact/spdx-3-model` `extension-definition`](https://github.com/bact/spdx-3-model/tree/extension-definition)). Add a way to declare the extensions used: an optional
+property `SpdxDocument.extensionDefinition`, whose values are a new class
+`/Extension/ExtensionDefinition` with a new `extensionNamespace` (the
+namespace IRI of the extension), and the existing `locationHint` and
+`verifiedUsing` properties, as in `ExternalMap`. The branch passes
+spec-parser, and the generated context adds no collisions.
 
 **Why the fix works.**
 
@@ -579,7 +579,7 @@ and an optional `verifiedUsing` hash.
 - The property is optional, so every existing document stays valid, and the
   open-world design is kept for documents that do not declare anything.
 
-### M-2. Extension objects cannot stand alone
+### M-2. Extension objects cannot be top-level, and their sharing is unspecified
 
 - **Found by:** [Extension/SyntheticData](Extension/SyntheticData/).
 
@@ -588,8 +588,11 @@ and an optional `verifiedUsing` hash.
 top level of `@graph`; it must be inlined in one Element's `extension` array.
 It can have an IRI `@id`
 ([valid-iri-node.spdx3.json](Extension/SyntheticData/documents/valid-iri-node.spdx3.json)),
-but then it cannot be shared by several Elements or referenced from another
-document, and it has no provenance of its own.
+and the schema then also lets other Elements, in the same or another
+document, refer to it by that IRI (`"extension": ["<IRI>"]` passes
+spdx3-validate and the extension SHACL). Nothing says whether that sharing is
+allowed or what it means, and a reference from another document has no way
+to import the definition. It has no provenance of its own.
 
 Related: [spdx-3-model#1204](https://github.com/spdx/spdx-3-model/issues/1204) (several extensions of the same
 type on one Element), [spdx-spec#1456](https://github.com/spdx/spdx-spec/issues/1456) (diagram shows
@@ -602,12 +605,14 @@ level of `@graph`. The spec does not say whether this is intended, nor what
 it means to attach several extensions of the same type to one Element
 (spdx-3-model#1204).
 
-**Fix.** Decide and document the intent. If extensions are property bags of
+**Fix** ([`bact/spdx-3-model` `extension-semantics`](https://github.com/bact/spdx-3-model/tree/extension-semantics)). Decide and document the intent. If extensions are property bags of
 one Element (the likely intent), state that an extension node belongs to
 exactly one Element, define the meaning of several extensions of one type
 (spdx-3-model#1204), and fix the `[0..1]` in the Core diagram
 (spdx-spec#1456). If sharing is wanted, allow extension nodes with an IRI
-`@id` at the top level of `@graph`.
+`@id` at the top level of `@graph`. The branch takes the property-bag
+reading: it adds the rules to the Extension class description and fixes the
+cardinality in `docs/model.drawio` (the PNG in spdx-spec needs re-exporting).
 
 **Why the fix works.** The data model already supports the property-bag
 reading; what is missing is a stated rule. Once it is stated, tools can
@@ -617,7 +622,19 @@ merge extension nodes), and the diagram no longer contradicts the model.
 ### M-3. SHACL for `extension` is a deny-list
 
 - **Found by:** [Extension/SyntheticData](Extension/SyntheticData/), reading
-  the generated 3.0.1 SHACL.
+  the generated 3.0.1 SHACL; the 3.0.0 behavior was found while testing the
+  validator fix.
+
+| Version | SHACL on `Core/extension` | Effect on a custom extension, without its definition |
+| --- | --- | --- |
+| 3.0.0 | positive `sh:class Extension/Extension` | **always rejected**: `Value does not have class Extension/Extension` |
+| 3.0.1 (as re-published in 2025) | deny-list of SPDX classes | always accepted, also with a typo in `type` |
+| 3.1-dev | deny-list (spec-parser#207) | always accepted |
+
+So in SPDX 3.0.0, no document with a custom extension passes SHACL
+validation. Repro:
+[custom-extension-3-0-0.spdx3.json](Extension/SyntheticData/known-issues/custom-extension-3-0-0.spdx3.json)
+(the `valid-minimal` document with the 3.0.0 context).
 
 **Problem.** The generated shape on `Element` for `extension` only says the
 value is a blank node or IRI and is **not** one of a long list of SPDX classes
@@ -644,6 +661,19 @@ are available (declared as in M-1, or passed to the validator as in T-2), the
 validator adds a positive `sh:class Extension` check over the merged graph.
 For tools that need the expected type from the model (spec-parser#207), point
 them to `rdfs:range` of `Core/extension`, which the ontology already states.
+
+Implemented in spdx3-validate:
+[`bact/spdx3-validate` `extension-class-check`](https://github.com/bact/spdx3-validate/tree/extension-class-check) (on top of `extra-shacl`). When extension definitions are
+passed with `--shacl`, it adds a shape requiring every `Core/extension` value
+to be an `Extension/Extension` (`sh:class`, so subclasses resolve through the
+merged ontology). The shape is not added when the model already has the
+positive check (3.0.0). A document whose extension `type` has a typo is
+reported with the definitions supplied, and accepted without them. For
+3.0.0, supplying the definition with `--shacl` also makes custom extensions
+pass, since the merged ontology then knows they are Extensions, but only if
+the definition subclasses the 3.0.0 `Extension` IRI. The example's
+`synthetic-data.ttl` uses 3.0.1 IRIs, so the 3.0.0 repro still fails with it;
+a copy rewritten to 3.0.0 IRIs passes.
 
 **Why the fix works.** The deny-list keeps the open-world behavior: unknown
 extension classes still pass. The positive check is only applied where the
@@ -678,13 +708,28 @@ With plain scalars it round-trips, but a JSON number comes back as a string
 each unknown property as the decoded JSON value, so a value object becomes a
 plain `dict`. The encoder for those properties was written for JSON scalars
 only, and has no branch for `dict`. The JSON number type is also lost on the
-way (`0.35` comes back as `"0.35"`); the exact code path was not traced.
+way: the JSON encoder's `write_float` writes `json.dumps(str(v))`
+(`bindings/v3_0_1/model.py`, same in `v3_1`), so `0.35` comes back as
+`"0.35"`.
 
-**Fix.** In shacl2code's templates (and so in spdx-python-model's generated
-bindings), represent IRI references and typed literals in extensible objects
-as distinct value types (for example an `IRIRef` and a `TypedLiteral`), and
-encode them back as `{"@id"}` and `{"@value", "@type"}`. Keep JSON numbers as
-numbers.
+**Fix** ([`bact/shacl2code` `fix-extensible-value-objects`](https://github.com/bact/shacl2code/tree/fix-extensible-value-objects)).
+In shacl2code's Python templates (and so in spdx-python-model's generated
+bindings), represent node references, typed literals and language-tagged
+strings in extensible objects as distinct value types (`IRIRef`,
+`TypedLiteral`, `LangString`), and encode them back as `{"@id"}`,
+`{"@value", "@type"}` and `{"@value", "@language"}`, in JSON-LD and in RDF.
+Keep JSON numbers as numbers; write a float that JSON-LD would read as
+`xsd:integer` (`1.0`) or that JSON cannot carry (NaN, infinities) as an
+`xsd:double` value object. Node-reference IRIs are never compacted to terms,
+only to prefixes ending in a gen-delim character, as JSON-LD 1.1 requires.
+The RDF decoder also reads IRIs, blank nodes and typed literals of extension
+properties into these types instead of dropping them. The new `Encoder`
+methods have defaults, so existing encoder subclasses keep working.
+
+Still open in the Python bindings: re-reading `valid-iri-node` after writing
+it picks `CdxPropertiesExtension` for the IRI-identified extension node
+(separate bug, not yet analysed); golang, rust and cpp templates are not
+changed.
 
 **Why the fix works.** Each JSON-LD value form then has a matching Python
 type and a matching encoder branch, so reading and writing is an identity
@@ -705,9 +750,15 @@ context from fixed URLs per SPDX version (`spdx_versions.py`) and passes the
 SHACL as both the shapes graph and the ontology graph to pyshacl. There is no
 input for anything else.
 
-**Fix.** Add an option such as `--shacl EXTRA.ttl` (repeatable), merged into
-both the shapes graph and the ontology graph. Later, load definitions declared
-in the document (M-1) automatically.
+**Fix** ([`bact/spdx3-validate` `extra-shacl`](https://github.com/bact/spdx3-validate/tree/extra-shacl)). A repeatable `--shacl FILE_OR_URL` option, and an `extra_shacl`
+parameter of `validate()`. Each file is merged into the graph that is passed to
+pyshacl as both the shapes graph and the ontology graph. Without the option,
+nothing changes. Later, definitions declared in the document (M-1) can be
+loaded the same way automatically.
+
+Results on the example, exit code without / with
+`--shacl synthetic-data.ttl`: `valid-ext-invalid` 0 / 1 (the 3 expected
+violations), the three valid documents 0 / 0. 24 tests pass.
 
 **Why the fix works.** pyshacl validates against whatever shapes it is given,
 and needs the extension's `rdfs:subClassOf` triples in the ontology graph to
@@ -723,10 +774,22 @@ synthetic-data.ttl`, which finds the 3 violations in
   (7.7.0a0, 2026-10-23), and so every tool built on it, including
   spdx3-validate 0.0.7 and pyshacl. A newer rdflib does not help yet.
 
-**Problem.** JSON-LD 1.1 allows a property-scoped context to redefine a
-`@protected` term (that is how a property can give a name a different meaning
-inside its values). rdflib keeps the protected top-level definition instead,
-without an error. pyld and jsonld.js apply the override.
+**Problem.** JSON-LD 1.1 lets a property-scoped context redefine a
+`@protected` term: "a property-scoped context is not affected by protection,
+and can therefore override protected terms" (JSON-LD 1.1 §4.1.11). rdflib
+keeps the protected top-level definition instead, without an error. pyld and
+jsonld.js apply the override.
+
+The normative algorithm is less clear than §4.1.11. The Expansion Algorithm
+passes "override protected" when the value is a map (step 8), but not when it
+is a scalar (step 4.2), the case of every vocabulary value. Read literally,
+a scalar value under a property-scoped context that redefines a protected
+term is a "protected term redefinition" error. pyld and jsonld.js pass the
+override in both cases. Step 8 lacked it too until
+[w3c/json-ld-api#301](https://github.com/w3c/json-ld-api/issues/301); step 4.2
+looks like the same omission (no issue found; drafted in
+[`issue-drafts/json-ld-api-scalar-override-protected.md`](issue-drafts/json-ld-api-scalar-override-protected.md)).
+Either way, rdflib's result (the protected term's IRI, no error) is wrong.
 
 Evidence, specmd 3.1-dev context (empty term removed), value
 `profileConformance: "extension"`:
@@ -752,7 +815,13 @@ Minimal repro, independent of SPDX:
 ```
 
 `kind` expands to `http://example.org/Kind/name` in pyld 3.3.0 and jsonld.js
-8.3.3 (correct), but to `http://example.org/name` in rdflib.
+8.3.3 (correct per §4.1.11), but to `http://example.org/name` in rdflib. The
+same happens for a node-object value, where step 8 passes "override
+protected" unambiguously: with `"kind": {"name": "v"}`, rdflib uses
+`http://example.org/name` as the predicate, pyld and jsonld.js use
+`http://example.org/Kind/name`. This is W3C test `toRdf/pr40`, which rdflib
+lists as a known failure (`test/jsonld/test_onedotone.py`, "Investigate
+property issues").
 
 **Why it happens.** In rdflib's `Context.add_term`
 (`rdflib/plugins/shared/jsonld/context.py`, 7.6.0 and `main`), a new
@@ -765,16 +834,24 @@ if self.version >= 1.1:
         return
 ```
 
-The JSON-LD 1.1 Context Processing algorithm instead passes an
-"override protected" flag when it processes a property-scoped context, which
-allows the redefinition. rdflib has no such flag. (Outside property-scoped
-contexts, the spec requires a "protected term redefinition" error; rdflib
-does not raise it either.)
+The JSON-LD 1.1 Expansion Algorithm instead passes an "override protected"
+flag when it processes a property-scoped context (step 8, and in practice
+step 4.2), which allows the redefinition. rdflib has no such flag. (Outside
+property-scoped contexts, redefining a protected term with a different
+definition is a "protected term redefinition" error; rdflib does not raise
+it either.)
 
-**Fix.** In rdflib, pass an override flag when a term's scoped context is
-processed (`get_context_for_term` / `_subcontext`), let `add_term` replace a
-protected term when the flag is set, and raise the redefinition error
-otherwise. Report with the repro above (no existing issue found). Until it is
+**Fix.** In rdflib, pass an override flag only when a term's scoped context
+is processed (`get_context_for_term`; `_subcontext` is also reached from
+`subcontext()` and `get_context_for_type`, which must not pass it), let
+`add_term` replace a protected term when the flag is set, and raise the
+redefinition error otherwise. Ask W3C to add "override protected" to
+Expansion step 4.2, so the spec matches §4.1.11 and the processors. Report with the repro above (no existing issue found); the
+issue is drafted in
+[`issue-drafts/rdflib-protected-term-override.md`](issue-drafts/rdflib-protected-term-override.md),
+not filed yet. It also covers a second deviation: redefining a protected
+term outside a property scope raises no error in rdflib, while pyld and
+jsonld.js raise `tried to redefine a protected term`. Until it is
 fixed and released, SPDX contexts should not rely on overriding protected
 terms: the specmd fix leaves exactly the colliding terms unprotected.
 
@@ -812,7 +889,7 @@ so namespace IRIs such as `.../terms/Core/` become subjects in the graph.
 splitting it into namespace and name. For a namespace IRI the name part is
 empty, and nothing filtered it out.
 
-**Fix** ([`bact/specmd` `fix-empty-context-term`](https://github.com/bact/specmd/tree/fix-empty-context-term), commit `8040c73`).
+**Fix** ([`bact/specmd` `fix-empty-context-term`](https://github.com/bact/specmd/tree/fix-empty-context-term)).
 Skip subjects whose name part is empty. A test asserts the context has no
 empty term.
 
@@ -823,7 +900,238 @@ non-empty, pyld and jsonld.js accept the context. Verified: the regenerated
 
 ---
 
+### T-5. SPDX Java library rejects every custom extension type
+
+- **Found by:** [Extension/SyntheticData](Extension/SyntheticData/), with
+  tools-java.
+- **Affects:** spdx-java-v3jsonld-store (tools-java 2.0.7 and `master`
+  `86ddcc9`), and so every tool on the SPDX Java library that reads SPDX 3
+  JSON-LD.
+
+**Problem.** `Verify` and `Convert` stop on every document with a custom
+extension:
+
+```text
+Missing type for core object
+```
+
+**Why it happens.** The JSON-LD store maps every `type` to a class of the
+SPDX Java model. A full IRI is turned into a name like `Core.https://...`,
+which is not found (`JsonLDDeserializer.typeNodeToType`). Value objects
+(`{"@id"}`, `{"@value", "@type"}`) in extension properties are sent to the
+same path and fail the same way. On write, type IRIs are split on `.` and
+inlined objects lose their `@id`.
+
+**Fix** ([`bact/spdx-java-v3jsonld-store` `support-custom-extensions`](https://github.com/bact/spdx-java-v3jsonld-store/tree/support-custom-extensions),
+with companion branches of the same name in
+[`bact/Spdx-Java-Library`](https://github.com/bact/Spdx-Java-Library/tree/support-custom-extensions)
+and [`bact/spdx-java-core`](https://github.com/bact/spdx-java-core/tree/support-custom-extensions)).
+Accept an absolute IRI outside the SPDX namespace as a type where the model
+allows an extension (values of `extension`, and inside extension property
+values), and represent it with a generic `Extension` subclass through the
+existing `ModelRegistry` extension hook, unless the application registered
+its own class. Read `{"@id"}` as a reference (an Element in the graph, or a
+URI value) and `{"@value", "@type"}` as a new `TypedLiteral` value type in
+spdx-java-core; write them back in the same form, and keep the `@id` of
+inlined nodes.
+
+**Why the fix works.** The SPDX Java model already has an extension hook and
+an `Extension` base class; the store just never used them for unknown types.
+With a class for every custom type and a value type for every JSON-LD value
+form, reading and writing preserve the extension data, while SPDX types and
+properties are handled as before.
+
+### T-6. SPDX Java library truncates numbers in extension properties
+
+- **Found by:** [Extension/SyntheticData](Extension/SyntheticData/), with
+  tools-java (seen after changing the extension `type` to an SPDX class,
+  since T-5 stops the read first).
+- **Affects:** spdx-java-v3jsonld-store, as T-5.
+
+**Problem.** A plain JSON number in a property the SPDX model does not know
+is read with `asInt()`: `0.35` becomes `0`, silently.
+
+**Why it happens.** With no schema type for the property, the deserializer
+assumes an integer. The library also did not accept `Double` in lists.
+
+**Fix** ([`bact/spdx-java-v3jsonld-store` `fix-number-truncation`](https://github.com/bact/spdx-java-v3jsonld-store/tree/fix-number-truncation),
+with [`bact/Spdx-Java-Library` `fix-number-truncation`](https://github.com/bact/Spdx-Java-Library/tree/fix-number-truncation)).
+Type an untyped JSON number as JSON-LD does: `xsd:double` if it has a
+non-zero fraction or an absolute value of at least 10^21, otherwise
+`xsd:integer` (unbounded, so large integers are kept exactly). Write an
+extension property's double back as a JSON number, and SPDX decimal
+properties in plain decimal notation, which the JSON schema requires.
+
+**Why the fix works.** The value read is the value JSON-LD defines for the
+number, so nothing is lost, and the written JSON means the same as the input.
+
+### T-7. tools-java `Verify` does not check SHACL
+
+- **Found by:** [Extension/SyntheticData](Extension/SyntheticData/), with
+  tools-java.
+- **Affects:** tools-java 2.0.7 and `master`.
+
+**Problem.** `Verify` on an SPDX 3 document runs the JSON schema and the Java
+model's own checks, but no SHACL (the code has a `TODO`). So it accepts
+documents that spdx3-validate rejects, for example
+[profile-conformance-extension.spdx3.json](Extension/SyntheticData/known-issues/profile-conformance-extension.spdx3.json)
+(with the custom extension removed, see T-5): the Java reader takes
+`"extension"` as the intended vocabulary entry, while the RDF meaning is the
+`Core/extension` property (S-1).
+
+**Fix.** Not proposed yet. Either run the SPDX SHACL shapes in `Verify` (for
+example with Apache Jena SHACL), or document that `Verify` is not a full
+conformance check.
+
+### T-8. rdflib types JSON numbers by notation, not by value
+
+- **Found by:** reviewing the spdx-spec text for S-2.
+- **Affects:** rdflib 7.6.0 JSON-LD parser, and so pyshacl and spdx3-validate.
+
+**Problem.** JSON-LD 1.1 maps a JSON number to `xsd:double` only if it has a
+non-zero fractional part or an absolute value of at least 10^21, and to
+`xsd:integer` otherwise (JSON-LD 1.1 API, Object to RDF Conversion; Data
+Round Tripping). rdflib uses the notation instead:
+
+| JSON | JSON-LD 1.1 (pyld) | rdflib 7.6.0 |
+| --- | --- | --- |
+| `5` | `"5"^^xsd:integer` | `"5"^^xsd:integer` |
+| `1.0` | `"1"^^xsd:integer` | `"1.0"^^xsd:double` |
+| `1e3` | `"1000"^^xsd:integer` | `"1000.0"^^xsd:double` |
+| `0.35` | `"3.5E-1"^^xsd:double` | `"0.35"^^xsd:double` |
+
+So `"count": 2.0` fails an `sh:datatype xsd:integer` shape in pyshacl, but
+passes in a validator built on a conformant processor.
+
+**Fix.** Not proposed yet; report to rdflib. Until then, write integers
+without a fraction or exponent (the spdx-spec text and the guide say so), and
+write any other non-integer number as a value object.
+
+## Proposal: JSON-LD context design following semantic web best practices
+
+The fixes above are the smallest changes that remove each problem. This
+section proposes the longer-term design they should converge to, following
+the W3C [JSON-LD Best Practices](https://w3c.github.io/json-ld-bp/) (BP, editor's draft of a W3C Note) and Linked Data practice.
+It also settles the two open decisions: `@vocab` vs `@id` for references
+([spec-parser#204](https://github.com/spdx/spec-parser/issues/204)), and how to fix published 3.0.x
+contexts.
+
+### P-1. Vocabulary values: list every entry, no `@vocab` fallback
+
+**Practice.** BP "Use things not strings": properties with enumerated values
+are typed `"@type": "@vocab"` so that short strings are identifiers. Every
+value should be an explicitly defined term ([spdx-3-model#1167](https://github.com/spdx/spdx-3-model/issues/1167)).
+
+**Design.** Keep `"@type": "@vocab"`, and in each property's scoped context
+define every entry of its vocabulary explicitly. Drop the scoped `@vocab`
+(this is specmd's current design, option A+ in S-1).
+
+**Why it is better than today.**
+
+- An entry's meaning no longer depends on lookup order, so collisions with
+  top-level terms (S-1) cannot happen for any listed entry.
+- An unknown word no longer turns into an IRI in the SPDX namespace. Tested
+  with `profileConformance: ["core", "extension", "foo"]`:
+
+  | Context | `"extension"` | `"foo"` |
+  | --- | --- | --- |
+  | today (scoped `@vocab`) | `Core/extension` (wrong) | `.../ProfileIdentifierType/foo` (looks valid, is not defined) |
+  | every entry listed, no `@vocab` | `.../ProfileIdentifierType/extension` | relative IRI, not in the SPDX namespace |
+
+  `"extension"` expands the same in rdflib, pyld and jsonld.js. What `"foo"`
+  becomes depends on the processor and the base IRI: jsonld.js keeps the
+  relative `foo` and drops the triple in toRDF, pyld resolves it against its
+  default base, and rdflib against the document URL. In no case is it an
+  SPDX IRI, so the error is no longer hidden; SHACL `sh:in` reports it when
+  the triple is produced, and the JSON schema enum rejects it in any case.
+- Compaction emits the short names, so the JSON schema enum keeps matching.
+
+### P-2. References: `@id`, with well-known individuals as compact IRIs
+
+**Practice.** BP "Type external references": properties whose values are
+references should be typed `"@type": "@id"`. A term name should never be able
+to stand for an Element reference by accident.
+
+**The catch.** Under `@id`, JSON-LD does not look values up as terms, so the
+bare names the 3.0 schema allows (`"NoAssertionElement"`, `"NoneElement"`,
+`"SpdxOrganization"`, `"expandedlicensing_NoAssertionLicense"`,
+`"expandedlicensing_NoneLicense"`) become relative IRIs. Compact IRIs work in
+both designs. Tested with `"to": [...]`:
+
+| Value | `"@type": "@vocab"` (today) | `"@type": "@id"` |
+| --- | --- | --- |
+| `"NoAssertionElement"` | `Core/NoAssertionElement` | relative IRI (wrong) |
+| `"spdx:Core/NoAssertionElement"` | `Core/NoAssertionElement` | `Core/NoAssertionElement` |
+| `"https://example.org/b"` | unchanged | unchanged |
+
+Same in rdflib, pyld and jsonld.js. The 3.0.1 JSON schema already accepts
+`"spdx:Core/NoAssertionElement"` (it matches the IRI pattern).
+
+**Design: migrate in two steps, with no breaking change in between.**
+
+1. **3.1 (documentation only).** Recommend writing well-known individuals as
+   compact IRIs with the `spdx:` prefix that the context already defines
+   (`"spdx:Core/NoAssertionElement"`), and make tools write that form. Bare
+   names keep working because references stay `@vocab`. No artifact changes.
+2. **Next major version.** Type references `"@type": "@id"`
+   (spec-parser#204/#205 and specmd), and drop bare names from the schema.
+   By then, producers already write compact IRIs, so their documents are
+   unaffected.
+
+This keeps today's documents valid, removes the term-leak risk described in
+S-1 ("references in object properties") at the end, and avoids the silent
+breakage that switching to `@id` in one step would cause.
+
+### P-3. Protect terms only when no override is needed
+
+**Practice.** Protected terms let other contexts be added without changing
+SPDX meanings; that is what allows extensions to bring their own context
+([spdx-spec#1312](https://github.com/spdx/spdx-spec/issues/1312), S-2). BP "Provide ordering to arrays"
+notes that protection interacts with context order.
+
+**Design.** Protect all SPDX terms, and make sure no SPDX term ever needs to
+be overridden: with P-1 plus the naming rule (no vocabulary entry named like
+a term, checked in CI by `tools/check_vocab_term_collisions.py`), the only
+overrides left are the three legacy names of S-1. Leave exactly those
+unprotected (as the specmd fix does), or rename them in the next major
+version.
+
+**Why.** Protection then works the same in every processor, without relying
+on the property-scoped exception that rdflib does not implement (T-3).
+
+### P-4. Do not change published contexts; publish a new version
+
+**Practice.** "Cool URIs don't change", and BP "Cache JSON-LD Contexts over
+HTTP": clients keep a cached copy of a context. A versioned context URL must
+always return the same content.
+
+**Design.** Do not edit `https://spdx.org/rdf/3.0.1/spdx-context.jsonld` in
+place. Publish the S-1 fix as a new patch version (3.0.2: context, schema and
+SHACL together), and state the rule in the IRI and `@context` versioning
+policy ([spdx-spec#1427](https://github.com/spdx/spdx-spec/issues/1427)).
+
+**Why.** An in-place edit reaches only clients that refetch, so for a while
+the same document means different things to different clients, which is
+exactly the disagreement this work tries to remove. A new version makes the
+change explicit: a document says which context it uses. The 2025 in-place
+re-publication of the 3.0.1 SHACL ([spdx-3-model#1017](https://github.com/spdx/spdx-3-model/issues/1017)) is
+a precedent to avoid repeating, not to follow. Recommendation 2 under S-1
+follows this.
+
+### Summary of the proposal
+
+| Concern | Today | Proposed | Breaking? |
+| --- | --- | --- | --- |
+| Vocabulary values | scoped `@vocab` fallback | every entry listed (P-1) | no |
+| References | `@vocab`, bare individual names | compact IRIs now, `@id` next major (P-2) | no, if done in two steps |
+| Protection | none (spec-parser), all (specmd) | all, except legacy collisions (P-3) | no |
+| Published artifacts | edited in place (3.0.1 SHACL, 2025) | new patch version (P-4) | no |
+
+---
+
 ## Not yet tested
 
-Tools to run the example corpus through next: spdx-tools-java, SPDX Online
-Tools, Pitloom (`loom fragment validate`).
+Tools to run the example corpus through next: SPDX Online Tools, Pitloom
+(`loom fragment validate`).
+
+Scripts to rerun all checks are in [`tools/`](tools/README.md).

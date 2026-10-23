@@ -8,8 +8,9 @@ Fraction of the dataset content that is machine-generated.
 
 ## Description
 
-A decimal number between 0 and 1 (inclusive) giving the proportion of
-records in the dataset that were machine-generated.
+A decimal number between 0 and 1 (inclusive) giving the fraction of the
+dataset content that is machine-generated, for example the proportion of
+records.
 0 means no synthetic content, 1 means fully synthetic.
 
 ## Metadata
