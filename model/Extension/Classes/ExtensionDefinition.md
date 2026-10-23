@@ -19,8 +19,9 @@ relies on without inspecting every Element. Validators can retrieve the
 definition, verify it, and check the extension data in the document against
 it, in addition to the SPDX model.
 
-An ExtensionDefinition is to an extension definition what an ExternalMap is to
-an external Element.
+`locationHint` and `verifiedUsing` are used as in ExternalMap: where to
+retrieve the definition, and how to verify that the retrieved definition is
+the one the document was written against.
 
 ## Metadata
 

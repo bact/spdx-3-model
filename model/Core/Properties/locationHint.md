@@ -4,11 +4,13 @@ SPDX-License-Identifier: Community-Spec-1.0
 
 ## Summary
 
-Provides an indication of where to retrieve an external Element.
+Provides an indication of where to retrieve an external Element or other
+resource.
 
 ## Description
 
-A locationHint provides an indication of where to retrieve an external Element.
+A locationHint provides an indication of where to retrieve an external Element
+or, when used in an ExtensionDefinition, the definition of an extension.
 
 ## Metadata
 
