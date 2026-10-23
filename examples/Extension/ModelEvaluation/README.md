@@ -113,7 +113,7 @@ Tested 2026-10-23.
 | Tool | Version | Result |
 | --- | --- | --- |
 | spdx3-validate | 0.0.7 | All 3.0.1 documents pass. Extension constraints not checked (T-2). |
-| spdx3-validate | `extension-class-check` branch, `--shacl` | Matches the extension SHACL column above. |
+| spdx3-validate | `extension-class-check` branch, `--shacl model-evaluation.ttl --require-known-extensions` | Matches the extension SHACL column above. |
 | spdx-python-model | upstream | Cannot write any document: nested objects and value objects are kept as `dict` (T-1). |
 | spdx-python-model | shacl2code `fix-extensible-value-objects` branch | All documents round-trip through JSON-LD and RDF, extension data unchanged, outputs valid. Nested `MetricResult` objects are read as `NodeObject` values. |
 | tools-java | 2.0.7 | Rejects every document (T-5). |

@@ -757,12 +757,16 @@ For tools that need the expected type from the model (spec-parser#207), point
 them to `rdfs:range` of `Core/extension`, which the ontology already states.
 
 Implemented in spdx3-validate:
-[`bact/spdx3-validate` `extension-class-check`](https://github.com/bact/spdx3-validate/tree/extension-class-check) (on top of `extra-shacl`). When extension definitions are
-passed with `--shacl`, it adds a shape requiring every `Core/extension` value
-to be an `Extension/Extension` (`sh:class`, so subclasses resolve through the
-merged ontology). The shape is not added when the model already has the
-positive check (3.0.0). A document whose extension `type` has a typo is
-reported with the definitions supplied, and accepted without them. For
+[`bact/spdx3-validate` `extension-class-check`](https://github.com/bact/spdx3-validate/tree/extension-class-check) (on top of `extra-shacl`). The opt-in `--require-known-extensions` option
+adds a shape requiring every `Core/extension` value to be an
+`Extension/Extension` (`sh:class`, so subclasses resolve through the merged
+ontology, which includes the definitions passed with `--shacl`). It is opt-in
+because `--shacl` is also used for policy shapes that define no extension
+classes. The shape is not added when the model already has the positive
+check (3.0.0). A document whose extension `type` has a typo is reported with
+the option, and accepted without it. An extension value that is an IRI listed
+in an `ExternalMap` is still reported: an `ExternalMap` maps Elements, and an
+extension is not one (see M-4). For
 3.0.0, supplying the definition with `--shacl` also makes custom extensions
 pass, since the merged ontology then knows they are Extensions, but only if
 the definition subclasses the 3.0.0 `Extension` IRI. The example's
