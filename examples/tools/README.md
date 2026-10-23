@@ -85,18 +85,22 @@ python3 path/to/specmd/main.py -r -R /tmp/spdx31-specmd -f ../../model
 Then check `/tmp/spdx31/spdx-context.jsonld` with `/tmp/spdx31/spdx-model.ttl`
 using `check_vocab_term_collisions.py`.
 
-### Test with SPDX tools-java
+### Test with SPDX tools-java: `roundtrip_tools_java.py`
 
 Download the `tools-java-<version>.zip` release from
-<https://github.com/spdx/tools-java/releases>, unzip it, and run:
+<https://github.com/spdx/tools-java/releases> and unzip it. Then run `Verify`
+and `Convert` on each document and compare the `extension` arrays (findings
+T-5, T-6):
 
 ```shell
-java -jar tools-java-<version>-jar-with-dependencies.jar Verify FILE
-java -jar tools-java-<version>-jar-with-dependencies.jar Convert FILE OUT.spdx3.json JSONLD JSONLD
+.venv/bin/python roundtrip_tools_java.py --out /tmp/tj \
+  --cp tools-java-<version>-jar-with-dependencies.jar \
+  ../Extension/SyntheticData/documents/*.json
 ```
 
-Then run `spdx3-validate -j OUT.spdx3.json` and compare the `extension`
-arrays of `FILE` and `OUT.spdx3.json`.
+To test fixes, put locally built store, library and core jars before the
+tools-java jar in `--cp`. Then also run `spdx3-validate -j` on the converted
+documents.
 
 ### rdflib protected-term repro
 
