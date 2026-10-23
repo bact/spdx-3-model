@@ -25,6 +25,23 @@ This approach serves multiple purposes:
     - can be clearly detected among the SPDX content exchange ecosystem,
     - provides a clear and structured definition of gap solution that can be used as submission for revision to SPDX standard
 
+An Extension is not an Element. It has no `spdxId` and no `creationInfo` of
+its own: it is a value of the `extension` property of exactly one Element,
+and it shares that Element's identity and provenance. The same Extension
+instance shall not be the value of the `extension` property of more than one
+Element. To describe something that needs its own identity or provenance, use
+an Element (for example an Annotation) instead.
+
+An Element may have any number of extensions, including more than one
+instance of the same Extension subclass. Each instance is a separate
+characterization of the Element. A consumer shall not merge instances unless
+the definition of the Extension subclass says how. The definition of an
+Extension subclass should state whether more than one instance may be
+attached to the same Element, and what that means.
+
+A concrete Extension subclass defined outside of SPDX is identified by the
+full IRI of its class, and its properties by their full IRIs.
+
 ## Metadata
 
 - name: Extension

@@ -42,7 +42,7 @@
         <mxCell id="PneUqTGE2ykhamjTnd7t-15" parent="PneUqTGE2ykhamjTnd7t-6" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontFamily=Verdana;fontSize=10;" value="+ externalIdentifier: ExternalIdentifier[0..*]" vertex="1">
           <mxGeometry height="26" width="260" y="234" as="geometry" />
         </mxCell>
-        <mxCell id="PneUqTGE2ykhamjTnd7t-16" parent="PneUqTGE2ykhamjTnd7t-6" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontFamily=Verdana;fontSize=10;" value="+ extension: /Extension/Extension[0..1]" vertex="1">
+        <mxCell id="PneUqTGE2ykhamjTnd7t-16" parent="PneUqTGE2ykhamjTnd7t-6" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontFamily=Verdana;fontSize=10;" value="+ extension: /Extension/Extension[0..*]" vertex="1">
           <mxGeometry height="26" width="260" y="260" as="geometry" />
         </mxCell>
         <mxCell id="PneUqTGE2ykhamjTnd7t-17" parent="1" style="swimlane;fontStyle=3;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=#e1d5e7;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;strokeColor=#9673a6;fontFamily=Verdana;fontSize=10;" value="Artifact" vertex="1">
