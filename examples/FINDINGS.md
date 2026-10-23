@@ -36,7 +36,7 @@ Add new findings at the end of the relevant section and keep IDs stable.
 | [T-5](#t-5-spdx-java-library-rejects-every-custom-extension-type) | SPDX Java library rejects every custom extension type | Tool | **High** | spdx-java-v3jsonld-store (tools-java 2.0.7, `master`) | Fix proposed: [store branch](https://github.com/bact/spdx-java-v3jsonld-store/tree/support-custom-extensions) (+ library, core) | n/a |
 | [T-6](#t-6-spdx-java-library-truncates-numbers-in-extension-properties) | SPDX Java library truncates numbers in extension properties | Tool | Medium | spdx-java-v3jsonld-store | Fix proposed: [store branch](https://github.com/bact/spdx-java-v3jsonld-store/tree/fix-number-truncation) (+ library) | n/a |
 | [T-7](#t-7-tools-java-verify-does-not-check-shacl) | tools-java `Verify` does not check SHACL | Tool | Low | tools-java 2.0.7, `master` | Open | n/a |
-| [T-8](#t-8-rdflib-types-json-numbers-by-notation-not-by-value) | rdflib types JSON numbers by notation, not by value | Tool | Low | rdflib 7.6.0 (so pyshacl, spdx3-validate) | Open | n/a |
+| [T-8](#t-8-rdflib-types-json-numbers-by-notation-not-by-value) | rdflib types JSON numbers by notation, not by value | Tool | Low | rdflib 7.6.0 (so pyshacl, spdx3-validate) | Open; issue drafted ([draft](issue-drafts/rdflib-jsonld-number-datatype.md)) | n/a |
 
 Severity:
 
@@ -1046,7 +1046,9 @@ Round Tripping). rdflib uses the notation instead:
 So `"count": 2.0` fails an `sh:datatype xsd:integer` shape in pyshacl, but
 passes in a validator built on a conformant processor.
 
-**Fix.** Not proposed yet; report to rdflib. Until then, write integers
+**Fix.** Not proposed yet; report to rdflib (issue drafted in
+[`issue-drafts/rdflib-jsonld-number-datatype.md`](issue-drafts/rdflib-jsonld-number-datatype.md),
+not filed). Until then, write integers
 without a fraction or exponent (the spdx-spec text and the guide say so), and
 write any other non-integer number as a value object.
 
