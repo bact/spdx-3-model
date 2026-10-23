@@ -9,7 +9,8 @@ Everything having to do with SPDX extensions.
 ## Description
 
 The Extension namespace defines the abstract Extension class serving as the
-base for all defined extension subclasses.
+base for all defined extension subclasses, and the ExtensionDefinition class
+with which an SpdxDocument declares the extensions it uses.
 
 ## Metadata
 

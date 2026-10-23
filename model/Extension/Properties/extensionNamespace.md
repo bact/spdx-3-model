@@ -9,16 +9,17 @@ Identifies the namespace of the terms defined by an extension.
 ## Description
 
 The namespace IRI of the classes and properties of an extension, for example
-`https://example.org/spdx3-ext/synthetic-data/`. It shall end with `/` or
-`#`, so that it cannot be the start of an IRI in an unrelated namespace.
+`https://example.org/spdx3-ext/synthetic-data/`. It ends with `/` or `#`.
 
-An Extension in the document whose type IRI is in this namespace (starts with
-this IRI) is defined by the ExtensionDefinition that has this
-extensionNamespace. An extension whose terms are in more than one namespace
-needs one ExtensionDefinition for each namespace.
+A class or property IRI in the document that starts with this IRI is defined
+by the ExtensionDefinition that has this extensionNamespace. When namespaces
+nest, the longest matching extensionNamespace applies. An extension whose
+terms are in more than one namespace needs one ExtensionDefinition for each
+namespace. An SpdxDocument should not have two ExtensionDefinitions with the
+same extensionNamespace.
 
 ## Metadata
 
 - name: extensionNamespace
 - Nature: DataProperty
-- Range: xsd:anyURI
+- Range: NamespaceIri

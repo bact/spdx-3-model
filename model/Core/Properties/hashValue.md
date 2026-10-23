@@ -4,11 +4,12 @@ SPDX-License-Identifier: Community-Spec-1.0
 
 ## Summary
 
-The result of applying a hash algorithm to an Element.
+The result of applying a hash algorithm to an Element or other resource.
 
 ## Description
 
-A hashValue is the result of applying a hash algorithm to an Element.
+A hashValue is the result of applying a hash algorithm to an Element or other
+resource.
 
 ## Metadata
 

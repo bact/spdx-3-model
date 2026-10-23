@@ -4,7 +4,7 @@ SPDX-License-Identifier: Community-Spec-1.0
 
 ## Summary
 
-Provides an independently reproducible mechanism that permits verification of a specific Element.
+Provides an independently reproducible mechanism that permits verification of a specific Element or other resource.
 
 ## Description
 

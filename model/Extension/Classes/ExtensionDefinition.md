@@ -19,9 +19,11 @@ relies on without inspecting every Element. Validators can retrieve the
 definition, verify it, and check the extension data in the document against
 it, in addition to the SPDX model.
 
-`locationHint` and `verifiedUsing` are used as in ExternalMap: where to
-retrieve the definition, and how to verify that the retrieved definition is
-the one the document was written against.
+The definition is a single resource, for example one Turtle file with the
+OWL ontology and the SHACL shapes of the extension. `locationHint` tells
+where to retrieve it, and `verifiedUsing` applies to the exact bytes
+retrieved from `locationHint`, so that a consumer can check that it has the
+definition the document was written against.
 
 ## Metadata
 
@@ -32,7 +34,7 @@ the one the document was written against.
 ## Properties
 
 - extensionNamespace
-  - type: xsd:anyURI
+  - type: NamespaceIri
   - minCount: 1
   - maxCount: 1
 - /Core/locationHint

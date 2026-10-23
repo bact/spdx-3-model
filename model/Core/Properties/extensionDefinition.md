@@ -4,7 +4,7 @@ SPDX-License-Identifier: Community-Spec-1.0
 
 ## Summary
 
-Identifies the definition of an extension used in an SpdxDocument.
+Declares an extension used in the SpdxDocument.
 
 ## Description
 
