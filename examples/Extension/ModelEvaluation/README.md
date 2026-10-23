@@ -50,7 +50,7 @@ SPDX 3.0.1. Results are in [`expected.json`](expected.json).
 | --- | --- | --- | --- |
 | [`documents/valid-minimal.spdx3.json`](documents/valid-minimal.spdx3.json) | One run, one metric | pass | pass |
 | [`documents/valid-multi.spdx3.json`](documents/valid-multi.spdx3.json) | Two runs (two `EvaluationExtension`s on one Relationship), two metrics each | pass | pass |
-| [`documents/valid-ext-invalid.spdx3.json`](documents/valid-ext-invalid.spdx3.json) | Valid SPDX that breaks the extension: no `metricValue`, an `EvaluationExtension` where a `MetricResult` is expected | **pass** | fail (3 violations) |
+| [`documents/valid-ext-invalid.spdx3.json`](documents/valid-ext-invalid.spdx3.json) | Valid SPDX that breaks the extension: no `metricValue`; an `EvaluationExtension` where a `MetricResult` is expected, which also has no `metricResult` | **pass** | fail (3 violations) |
 | [`known-issues/shared-by-iri.spdx3.json`](known-issues/shared-by-iri.spdx3.json) | One `EvaluationExtension` with an IRI, used by two Relationships | pass | pass |
 | [`known-issues/language-tagged-name.spdx3.json`](known-issues/language-tagged-name.spdx3.json) | `metricName` with a language tag | pass | fail (`xsd:string` expected) |
 | [`proposed/declared-extension.spdx3.json`](proposed/declared-extension.spdx3.json) | SPDX 3.1-dev with the proposed `ExtensionDefinition` | see below | see below |
@@ -82,22 +82,29 @@ spdx3-validate -s 3.0.1 --shacl model-evaluation.ttl -j documents/valid-multi.sp
 uses the model of the
 [`extension-definition`](https://github.com/bact/spdx-3-model/tree/extension-definition)
 branch: its SpdxDocument has an `extensionDefinition` with the extension
-namespace, a `locationHint` for `model-evaluation.ttl`, and its SHA-256.
+namespace, a `locationHint` for the definition, and its SHA-256. The
+definition is [`proposed/model-evaluation-3.1.ttl`](proposed/model-evaluation-3.1.ttl),
+a copy of `model-evaluation.ttl` that subclasses the SPDX 3.1 `Extension`
+IRI: an extension definition is tied to the IRIs of one SPDX version (see
+M-1).
 [`../../tools/validate_declared_extensions.py`](../../tools/validate_declared_extensions.py)
 does what the proposal expects of a consumer: it verifies the hash, checks
-that every extension type is in a declared namespace, and validates the
-document against the SPDX shapes and the declared definition together.
+that every class and property IRI outside SPDX is in a declared namespace,
+and validates the document against the SPDX shapes and the declared
+definition together, with a positive check that every extension value is an
+`Extension`. With the 3.0.1 definition instead of the 3.1 copy, that check
+fails.
 
 ```bash
 python3 path/to/spec-parser/main.py -r -R /tmp/m1 -f path/to/spdx-3-model-extension-definition/model
 python ../../tools/validate_declared_extensions.py \
   --context /tmp/m1/spdx-context.jsonld --model /tmp/m1/spdx-model.ttl \
-  --location https://example.org/spdx3-ext/model-evaluation/model-evaluation.ttl=model-evaluation.ttl \
+  --location https://example.org/spdx3-ext/model-evaluation/model-evaluation-3.1.ttl=proposed/model-evaluation-3.1.ttl \
   proposed/declared-extension.spdx3.json
 ```
 
-The hash in the document is the SHA-256 of `model-evaluation.ttl`; update it
-when the file changes.
+The hash in the document is the SHA-256 of `proposed/model-evaluation-3.1.ttl`;
+update it when the file changes.
 
 ## Tool support matrix
 
@@ -110,14 +117,14 @@ Tested 2026-10-23.
 | spdx-python-model | upstream | Cannot write any document: nested objects and value objects are kept as `dict` (T-1). |
 | spdx-python-model | shacl2code `fix-extensible-value-objects` branch | All documents round-trip through JSON-LD and RDF, extension data unchanged, outputs valid. Nested `MetricResult` objects are read as `NodeObject` values. |
 | tools-java | 2.0.7 | Rejects every document (T-5). |
-| tools-java | `support-custom-extensions` branches | All documents round-trip, except `language-tagged-name` (language-tagged strings are rejected with an error). In `shared-by-iri`, the shared node is written inline under the other Relationship: a different JSON layout with the same RDF graph. |
+| tools-java | `support-custom-extensions` branches | All documents round-trip, except `language-tagged-name` (language-tagged strings are rejected with an error). In `shared-by-iri`, the shared node is written inline under the other Relationship: a different JSON layout with the same RDF graph (`roundtrip_tools_java.py` reports it as a layout change). |
 
 ## Findings
 
 Recorded in [examples/FINDINGS.md](../../FINDINGS.md):
 
 - M-1: the `ExtensionDefinition` prototype works end to end (hash,
-  namespace coverage, SHACL).
+  namespace coverage, SHACL), with a definition for the right SPDX version.
 - M-2: sharing an extension by IRI is valid but undefined.
 - M-4: only Elements can have extensions.
 - T-1: nested custom objects in the Python bindings (fixed on the branch).

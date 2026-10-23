@@ -9,8 +9,8 @@ The value of one metric measured in an evaluation.
 ## Description
 
 A MetricResult is a structured value inside an EvaluationExtension. It is not
-an Extension and not an Element: it has no identity of its own and is not
-used outside an EvaluationExtension.
+an Extension and not an Element, and is not used outside an
+EvaluationExtension. It should be a blank node.
 
 ## Metadata
 

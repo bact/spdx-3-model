@@ -39,6 +39,10 @@ for v in ["5", "1.0", "1e3", "0.35"]:
 The value of `0.35` is the same either way; the datatype of `1.0` and `1e3`
 is not.
 
+rdflib's `test/jsonld/test_onedotone.py` already lists related W3C tests as
+known failures: `toRdf/0035` ("does not print Integer with scientific
+notation"), `toRdf/rt01` (numbers of 1e21 or more) and `toRdf/tn02`.
+
 ## Impact
 
 pySHACL uses rdflib, so `{"count": 2.0}` fails `sh:datatype xsd:integer` in

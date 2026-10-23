@@ -145,9 +145,13 @@ in [examples/FINDINGS.md](../../FINDINGS.md):
   property, so no valid JSON document can claim the Extension profile.
   The same name collision also hits `createdBy` and `requirementUID` in 3.1-dev.
 - S-2: extension values need JSON-LD value objects (`{"@id"}`, `{"@value"}`).
+- S-3: SPDX SHACL shapes target nothing outside pySHACL (found while
+  reviewing this example's own shapes).
 - M-1: no way to declare which extensions a document uses.
 - M-2: extension objects cannot be top-level in `@graph`, and their sharing
   and multiplicity are unspecified.
 - M-3: SHACL for `extension` is a deny-list.
 - T-1: spdx-python-model cannot write extension value objects.
 - T-2: spdx3-validate cannot check extension constraints.
+- T-5, T-6, T-7: tools-java rejects custom extensions, truncates numbers,
+  and does not check SHACL.

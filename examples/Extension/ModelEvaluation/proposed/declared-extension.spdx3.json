@@ -40,12 +40,12 @@
         {
           "type": "extension_ExtensionDefinition",
           "extension_extensionNamespace": "https://example.org/spdx3-ext/model-evaluation/",
-          "locationHint": "https://example.org/spdx3-ext/model-evaluation/model-evaluation.ttl",
+          "locationHint": "https://example.org/spdx3-ext/model-evaluation/model-evaluation-3.1.ttl",
           "verifiedUsing": [
             {
               "type": "Hash",
               "algorithm": "sha256",
-              "hashValue": "2b023a57057d2c244ea9b381f42cb5a5dee9ce658d73b73928e896f2ab26b43f"
+              "hashValue": "9caeac0ac774b540980af4ffe32dd5d8d9e8de7961325f6df5f4f0c4ff9d90ed"
             }
           ]
         }

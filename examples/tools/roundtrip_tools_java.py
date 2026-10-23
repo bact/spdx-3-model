@@ -11,15 +11,21 @@ CLASSPATH is the tools-java jar with dependencies, optionally preceded by
 locally built store, library or core jars to test fixes, e.g.
     store.jar:library.jar:core.jar:tools-java-2.0.7-jar-with-dependencies.jar
 
-Requires java on PATH. Exit code is 1 if any document fails or loses or
-changes extension data.
+Requires java on PATH, and rdflib. If the extension objects differ in JSON
+but the documents have the same RDF graph (e.g. a shared node inlined under
+another Element), the result is reported as a layout change, not a failure.
+Exit code is 1 if any document fails or changes the RDF graph.
 """
 
 import argparse
 import json
+import shutil
 import subprocess
 import sys
 from pathlib import Path
+
+import rdflib
+from rdflib.compare import isomorphic
 
 
 def run(cp, *args):
@@ -55,11 +61,19 @@ def check(path, cp, out_dir):
     after = extensions(json.loads(out.read_text()))
     if before != after:
         changed = sorted(k for k in before.keys() | after.keys() if before.get(k) != after.get(k))
+        same = isomorphic(
+            rdflib.Graph().parse(str(path), format="json-ld"),
+            rdflib.Graph().parse(str(out), format="json-ld"),
+        )
+        if same:
+            return verdict == "pass", f"verify {verdict}; same RDF graph, extension layout changed on: {', '.join(changed)}"
         return False, f"verify {verdict}; extension data changed on: {', '.join(changed)}"
     return verdict == "pass", f"verify {verdict}; extension data preserved"
 
 
 def main(args):
+    if not shutil.which("java"):
+        sys.exit("java not found on PATH")
     out_dir = Path(args.out)
     out_dir.mkdir(parents=True, exist_ok=True)
     failed = 0

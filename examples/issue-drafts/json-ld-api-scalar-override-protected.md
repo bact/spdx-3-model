@@ -42,7 +42,7 @@ while the same scoped context applied to `"kind": {"name": "v"}` is allowed.
 
 ## Implementations
 
-pyld 3.3.0 and jsonld.js 8.3.3 pass *override protected* for every
+pyld 3.3.0 and jsonld.js 8.3.3 and 9.0.0 pass *override protected* for every
 property-scoped context, scalar or not, and expand `"kind": "name"` to
 `http://example.org/Kind/name`. That matches §4.1.11.
 
@@ -54,6 +54,15 @@ entry name equals a protected top-level term, a processor that follows step
 4.2 literally rejects every value of that property. The SPDX 3 JSON-LD
 context has this pattern (for example `profileConformance: "extension"` vs
 the `extension` property).
+
+## Related
+
+- #301 added *override protected* to step 8 (closed).
+- #450 passed *override protected* through Context Processing (closed).
+- #708 is the same kind of omission for a remote context in a
+  property-scoped context (Context Processing step 5.2.6; open).
+
+A scalar variant of test `toRdf/pr40` would cover this case.
 
 ## Suggested change
 

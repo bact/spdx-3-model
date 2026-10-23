@@ -8,11 +8,13 @@ ExtensionDefinition in the document,
 1. fetch the definition from its locationHint (or from a local file given
    with --location URL=FILE),
 2. verify it against its verifiedUsing hashes,
-3. check that every custom extension type in the document is in a declared
-   extensionNamespace,
+3. check that every class and property IRI in the document that is not
+   SPDX's is in a declared extensionNamespace (ending with / or #),
 
 then validate the document with SHACL against the SPDX model shapes plus the
-declared definitions.
+declared definitions, with a positive check that every extension value is an
+Extension (finding M-3). A definition that is not verified by a supported
+hash is not used, and is an error.
 
 Usage:
     python validate_declared_extensions.py --context CONTEXT --model MODEL \\
@@ -32,23 +34,65 @@ import sys
 import urllib.request
 
 import rdflib
+import rdflib.util
 from pyshacl import validate as shacl_validate
-from rdflib.namespace import RDF
+from rdflib.namespace import RDF, SH
 
-HASH_ALGORITHMS = {"sha256": "sha256", "sha384": "sha384", "sha512": "sha512", "sha1": "sha1"}
+# SPDX HashAlgorithm entries that hashlib can compute
+HASH_ALGORITHMS = {
+    "md5": ("md5", None),
+    "sha1": ("sha1", None),
+    "sha224": ("sha224", None),
+    "sha256": ("sha256", None),
+    "sha384": ("sha384", None),
+    "sha512": ("sha512", None),
+    "sha3_224": ("sha3_224", None),
+    "sha3_256": ("sha3_256", None),
+    "sha3_384": ("sha3_384", None),
+    "sha3_512": ("sha3_512", None),
+    "blake2b256": ("blake2b", 32),
+    "blake2b384": ("blake2b", 48),
+    "blake2b512": ("blake2b", 64),
+}
+
+# Namespaces that are not extension terms
+STANDARD = (
+    str(RDF),
+    "http://www.w3.org/2000/01/rdf-schema#",
+    "http://www.w3.org/2001/XMLSchema#",
+    "http://www.w3.org/2002/07/owl#",
+)
 
 
 def load_bytes(location, locations):
     if location in locations:
         with open(locations[location], "rb") as f:
             return f.read()
-    with urllib.request.urlopen(location) as f:
+    with urllib.request.urlopen(location, timeout=30) as f:
         return f.read()
 
 
-def main(args):
-    with open(args.context, encoding="utf-8") as f:
+def load_context(path):
+    with open(path, encoding="utf-8") as f:
         context = json.load(f)["@context"]
+    if isinstance(context, list):
+        merged = {}
+        for item in context:
+            if isinstance(item, dict):
+                merged.update(item)
+        context = merged
+    return context
+
+
+def digest(algorithm, content):
+    name, size = HASH_ALGORITHMS[algorithm]
+    if size:
+        return hashlib.new(name, content, digest_size=size).hexdigest()
+    return hashlib.new(name, content).hexdigest()
+
+
+def main(args):
+    context = load_context(args.context)
     with open(args.document, encoding="utf-8") as f:
         doc = json.load(f)
     if args.context_url and doc.get("@context") != args.context_url:
@@ -58,7 +102,10 @@ def main(args):
     data = rdflib.Graph().parse(data=json.dumps(doc), format="json-ld")
     model = rdflib.Graph().parse(args.model)
     # The "spdx" prefix of the context is the SPDX terms namespace
-    terms = context["spdx"]["@id"] if isinstance(context["spdx"], dict) else context["spdx"]
+    spdx = context.get("spdx")
+    terms = spdx.get("@id") if isinstance(spdx, dict) else spdx
+    if not terms:
+        sys.exit("context has no spdx prefix")
     core, ext = terms + "Core/", terms + "Extension/"
 
     locations = dict(item.split("=", 1) for item in args.location)
@@ -67,35 +114,66 @@ def main(args):
 
     namespaces = []
     for definition in data.objects(None, rdflib.URIRef(core + "extensionDefinition")):
-        namespace = str(data.value(definition, rdflib.URIRef(ext + "extensionNamespace")))
-        location = data.value(definition, rdflib.URIRef(core + "locationHint"))
-        namespaces.append(namespace)
-        if location is None:
-            print(f"{namespace}: no locationHint, definition not checked")
+        namespace = data.value(definition, rdflib.URIRef(ext + "extensionNamespace"))
+        if namespace is None:
+            print("ExtensionDefinition without extensionNamespace")
+            errors += 1
             continue
-        content = load_bytes(str(location), locations)
+        namespace = str(namespace)
+        if not namespace.endswith(("/", "#")):
+            print(f"{namespace}: extensionNamespace does not end with / or #")
+            errors += 1
+        namespaces.append(namespace)
+        location = data.value(definition, rdflib.URIRef(core + "locationHint"))
+        if location is None:
+            print(f"{namespace}: no locationHint, definition not loaded")
+            errors += 1
+            continue
+        try:
+            content = load_bytes(str(location), locations)
+        except OSError as e:
+            print(f"{namespace}: cannot retrieve {location}: {e}")
+            errors += 1
+            continue
+        verified = False
         for method in data.objects(definition, rdflib.URIRef(core + "verifiedUsing")):
             algorithm = str(data.value(method, rdflib.URIRef(core + "algorithm"))).rsplit("/", 1)[-1]
-            expected = str(data.value(method, rdflib.URIRef(core + "hashValue")))
+            expected = str(data.value(method, rdflib.URIRef(core + "hashValue"))).lower()
             if algorithm not in HASH_ALGORITHMS:
                 print(f"{namespace}: hash algorithm {algorithm} not supported here")
                 continue
-            actual = hashlib.new(HASH_ALGORITHMS[algorithm], content).hexdigest()
+            actual = digest(algorithm, content)
             if actual != expected:
                 print(f"{namespace}: {algorithm} mismatch for {location}: expected {expected}, got {actual}")
                 errors += 1
             else:
                 print(f"{namespace}: {location} verified ({algorithm})")
-        shapes.parse(data=content, format="turtle")
+                verified = True
+        if not verified:
+            print(f"{namespace}: definition not verified, not used")
+            errors += 1
+            continue
+        shapes.parse(data=content, format=rdflib.util.guess_format(str(location)) or "turtle")
 
-    for value in data.objects(None, rdflib.URIRef(core + "extension")):
-        for typ in data.objects(value, RDF.type):
-            t = str(typ)
-            if t.startswith(terms):
-                continue
-            if not any(t.startswith(ns) for ns in namespaces):
-                print(f"extension type {t} is not in a declared extensionNamespace")
-                errors += 1
+    # Every class and property IRI outside SPDX and the standard vocabularies
+    # must be in a declared namespace (the longest matching one applies)
+    used = {str(o) for o in data.objects(None, RDF.type)} | {str(p) for p in data.predicates()}
+    for iri in sorted(used):
+        if iri.startswith(terms) or iri.startswith(STANDARD):
+            continue
+        if not any(iri.startswith(ns) for ns in namespaces):
+            print(f"{iri} is not in a declared extensionNamespace")
+            errors += 1
+
+    # Every extension value must be an Extension (positive check, as in M-3),
+    # which also catches a definition written for another SPDX version
+    check = rdflib.BNode()
+    prop = rdflib.BNode()
+    shapes.add((check, RDF.type, SH.NodeShape))
+    shapes.add((check, SH.targetSubjectsOf, rdflib.URIRef(core + "extension")))
+    shapes.add((check, SH.property, prop))
+    shapes.add((prop, SH.path, rdflib.URIRef(core + "extension")))
+    shapes.add((prop, SH["class"], rdflib.URIRef(ext + "Extension")))
 
     conforms, _, text = shacl_validate(data, shacl_graph=shapes, ont_graph=shapes)
     if not conforms:

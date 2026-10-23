@@ -32,10 +32,10 @@ Add new findings at the end of the relevant section and keep IDs stable.
 | [M-4](#m-4-only-elements-can-have-extensions) | Only Elements can have extensions | Model design | Low | 3.0, 3.1-dev | Open (options listed) | No (model issue) |
 | [T-1](#t-1-spdx-python-model-cannot-write-json-ld-value-objects-in-extensions) | spdx-python-model cannot write JSON-LD value objects in extensions | Tool | Medium | spdx-python-model `v3_0_1`, `v3_1` | Fix proposed: [shacl2code branch](https://github.com/bact/shacl2code/tree/fix-extensible-value-objects) | n/a |
 | [T-2](#t-2-spdx3-validate-cannot-check-extension-constraints) | spdx3-validate cannot check extension constraints | Tool | Low | spdx3-validate 0.0.7 | Fix proposed: [spdx3-validate branch](https://github.com/bact/spdx3-validate/tree/extra-shacl) | n/a |
-| [T-3](#t-3-rdflib-does-not-let-a-property-scoped-context-override-a-protected-term) | rdflib does not let a property-scoped context override a `@protected` term (and JSON-LD 1.1 API step 4.2 omits the override) | Tool / spec | Medium | rdflib 7.6.0 and `main` (so spdx3-validate, pyshacl); JSON-LD 1.1 API | Open; issues drafted ([rdflib](issue-drafts/rdflib-protected-term-override.md), [json-ld-api](issue-drafts/json-ld-api-scalar-override-protected.md)); worked around in [specmd branch](https://github.com/bact/specmd/tree/fix-vocab-term-collision) | Affected (see S-1) |
+| [T-3](#t-3-rdflib-does-not-let-a-property-scoped-context-override-a-protected-term) | rdflib does not let a property-scoped context override a `@protected` term (and JSON-LD 1.1 API step 4.2 omits the override) | Tool / spec | Medium | rdflib 7.6.0 and `main` (so spdx3-validate, pyshacl); JSON-LD 1.1 API | Open: [RDFLib/rdflib#3534](https://github.com/RDFLib/rdflib/issues/3534); drafts ([rdflib comment + issue](issue-drafts/rdflib-protected-term-override.md), [json-ld-api](issue-drafts/json-ld-api-scalar-override-protected.md)); worked around in [specmd branch](https://github.com/bact/specmd/tree/fix-vocab-term-collision) | Affected (see S-1) |
 | [T-4](#t-4-specmd-emits-an-empty-string-term-in-the-json-ld-context) | specmd emits an empty-string term in the JSON-LD context | Tool (generator) | **High** | specmd 0.3.5 | Fix proposed: [specmd branch](https://github.com/bact/specmd/tree/fix-empty-context-term) | Affected |
 | [T-5](#t-5-spdx-java-library-rejects-every-custom-extension-type) | SPDX Java library rejects every custom extension type | Tool | **High** | spdx-java-v3jsonld-store (tools-java 2.0.7, `master`) | Fix proposed: [store branch](https://github.com/bact/spdx-java-v3jsonld-store/tree/support-custom-extensions) (+ library, core) | n/a |
-| [T-6](#t-6-spdx-java-library-truncates-numbers-in-extension-properties) | SPDX Java library truncates numbers in extension properties | Tool | Medium | spdx-java-v3jsonld-store | Fix proposed: [store branch](https://github.com/bact/spdx-java-v3jsonld-store/tree/fix-number-truncation) (+ library) | n/a |
+| [T-6](#t-6-spdx-java-library-truncates-numbers-in-extension-properties) | SPDX Java library truncates numbers in extension properties | Tool | Medium | spdx-java-v3jsonld-store | Fix proposed: [store branch](https://github.com/bact/spdx-java-v3jsonld-store/tree/fix-number-truncation) (+ library, core) | n/a |
 | [T-7](#t-7-tools-java-verify-does-not-check-shacl) | tools-java `Verify` does not check SHACL | Tool | Low | tools-java 2.0.7, `master` | Open | n/a |
 | [T-8](#t-8-rdflib-types-json-numbers-by-notation-not-by-value) | rdflib types JSON numbers by notation, not by value | Tool | Low | rdflib 7.6.0 (so pyshacl, spdx3-validate) | Open; issue drafted ([draft](issue-drafts/rdflib-jsonld-number-datatype.md)) | n/a |
 
@@ -64,7 +64,9 @@ generating the 3.1-dev model with specmd and running the same tests.
 | [spdx/spec-parser#207](https://github.com/spdx/spec-parser/issues/207) Class constraint for Extension class is no longer generated | open | M-3 | Asks to restore a positive `sh:class Extension` check. |
 | [spdx/spdx-3-model#1204](https://github.com/spdx/spdx-3-model/issues/1204) Multiplicity of extensions of the same type | open | M-2 | Semantics of several extensions of one type on one Element. |
 | [JPEWdev/spdx3-validate#14](https://github.com/JPEWdev/spdx3-validate/issues/14) Model bundle | open | T-2 | Bundling model artifacts; a natural place to also accept extra shapes. |
-| [spdx/spdx-spec#1458](https://github.com/spdx/spdx-spec/issues/1458) Provide an Extension how-to and an Extension example | open | all | **Addressed by** [Extension/SyntheticData](Extension/SyntheticData/), which is that example and test artifact. |
+| [spdx/spdx-spec#1458](https://github.com/spdx/spdx-spec/issues/1458) Provide an Extension how-to and an Extension example | open | all | **Addressed by** [Extension/SyntheticData](Extension/SyntheticData/) and [Extension/ModelEvaluation](Extension/ModelEvaluation/) (examples and test artifacts) and the [guide branch](https://github.com/bact/using/tree/extension-guide). |
+| [RDFLib/rdflib#3534](https://github.com/RDFLib/rdflib/issues/3534) Property-scoped context does not override a protected term (W3C test pr40); [PR #3553](https://github.com/RDFLib/rdflib/pull/3553) (closed unmerged) | open | T-3 | The rdflib half of T-3. |
+| [spdx/tools-java#241](https://github.com/spdx/tools-java/issues/241) Add Extension class to SpdxV3Example | open | T-5 | Extension support in tools-java examples. |
 | [spdx/spdx-spec#1307](https://github.com/spdx/spdx-spec/issues/1307) JSON-LD Context fails to compact | open | S-1 | Same root area: compacting with the SPDX context does not give schema-valid JSON. S-1 adds one more cause (compacted vocabulary IRIs). |
 | [spdx/spdx-spec#1312](https://github.com/spdx/spdx-spec/issues/1312) Use `@protected` rather than a fixed `@context` | open | S-2, T-3 | Would let extensions add terms (fixes much of S-2). If done with option A of S-1, rdflib must handle property-scoped overrides (T-3). |
 | [spdx/spdx-3-model#1476](https://github.com/spdx/spdx-3-model/issues/1476) NamespaceMap collides with JSON Schema validation | open | S-2 | Same cause as S-2: the fixed `@context` blocks prefixes. |
@@ -79,7 +81,10 @@ generating the 3.1-dev model with specmd and running the same tests.
 | [spdx/spdx-3-model#1345](https://github.com/spdx/spdx-3-model/issues/1345) cdxProperty 'map' is misleading; [#1168](https://github.com/spdx/spdx-3-model/issues/1168) merge CdxPropertyEntry and DictionaryEntry | open | (Extension namespace) | Other open issues on the Extension namespace, for context. |
 
 No existing issue or PR was found for the S-1 vocabulary collisions
-themselves, S-3, M-1, T-1, T-3 or T-4. Searched 2026-10-23: spdx/spec-parser,
+themselves, S-3, M-1, T-1, T-4 or T-8, nor for the JSON-LD API part of T-3.
+The rdflib part of T-3 is
+[RDFLib/rdflib#3534](https://github.com/RDFLib/rdflib/issues/3534) (found in
+the second review; an earlier search missed it). Searched 2026-10-23: spdx/spec-parser,
 spdx/spdx-3-model, spdx/spdx-spec, spdx/spdx-python-model, JPEWdev/shacl2code,
 JPEWdev/spdx3-validate and RDFLib/rdflib.
 
@@ -542,8 +547,9 @@ extension data. A user guide is proposed for spdx/using:
 - **Affects:** SPDX 3.0.0 and 3.0.1 SHACL (`spdx-model.ttl`), 3.1-dev as
   generated by spec-parser and specmd.
 
-**Problem.** Every SPDX class is its own shape (`owl:Class, sh:NodeShape`),
-with no `sh:targetClass`. SHACL applies the implicit class target only to a
+**Problem.** Each SPDX class with constraints is its own shape: an
+`owl:Class` that is typed `sh:NodeShape` or has `sh:property` or
+`sh:nodeKind`, with no `sh:targetClass`. SHACL applies the implicit class target only to a
 shape that is a SHACL instance of `rdfs:Class` (SHACL §2.1.3.3). An
 `owl:Class` is one only if the shapes graph states
 `owl:Class rdfs:subClassOf rdfs:Class`, which the SPDX model does not.
@@ -551,7 +557,9 @@ pySHACL treats `owl:Class` as `rdfs:Class` anyway; other engines follow the
 spec and select no focus nodes.
 
 Evidence: `valid-minimal.spdx3.json` with the Person's `creationInfo`
-removed, validated against the 3.0.1 shapes:
+removed, validated against the 3.0.1 shapes. For rdf-validate-shacl the SPDX
+model is added to the data graph (as pySHACL's ontology option does), so
+that `rdfs:subClassOf` is available:
 
 | Engine | Shapes as published | with `sh:targetClass` added |
 | --- | --- | --- |
@@ -560,7 +568,10 @@ removed, validated against the 3.0.1 shapes:
 
 So a validator not built on pySHACL accepts any SPDX document.
 [`tools/check_shacl_targets.py`](tools/check_shacl_targets.py) lists the
-affected shapes: 52 in 3.0.0, 67 in 3.0.1, none with the fix branch.
+affected shapes: 52 in 3.0.0 (all typed `sh:NodeShape`), 67 in 3.0.1 (52
+typed `sh:NodeShape`, 15 more that are shapes only through `sh:property` or
+`sh:nodeKind`, such as `Person` and `Extension/Extension`), none with the
+fix branch.
 
 **Why it happens.** spec-parser (and specmd) type each class as
 `sh:NodeShape` and rely on the implicit class target, which was tested only
@@ -572,7 +583,11 @@ Add `sh:targetClass <class>` to each class shape.
 
 **Why the fix works.** An explicit class target selects the same focus nodes
 (SHACL instances of the class, subclasses included) in every engine, so
-pySHACL results do not change, and other engines start validating. Typing
+pySHACL results do not change, and other engines start validating. Like
+every `sh:class` check, this needs the class hierarchy (`rdfs:subClassOf`) in
+the data graph (SHACL §2.1.3.2), so a validator should add the SPDX model to
+the data graph before validating; without it, subclass instances are missed
+and `sh:class` reports false violations. Typing
 the classes as `rdfs:Class` instead would also work, but puts reserved
 vocabulary on OWL classes, outside OWL 2 DL. Publish with the next patch
 version (P-4).
@@ -616,10 +631,18 @@ Tried end to end with
 [ModelEvaluation/proposed/declared-extension.spdx3.json](Extension/ModelEvaluation/proposed/declared-extension.spdx3.json)
 and the prototype consumer
 [`tools/validate_declared_extensions.py`](tools/validate_declared_extensions.py):
-it verifies the definition's SHA-256, checks that every extension type is in
-a declared namespace, and validates the document against the SPDX shapes of
+it verifies the definition's SHA-256, checks that every class and property
+IRI outside SPDX is in a declared namespace, and validates the document against the SPDX shapes of
 the branch plus the declared definition. A wrong hash, an undeclared
 namespace and invalid extension data are each reported.
+
+The demo needs a copy of the definition that subclasses the SPDX 3.1
+`Extension` IRI: with the 3.0.1 definition, a positive `sh:class Extension`
+check (M-3) fails. An extension definition is tied to the IRIs of one SPDX
+version, and an extension for several versions needs one definition per
+version. Open design question: should SPDX keep a version-independent IRI
+for `Extension` (or state `owl:equivalentClass` across versions), so that one
+extension definition can serve several SPDX versions?
 
 **Why the fix works.**
 
@@ -929,7 +952,7 @@ Minimal repro, independent of SPDX:
 ```
 
 `kind` expands to `http://example.org/Kind/name` in pyld 3.3.0 and jsonld.js
-8.3.3 (correct per §4.1.11), but to `http://example.org/name` in rdflib. The
+8.3.3 and 9.0.0 (correct per §4.1.11), but to `http://example.org/name` in rdflib. The
 same happens for a node-object value, where step 8 passes "override
 protected" unambiguously: with `"kind": {"name": "v"}`, rdflib uses
 `http://example.org/name` as the predicate, pyld and jsonld.js use
@@ -960,12 +983,18 @@ is processed (`get_context_for_term`; `_subcontext` is also reached from
 `subcontext()` and `get_context_for_type`, which must not pass it), let
 `add_term` replace a protected term when the flag is set, and raise the
 redefinition error otherwise. Ask W3C to add "override protected" to
-Expansion step 4.2, so the spec matches §4.1.11 and the processors. Report with the repro above (no existing issue found); the
-issue is drafted in
-[`issue-drafts/rdflib-protected-term-override.md`](issue-drafts/rdflib-protected-term-override.md),
-not filed yet. It also covers a second deviation: redefining a protected
-term outside a property scope raises no error in rdflib, while pyld and
-jsonld.js raise `tried to redefine a protected term`. Until it is
+Expansion step 4.2, so the spec matches §4.1.11 and the processors.
+
+The rdflib bug is already reported as
+[RDFLib/rdflib#3534](https://github.com/RDFLib/rdflib/issues/3534) (node-object
+case, W3C test pr40); a fix,
+[RDFLib/rdflib#3553](https://github.com/RDFLib/rdflib/pull/3553), was closed
+unmerged. The draft
+[`issue-drafts/rdflib-protected-term-override.md`](issue-drafts/rdflib-protected-term-override.md)
+(not filed) adds the scalar case as a comment for #3534, and a separate
+issue for a second deviation: redefining a protected term outside a property
+scope raises no error in rdflib, while pyld and jsonld.js raise
+`tried to redefine a protected term`. Until it is
 fixed and released, SPDX contexts should not rely on overriding protected
 terms: the specmd fix leaves exactly the colliding terms unprotected.
 
@@ -1095,7 +1124,8 @@ number, so nothing is lost, and the written JSON means the same as the input.
 - **Affects:** tools-java 2.0.7 and `master`.
 
 **Problem.** `Verify` on an SPDX 3 document runs the JSON schema and the Java
-model's own checks, but no SHACL (the code has a `TODO`). So it accepts
+model's own checks, but no SHACL (`Verify.java` has a `TODO` to "Implement
+verification against the OWL schema"). So it accepts
 documents that spdx3-validate rejects, for example
 [profile-conformance-extension.spdx3.json](Extension/SyntheticData/known-issues/profile-conformance-extension.spdx3.json)
 (with the custom extension removed, see T-5): the Java reader takes

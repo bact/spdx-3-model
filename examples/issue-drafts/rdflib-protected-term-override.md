@@ -1,9 +1,21 @@
 SPDX-License-Identifier: Community-Spec-1.0
 
-# Draft issue for RDFLib/rdflib
+# Draft for RDFLib/rdflib
 
-Draft of an issue to file at <https://github.com/RDFLib/rdflib/issues>.
-Not filed yet. Related finding: [T-3 in FINDINGS.md](../FINDINGS.md#t-3-rdflib-does-not-let-a-property-scoped-context-override-a-protected-term).
+Not filed. Case 1 is already reported as
+[RDFLib/rdflib#3534](https://github.com/RDFLib/rdflib/issues/3534)
+("Property-scoped context does not override a protected term (W3C toRdf
+test #tpr40)", open since 2026-09-02); a fix,
+[PR #3553](https://github.com/RDFLib/rdflib/pull/3553), passed
+`override_protected` through `_subcontext` and was closed unmerged on
+2026-10-14. So:
+
+- **Case 1:** do not open a new issue. Add Case 1b (scalar value with
+  `@type: @vocab`, the case that affects SPDX) as a comment on #3534, and
+  point to PR #3553 as prior work.
+- **Case 2:** looks new; file it as its own issue.
+
+The text below is kept as the full write-up of both cases. Related finding: [T-3 in FINDINGS.md](../FINDINGS.md#t-3-rdflib-does-not-let-a-property-scoped-context-override-a-protected-term).
 
 ---
 
@@ -46,7 +58,7 @@ Case 1a, node-object value:
 | Processor | Predicate of `"v"` |
 | --- | --- |
 | pyld 3.3.0 | `http://example.org/Kind/name` |
-| jsonld.js 8.3.3 | `http://example.org/Kind/name` |
+| jsonld.js 8.3.3 and 9.0.0 | `http://example.org/Kind/name` |
 | rdflib 7.6.0 and `main` (7.7.0a0) | `http://example.org/name` |
 
 **Expected:** `http://example.org/Kind/name`. The value is a map, so
@@ -79,7 +91,7 @@ print(list(g.objects()))
 | Processor | Value of `http://example.org/kind` |
 | --- | --- |
 | pyld 3.3.0 | `http://example.org/Kind/name` |
-| jsonld.js 8.3.3 | `http://example.org/Kind/name` |
+| jsonld.js 8.3.3 and 9.0.0 | `http://example.org/Kind/name` |
 | rdflib 7.6.0 and `main` (7.7.0a0) | `http://example.org/name` |
 
 **Expected:** `http://example.org/Kind/name`, as in pyld and jsonld.js and
@@ -105,7 +117,7 @@ using the protected term's IRI is not a conformant result.
 | Processor | Result |
 | --- | --- |
 | pyld 3.3.0 | error: `tried to redefine a protected term` |
-| jsonld.js 8.3.3 | error: `tried to redefine a protected term` |
+| jsonld.js 8.3.3 and 9.0.0 | error: `tried to redefine a protected term` |
 | rdflib 7.6.0 and `main` (7.7.0a0) | no error; predicate `http://example.org/name` |
 
 **Expected:** a `protected term redefinition` error (Create Term Definition,
@@ -150,4 +162,4 @@ SPDX generators currently work around this by leaving such terms unprotected.
 ## Environment
 
 - rdflib 7.6.0 (PyPI) and `main` (7.7.0a0, 2026-10-23), Python 3.13 / 3.14
-- pyld 3.3.0, jsonld.js 8.3.3 for comparison
+- pyld 3.3.0, jsonld.js 8.3.3 and 9.0.0 for comparison
