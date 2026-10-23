@@ -37,3 +37,5 @@ SpdxDocument element definition.
 - dataLicense
   - type: /SimpleLicensing/AnyLicenseInfo
   - maxCount: 1
+- extensionDefinition
+  - type: /Extension/ExtensionDefinition
