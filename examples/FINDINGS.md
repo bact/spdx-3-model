@@ -879,9 +879,21 @@ with its triples in RDF. An unknown-type node used more than once is written
 inline where first used and referenced by IRI elsewhere, instead of at the
 top level of `@graph`.
 
+A second review of the branch fixed: blank-node references inside
+extension values (now linked to the object and relabelled with it, so labels
+cannot collide and output is the same across runs); expansion with the
+static context and with the gen-delim prefix rule for node types and keys;
+nodes with several types; unknown-type `@graph` items, now decoded with the
+range of the property that references them; and `_:` ids that the RDF
+writer wrote as IRIs. Still not supported: `@list` in extension values, and
+an RDF subject of unknown type that no property references (it is still
+guessed as the first extensible class).
+
 With the branch, every 3.0.1 document of both examples round-trips through
 JSON-LD and through RDF, with extension data unchanged and output that passes
-spdx3-validate. golang, rust and cpp templates are not changed.
+spdx3-validate. 37 SPDX 3.0.1 documents without extensions read and write as
+with upstream; read from RDF, five differ only in blank-node labels (upstream
+wrote IRIs there). golang, rust and cpp templates are not changed.
 
 **Why the fix works.** Each JSON-LD value form then has a matching Python
 type and a matching encoder branch, so reading and writing is an identity
@@ -1091,7 +1103,16 @@ existing `ModelRegistry` extension hook, unless the application registered
 its own class. Read `{"@id"}` as a reference (an Element in the graph, or a
 URI value) and `{"@value", "@type"}` as a new `TypedLiteral` value type in
 spdx-java-core; write them back in the same form, and keep the `@id` of
-inlined nodes.
+inlined nodes. When an object with an IRI appears more than once, merge
+the values of every occurrence, as JSON-LD node map generation does; a
+different value for a single-valued SPDX property is an error. The default
+extension class is used only for SPDX 3 and never for IRIs in the SPDX
+namespace. Rejected types get a message saying why.
+
+For release notes: core and store add public API (`TypedLiteral`,
+`ModelRegistry` methods, `GenericExtension`), so they need a minor version.
+A node shared by blank-node id is written inline once and referenced as
+`"_:..."` elsewhere, which the released store (1.0.6) cannot read back.
 
 Still open in the Java stack: an Element written inline in an extension
 value is moved to the top level on write and then added to the
@@ -1126,8 +1147,11 @@ and [`bact/spdx-java-core`](https://github.com/bact/spdx-java-core/tree/fix-numb
 Type an untyped JSON number as JSON-LD does: `xsd:double` if it has a
 non-zero fraction or an absolute value of at least 10^21, otherwise
 `xsd:integer` (unbounded, so large integers are kept exactly). Write an
-extension property's double back as a JSON number, and SPDX decimal
-properties in plain decimal notation, which the JSON schema requires.
+extension property's double back as a JSON number (as an `xsd:double` value
+object in canonical form when JSON-LD would read the number as an integer),
+and SPDX decimal properties in plain decimal notation, which the JSON schema
+requires. Reject a value of an SPDX integer property that is not an integer
+or does not fit in an `int`, instead of truncating or wrapping it.
 
 **Why the fix works.** The value read is the value JSON-LD defines for the
 number, so nothing is lost, and the written JSON means the same as the input.
