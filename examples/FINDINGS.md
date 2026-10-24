@@ -712,7 +712,7 @@ S-5, S-6):
 | With extra contexts, the last one wins, so a later context could take over `spdxId`. | Correct for unprotected terms (pyld, rdflib). |
 | `@protected` on every SPDX term prevents that. | Mostly. A later or embedded context that redefines a protected SPDX term is an error in pyld and jsonld.js (rdflib silently keeps the SPDX meaning, T-3). Not covered: a **property-scoped** context of an extension term may redefine protected SPDX terms inside that term's values (JSON-LD 1.1 §4.1.11 allows it), so an SPDX Element nested there can still be changed (tested with pyld). Not covered, but harmless with the schema: `@base` (spdxIds must be absolute) and `@vocab` (SPDX objects are closed). Default `@language` has no effect, since every SPDX term has an `@type`. |
 | Draft schema: `@context` is the SPDX URL, or an array that `contains` it, with string or object items. | Allows the hijacks above, since items are not checked. Position does not matter for safety (an earlier context loses to the protected SPDX terms, or errors if it protects the same term), but validators detect the version from `@context` by exact match today (spdx3-validate), so a fixed position (first) is simpler. |
-| Two places to change: the shacl2code schema template and the spec-parser context. | Also: validators' version detection, the spec's "Parsing @context" (JSON-only readers know prefixes only), and readers that ignore `@context` (spdx-python-model, tools-java). |
+| Two places to change: the shacl2code schema template and the spec-parser context. | Also: validators' version detection, the spec's "Parsing @context" (JSON-only readers know prefixes only), and readers that ignore `@context` (spdx-python-model, tools-java). shacl2code is generic, so its change must come from its inputs (the given contexts), not from SPDX names. |
 | (JPEWdev) If `@protected` goes in the published context file, no problem adding it now. | It does go there; documents need no change. |
 | You can generate your own schema with several `--context` URLs in shacl2code. | Correct (the template requires every given URL), but a document valid against a custom schema is not valid against the SPDX schema. |
 
@@ -730,15 +730,26 @@ they cannot change SPDX terms:
    except the S-1 collisions until T-3 is fixed in rdflib. A JSON-LD
    processor then rejects any later context that redefines an SPDX term, so
    an extension context can only add terms.
-2. **Schema (shacl2code `jsonschema.j2`, next minor version):** `@context`
-   is the SPDX context URL, or an array whose **first** item is the SPDX
-   context URL, followed by extension contexts: absolute URLs, or objects
-   whose keys are not SPDX terms (generated `propertyNames` exclusion, which
-   also closes S-5), not `@base`, and whose values are strings or term
-   definitions. A term definition's own (property-scoped) `@context` must
-   not define SPDX terms either: `@protected` does not stop that. No
-   `@context` anywhere else in the document (S-6). Allow a term as an
-   extension `type` if it is not an SPDX class name.
+2. **Schema (shacl2code `jsonschema.j2`, next minor version).**
+   shacl2code is a generic generator, so the change uses only its inputs
+   (the contexts passed with `--context`, and the model's extensible
+   classes), with no SPDX names, behind an opt-in option (for example
+   `--allow-extra-contexts`) so other models keep today's schema:
+   - `@context` is the model's context URL(s), or an array that starts with
+     them in the given order, followed by additional contexts: absolute URLs,
+     or objects.
+   - The keys of an additional context object must not be terms defined by
+     the model's contexts (shacl2code already loads them, so it can generate
+     a `propertyNames` exclusion, which also closes S-5), nor `@base`. Values
+     are strings or term definitions, and a term definition's own
+     (property-scoped) `@context` has the same key exclusion: `@protected`
+     does not stop a property-scoped redefinition.
+   - No `@context` in any other object (S-6).
+   - An extensible class's `type` may be a term that is not a class name of
+     the model.
+
+   For SPDX, the generated schema then requires the SPDX context URL first
+   and excludes every SPDX term.
 3. **Spec:** replace the "list comprising a string and an object" text with
    that rule, and state that a reader processing SPDX JSON as plain JSON
    cannot interpret extension terms and must either expand the document with
@@ -807,9 +818,11 @@ context. specmd protects every term
 (so pyld and jsonld.js raise a protected-term error), but rdflib silently
 keeps the first definition (T-3, case 2).
 
-**Fix.** As S-4: protect SPDX terms in the context, and generate a
-`propertyNames` exclusion of SPDX terms (and `spdxId`, `type`, `spdx`) for
-the `@context` object in the schema.
+**Fix.** As S-4: protect SPDX terms in the context (spec-parser, specmd),
+and in shacl2code generate a `propertyNames` exclusion, for additional
+context objects, of every term defined by the model's contexts (for SPDX,
+that includes `spdxId`, `type` and `spdx`). shacl2code reads the term names
+from the contexts it is given; nothing SPDX-specific is hard-coded.
 
 **Why the fix works.** Protection makes a JSON-LD processor reject the
 redefinition; the schema rule rejects it for JSON Schema validators and
@@ -856,12 +869,14 @@ validator does not notice.
 custom properties, and JSON-LD allows `@context` in any node object. The SPDX
 context does not protect its terms, so nothing stops the redefinition.
 
-**Fix.** In the schema, forbid `@context` in extension objects and in any
-object nested in them (a `not: {required: ["@context"]}` on the extension
-item and on its nested values), and protect SPDX terms in the context (S-4,
-item 1), which makes the redefinition an error in pyld and jsonld.js even
-for schema-unaware readers. In the spec, state that `@context` appears only
-at the top level.
+**Fix.** In shacl2code's schema template, forbid `@context` in objects of
+extensible classes and in any object nested in their custom properties (a
+`not: {required: ["@context"]}` on those objects); this is generic, since it
+depends only on which classes the model marks extensible, and can be on by
+default or behind the S-4 option. Protect SPDX terms in the SPDX context
+(S-4, item 1), which makes the redefinition an error in pyld and jsonld.js
+even for readers that do not use the schema. In the spec, state that
+`@context` appears only at the top level.
 
 **Why the fix works.** With no embedded contexts, the only contexts are the
 top-level ones, which S-4 constrains; with protected terms, any redefinition
