@@ -11,9 +11,10 @@ CLASSPATH is the tools-java jar with dependencies, optionally preceded by
 locally built store, library or core jars to test fixes, e.g.
     store.jar:library.jar:core.jar:tools-java-2.0.7-jar-with-dependencies.jar
 
-Requires java on PATH, and rdflib. If the extension objects differ in JSON
-but the documents have the same RDF graph (e.g. a shared node inlined under
-another Element), the result is reported as a layout change, not a failure.
+Requires java on PATH, and rdflib. The RDF graphs of input and output are
+always compared. If the extension objects differ in JSON but the documents
+have the same RDF graph (e.g. a shared node inlined under another Element),
+the result is reported as a layout change, not a failure.
 Exit code is 1 if any document fails or changes the RDF graph.
 """
 
@@ -59,15 +60,18 @@ def check(path, cp, out_dir):
         return False, f"verify {verdict}; convert failed: {' '.join(convert.splitlines()[:2])[:160]}"
     before = extensions(json.loads(Path(path).read_text()))
     after = extensions(json.loads(out.read_text()))
-    if before != after:
-        changed = sorted(k for k in before.keys() | after.keys() if before.get(k) != after.get(k))
-        same = isomorphic(
-            rdflib.Graph().parse(str(path), format="json-ld"),
-            rdflib.Graph().parse(str(out), format="json-ld"),
-        )
-        if same:
-            return verdict == "pass", f"verify {verdict}; same RDF graph, extension layout changed on: {', '.join(changed)}"
-        return False, f"verify {verdict}; extension data changed on: {', '.join(changed)}"
+    changed = sorted(k for k in before.keys() | after.keys() if before.get(k) != after.get(k))
+    # Compare RDF even when the JSON is unchanged: the same JSON can mean
+    # something else under a different @context
+    same = isomorphic(
+        rdflib.Graph().parse(str(path), format="json-ld"),
+        rdflib.Graph().parse(str(out), format="json-ld"),
+    )
+    if not same:
+        where = f"extension data changed on: {', '.join(changed)}" if changed else "RDF graph changed"
+        return False, f"verify {verdict}; {where}"
+    if changed:
+        return verdict == "pass", f"verify {verdict}; same RDF graph, extension layout changed on: {', '.join(changed)}"
     return verdict == "pass", f"verify {verdict}; extension data preserved"
 
 

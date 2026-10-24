@@ -21,8 +21,8 @@ Usage:
 Requires spdx3-validate (next to this Python, or on PATH) and pyshacl.
 Exit code is 1 if any result differs from expected.json, or if a document and
 expected.json do not list the same files. A spdx3-validate run that fails
-without reporting a validation failure (crash, network error) is an error,
-not a "fail".
+without reporting a validation failure or an unknown @context (crash,
+network error) is an error, not a "fail".
 """
 
 import argparse
@@ -50,7 +50,10 @@ def run_spdx3_validate(exe, doc, version):
     )
     if result.returncode == 0:
         return "pass"
-    if "validation failed" in (result.stdout + result.stderr).lower():
+    output = (result.stdout + result.stderr).lower()
+    # spdx3-validate rejects a document whose @context is not a known SPDX
+    # context URL before validating it
+    if "validation failed" in output or "unknown version @context" in output:
         return "fail"
     raise RuntimeError(f"spdx3-validate did not run on {doc}:\n{result.stderr or result.stdout}")
 

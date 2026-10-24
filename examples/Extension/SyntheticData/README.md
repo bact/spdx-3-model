@@ -94,6 +94,7 @@ with a custom extension.
 | [`known-issues/profile-conformance-extension.spdx3.json`](known-issues/profile-conformance-extension.spdx3.json) | Declares `profileConformance: "extension"` | **fail** | pass |
 | [`known-issues/plain-scalar-values.spdx3.json`](known-issues/plain-scalar-values.spdx3.json) | Extension values written as plain JSON strings and numbers | pass | fail (6 violations) |
 | [`known-issues/custom-extension-3-0-0.spdx3.json`](known-issues/custom-extension-3-0-0.spdx3.json) | `valid-minimal` with the SPDX 3.0.0 context: the 3.0.0 SHACL rejects every custom extension | **fail** | pass |
+| [`known-issues/extension-context.spdx3.json`](known-issues/extension-context.spdx3.json) | `valid-full` with an extension context after the SPDX context, so extension keys and values are plain JSON. Same RDF graph as `valid-full` | **fail** (`@context` must be the SPDX URL) | pass |
 
 ### How to validate
 
@@ -147,6 +148,8 @@ in [examples/FINDINGS.md](../../FINDINGS.md):
 - S-2: extension values need JSON-LD value objects (`{"@id"}`, `{"@value"}`).
 - S-3: SPDX SHACL shapes target nothing outside pySHACL (found while
   reviewing this example's own shapes).
+- S-4: the JSON schema fixes `@context`, so a document cannot add an
+  extension context (the cause of S-2).
 - M-1: no way to declare which extensions a document uses.
 - M-2: extension objects cannot be top-level in `@graph`, and their sharing
   and multiplicity are unspecified.
