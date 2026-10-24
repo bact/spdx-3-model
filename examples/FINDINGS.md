@@ -337,6 +337,12 @@ So:
 - The compaction failure adds to the ones already reported in
   [spdx-spec#1307](https://github.com/spdx/spdx-spec/issues/1307).
 
+Rerun 2026-10-24 on a minimal document with only `"profileConformance":
+["core", "extension"]` (in the
+[issue draft](issue-drafts/spdx-3-model-vocab-entry-term-collision.md)), with
+tools-java master `86ddcc9`, spdx-python-model, pyld, rdflib and
+spdx3-validate 0.0.7: same results; with `["core"]` it is valid everywhere.
+
 #### Workarounds until fixed
 
 - 3.0.0 / 3.0.1: omit `extension` from `profileConformance`. There is no
@@ -504,6 +510,9 @@ can be protected with no exceptions:
   already asks to rename one of them, for meaning. A name in the style of
   the other `...By` entries (`performedBy`, `invokedBy`) works, for example
   `originatedBy`.
+
+Drafts: an [issue for the naming rule](issue-drafts/spdx-3-model-vocab-entry-term-collision.md)
+and a [comment for spdx-3-model#1274](issue-drafts/spdx-3-model-1274-comment.md).
 
 Once these are gone, the generators' collision handling has nothing to do:
 spec-parser's `protect-context-terms` computes its exceptions from the
