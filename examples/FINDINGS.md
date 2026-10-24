@@ -26,9 +26,9 @@ Add new findings at the end of the relevant section and keep IDs stable.
 | [S-1](#s-1-vocabulary-entries-that-share-a-name-with-a-context-term-expand-to-the-wrong-iri) | Vocabulary entries that share a name with a context term expand to the wrong IRI | Serialization | **High** | 3.0.0, 3.0.1, 3.1-dev | Fix proposed: [spec-parser branch](https://github.com/bact/spec-parser/tree/fix-vocab-term-collision), [specmd branch](https://github.com/bact/specmd/tree/fix-vocab-term-collision) | Partial |
 | [S-2](#s-2-extension-property-values-need-json-ld-value-objects) | Extension property values need JSON-LD value objects | Serialization | Medium | 3.0.1, 3.1-dev | Spec text proposed: [spdx-spec branch](https://github.com/bact/spdx-spec/tree/serialize-extensions) | No |
 | [S-3](#s-3-spdx-shacl-shapes-target-nothing-outside-pyshacl) | SPDX SHACL shapes target nothing outside pySHACL | Serialization | **High** | 3.0.0, 3.0.1, 3.1-dev | Fix proposed: [spec-parser branch](https://github.com/bact/spec-parser/tree/fix-shacl-target-class), [specmd branch](https://github.com/bact/specmd/tree/fix-shacl-target-class) | No |
-| [S-4](#s-4-the-spdx-json-schema-does-not-accept-an-extension-context) | The SPDX JSON schema does not accept an extension context | Serialization | Medium | 3.0.0, 3.0.1, 3.1-dev | Open; proposal in S-4 | No |
-| [S-5](#s-5-the-31-dev-prefix-map-can-redefine-spdx-terms) | The 3.1-dev prefix map can redefine SPDX terms | Serialization | **High** | 3.1-dev | Open; proposal in S-4 | Partial (terms protected; rdflib ignores it, T-3) |
-| [S-6](#s-6-an-extension-object-can-carry-a-context-that-redefines-spdx-terms) | An extension object can carry a `@context` that redefines SPDX terms | Serialization | **High** | 3.0.1, 3.1-dev | Open; proposal in S-6 | Partial (terms protected; rdflib ignores it, T-3) |
+| [S-4](#s-4-the-spdx-json-schema-does-not-accept-an-extension-context) | The SPDX JSON schema does not accept an extension context | Serialization | Medium | 3.0.0, 3.0.1, 3.1-dev | Fix proposed: [shacl2code `allow-extra-contexts`](https://github.com/bact/shacl2code/tree/allow-extra-contexts), [spec-parser `protect-context-terms`](https://github.com/bact/spec-parser/tree/protect-context-terms), [spdx3-validate `context-array-version`](https://github.com/bact/spdx3-validate/tree/context-array-version) | No |
+| [S-5](#s-5-the-31-dev-prefix-map-can-redefine-spdx-terms) | The 3.1-dev prefix map can redefine SPDX terms | Serialization | **High** | 3.1-dev | Fix proposed: [shacl2code `fix-context-term-redefinition`](https://github.com/bact/shacl2code/tree/fix-context-term-redefinition), [spec-parser `protect-context-terms`](https://github.com/bact/spec-parser/tree/protect-context-terms) | Partial (terms protected; rdflib ignores it, T-3) |
+| [S-6](#s-6-an-extension-object-can-carry-a-context-that-redefines-spdx-terms) | An extension object can carry a `@context` that redefines SPDX terms | Serialization | **High** | 3.0.1, 3.1-dev | Fix proposed: [shacl2code `forbid-embedded-context`](https://github.com/bact/shacl2code/tree/forbid-embedded-context), [spec-parser `protect-context-terms`](https://github.com/bact/spec-parser/tree/protect-context-terms) | Partial (terms protected; rdflib ignores it, T-3) |
 | [M-1](#m-1-no-way-to-declare-which-extensions-a-document-uses) | No way to declare which extensions a document uses | Model design | Medium | 3.0, 3.1-dev | Model change proposed: [spdx-3-model branch](https://github.com/bact/spdx-3-model/tree/extension-definition) | No (model issue) |
 | [M-2](#m-2-extension-objects-cannot-be-top-level-and-their-sharing-is-unspecified) | Extension objects cannot be top-level, and their sharing is unspecified | Model design | Low | 3.0, 3.1-dev | Spec text proposed: [spdx-3-model branch](https://github.com/bact/spdx-3-model/tree/extension-semantics) | No (model issue) |
 | [M-3](#m-3-shacl-for-extension-is-a-deny-list) | SHACL for `extension` is a deny-list (3.0.1+), or rejects every custom extension (3.0.0) | Model / generator | **High** in 3.0.0, Low in 3.0.1+ | 3.0.0, 3.0.1, 3.1-dev | Validator check proposed: [spdx3-validate branch](https://github.com/bact/spdx3-validate/tree/extension-class-check) | No |
@@ -723,7 +723,13 @@ which leaves the hole in S-5. A context with `@protected` terms is in a
 [comment on spdx-3-model#1167](https://github.com/spdx/spdx-3-model/issues/1167#issuecomment-3787848517).
 
 **Fix.** Accept extension contexts after the SPDX context, and make sure
-they cannot change SPDX terms:
+they cannot change SPDX terms. Branches:
+[`bact/spec-parser` `protect-context-terms`](https://github.com/bact/spec-parser/tree/protect-context-terms)
+(item 1),
+[`bact/shacl2code` `allow-extra-contexts`](https://github.com/bact/shacl2code/tree/allow-extra-contexts)
+(item 2, on top of the S-5 branch),
+[`bact/spdx3-validate` `context-array-version`](https://github.com/bact/spdx3-validate/tree/context-array-version)
+(item 4, version detection).
 
 1. **Context (generators):** mark every SPDX term `@protected`
    ([spdx-spec#1312](https://github.com/spdx/spdx-spec/issues/1312), P-3),
@@ -764,6 +770,18 @@ they cannot change SPDX terms:
    its keys under the SPDX context alone (tools-java branch, T-5). An
    ExtensionDefinition (M-1) could also give the location and hash of the
    extension's context, as it does for its ontology.
+
+Tested with the SPDX 3.0.1 schema generated as spdx-spec does (with the
+JSON serialization annotations), on all extension example documents: every
+valid document stays valid on all branches, with and without the option;
+`extension-context` passes only with `--allow-extra-contexts`; the S-5
+document fails on `fix-context-term-redefinition`; `embedded-context` fails
+on `forbid-embedded-context`. With the protected 3.1-dev context, pyld
+rejects the S-5 and S-6 redefinitions and still reads `extension-context-url`
+correctly; rdflib keeps the SPDX meaning silently (T-3). The three S-1
+collision terms stay unprotected in the context, so only the schema stops
+their redefinition. Limits: JSON Schema cannot see inside a context given by
+URL, nor detect a new term that aliases an SPDX IRI.
 
 **Why the fix works.** Protected SPDX terms stop any later or embedded
 context from redefining them; the schema rules (and the validator, for
@@ -818,7 +836,9 @@ context. specmd protects every term
 (so pyld and jsonld.js raise a protected-term error), but rdflib silently
 keeps the first definition (T-3, case 2).
 
-**Fix.** As S-4: protect SPDX terms in the context (spec-parser, specmd),
+**Fix** ([`bact/shacl2code` `fix-context-term-redefinition`](https://github.com/bact/shacl2code/tree/fix-context-term-redefinition),
+[`bact/spec-parser` `protect-context-terms`](https://github.com/bact/spec-parser/tree/protect-context-terms)).
+As S-4: protect SPDX terms in the context (spec-parser, specmd),
 and in shacl2code generate a `propertyNames` exclusion, for additional
 context objects, of every term defined by the model's contexts (for SPDX,
 that includes `spdxId`, `type` and `spdx`). shacl2code reads the term names
@@ -869,7 +889,9 @@ validator does not notice.
 custom properties, and JSON-LD allows `@context` in any node object. The SPDX
 context does not protect its terms, so nothing stops the redefinition.
 
-**Fix.** In shacl2code's schema template, forbid `@context` in objects of
+**Fix** ([`bact/shacl2code` `forbid-embedded-context`](https://github.com/bact/shacl2code/tree/forbid-embedded-context),
+[`bact/spec-parser` `protect-context-terms`](https://github.com/bact/spec-parser/tree/protect-context-terms)).
+In shacl2code's schema template, forbid `@context` in objects of
 extensible classes and in any object nested in their custom properties (a
 `not: {required: ["@context"]}` on those objects); this is generic, since it
 depends only on which classes the model marks extensible, and can be on by
