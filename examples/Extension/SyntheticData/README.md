@@ -148,8 +148,12 @@ in [examples/FINDINGS.md](../../FINDINGS.md):
 - S-2: extension values need JSON-LD value objects (`{"@id"}`, `{"@value"}`).
 - S-3: SPDX SHACL shapes target nothing outside pySHACL (found while
   reviewing this example's own shapes).
-- S-4: the JSON schema fixes `@context`, so a document cannot add an
-  extension context (the cause of S-2).
+- S-4: the SPDX JSON schema does not accept an extension context (the cause
+  of S-2). [`synthetic-data-context.jsonld`](synthetic-data-context.jsonld)
+  is the extension's JSON-LD context, used inline by
+  `known-issues/extension-context` and by URL by
+  [`proposed/extension-context-url.spdx3.json`](proposed/extension-context-url.spdx3.json)
+  (3.1-dev; the URL is not published, so map it to the local file).
 - M-1: no way to declare which extensions a document uses.
 - M-2: extension objects cannot be top-level in `@graph`, and their sharing
   and multiplicity are unspecified.
