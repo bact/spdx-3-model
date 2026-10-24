@@ -519,7 +519,7 @@ can be protected with no exceptions:
 | --- | --- | --- | --- | --- |
 | `extension` | `Core/extension` (3.0) | `ProfileIdentifierType/extension` (3.0) | Deprecate the entry in 3.1, remove it in 4.0. ([branch](https://github.com/bact/spdx-3-model/tree/deprecate-profile-extension)) | Documents that list it still parse; in JSON-LD they are already wrong in 3.0.x (Example 1). |
 | `requirementUID` | `Core/requirementUID` (3.1-dev) | `ExternalIdentifierType/requirementUID` (3.1-dev) | Rename one of them before 3.1 is released (e.g. the entry to `requirementIdentifier`). | None: both are unreleased. |
-| `createdBy` | `Core/createdBy` (3.0, on CreationInfo, used by every document) | `RelationshipType/createdBy` (3.1-dev) | Rename the entry before 3.1 is released (e.g. to `authoredBy`, [branch](https://github.com/bact/spdx-3-model/tree/rename-relationshiptype-createdby)); keep the property. | None for the entry: unreleased. |
+| `createdBy` | `Core/createdBy` (3.0, on CreationInfo, used by every document) | `RelationshipType/createdBy` (3.1-dev) | Rename the entry before 3.1 is released (e.g. to `definedBy`, [branch](https://github.com/bact/spdx-3-model/tree/rename-relationshiptype-createdby)); keep the property. | None for the entry: unreleased. |
 
 - **`extension` in `profileConformance` declares nothing checkable.**
   Listing a profile "shall constitute a declaration that all constituent
@@ -550,7 +550,9 @@ can be protected with no exceptions:
   already asks to rename one of them, for meaning. A name in the style of
   the other `...By` entries (`performedBy`, `invokedBy`) works, as long as it
   is not a context term itself: `originatedBy`, for example, is already a
-  Core property (`Artifact`). `authoredBy` is free
+  Core property (`Artifact`). `definedBy` is free and fits both an
+  Action and a DefinedProcess (a process definition is defined, not
+  initiated or authored)
   ([branch](https://github.com/bact/spdx-3-model/tree/rename-relationshiptype-createdby)).
 - **Which side to rename for `requirementUID`**: it matches its siblings
   `evidenceUID` and `verificationUID`, which are also both a property and an

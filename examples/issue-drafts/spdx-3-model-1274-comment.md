@@ -39,8 +39,9 @@ explicitly. However, the workaround keeps those terms from being
 **Suggested name**
 
 A name in the style of the other `...By` relationship types (`performedBy`,
-`invokedBy`), for example `authoredBy`, keeps the meaning. The new name must
-not be a context term itself: `originatedBy`, for instance, is already a Core
-property. It also answers the question in this issue: use the property for who
-created the Element, and the relationship type for who created an Action or
-DefinedProcess.
+`invokedBy`), for example `definedBy`, keeps the meaning for both an Action
+and a DefinedProcess (a process definition is defined, not initiated). The new
+name must not be a context term itself: `originatedBy`, for instance, is
+already a Core property. It also answers the question in this issue: use the
+property for who created the Element, and the relationship type for who
+defined an Action or DefinedProcess.
