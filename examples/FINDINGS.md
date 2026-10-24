@@ -54,6 +54,46 @@ Severity:
 fixes the finding: **Yes**, **No**, or **Partial**. Checked 2026-10-23 by
 generating the 3.1-dev model with specmd and running the same tests.
 
+## Fix branches and merge order
+
+All branches are in the forks under [github.com/bact](https://github.com/bact/), with no pull
+requests yet. Order: 1 model, 2 context and SHACL generators, 3 schema and
+binding generator, 4 validators and libraries, 5 spec text and guides.
+Within an order, branches are independent unless "Based on" names another
+branch. Checked 2026-10-24.
+
+| Order | Repository | Branch | Findings | Based on | Notes |
+| --- | --- | --- | --- | --- | --- |
+| 1 | spdx-3-model | [`rename-relationshiptype-createdby`](https://github.com/bact/spdx-3-model/tree/rename-relationshiptype-createdby) | S-1 | develop | Before 3.1. |
+| 1 | spdx-3-model | [`deprecate-profile-extension`](https://github.com/bact/spdx-3-model/tree/deprecate-profile-extension) | S-1 | develop | Before 3.1. |
+| 1 | spdx-3-model | [`extension-definition`](https://github.com/bact/spdx-3-model/tree/extension-definition) | M-1 | develop | Model proposal; needs discussion. |
+| 1 | spdx-3-model | [`extension-semantics`](https://github.com/bact/spdx-3-model/tree/extension-semantics) | M-2 | develop | |
+| 2 | spec-parser | [`fix-vocab-term-collision`](https://github.com/bact/spec-parser/tree/fix-vocab-term-collision) | S-1 | main | |
+| 2 | spec-parser | [`protect-context-terms`](https://github.com/bact/spec-parser/tree/protect-context-terms) | S-4, S-5, S-6 | `fix-vocab-term-collision` | Exceptions disappear once the S-1 renames land. |
+| 2 | spec-parser | [`fix-shacl-target-class`](https://github.com/bact/spec-parser/tree/fix-shacl-target-class) | S-3 | main | |
+| 2 | specmd | [`fix-empty-context-term`](https://github.com/bact/specmd/tree/fix-empty-context-term) | T-4 | main | Merge with `fix-vocab-term-collision`. |
+| 2 | specmd | [`fix-vocab-term-collision`](https://github.com/bact/specmd/tree/fix-vocab-term-collision) | S-1 | main | |
+| 2 | specmd | [`fix-shacl-target-class`](https://github.com/bact/specmd/tree/fix-shacl-target-class) | S-3 | main | |
+| 3 | shacl2code | [`fix-extensible-value-objects`](https://github.com/bact/shacl2code/tree/fix-extensible-value-objects) | T-1 | main | |
+| 3 | shacl2code | [`fix-context-term-redefinition`](https://github.com/bact/shacl2code/tree/fix-context-term-redefinition) | S-5 | main | |
+| 3 | shacl2code | [`allow-extra-contexts`](https://github.com/bact/shacl2code/tree/allow-extra-contexts) | S-4 | `fix-context-term-redefinition` | Enable the option only after SPDX terms are protected (order 2). |
+| 3 | shacl2code | [`forbid-embedded-context`](https://github.com/bact/shacl2code/tree/forbid-embedded-context) | S-6 | main | Conflicts with `allow-extra-contexts` only in appended tests. |
+| 4 | spdx3-validate | [`extra-shacl`](https://github.com/bact/spdx3-validate/tree/extra-shacl) | T-2 | main | |
+| 4 | spdx3-validate | [`extension-class-check`](https://github.com/bact/spdx3-validate/tree/extension-class-check) | M-3 | `extra-shacl` | Squash: one rebased commit title still says "with --shacl". |
+| 4 | spdx3-validate | [`context-array-version`](https://github.com/bact/spdx3-validate/tree/context-array-version) | S-4 | main | |
+| 4 | spdx-java-core | [`fix-number-truncation`](https://github.com/bact/spdx-java-core/tree/fix-number-truncation) | T-6 | main | Release order: core, library, store, tools-java. Core and store add public API (minor version). |
+| 4 | spdx-java-core | [`support-custom-extensions`](https://github.com/bact/spdx-java-core/tree/support-custom-extensions) | T-5 | `fix-number-truncation` | |
+| 4 | Spdx-Java-Library | [`fix-number-truncation`](https://github.com/bact/Spdx-Java-Library/tree/fix-number-truncation) | T-5, T-6 | master | Needs core `TypedLiteral`. |
+| 4 | spdx-java-v3jsonld-store | [`fix-number-truncation`](https://github.com/bact/spdx-java-v3jsonld-store/tree/fix-number-truncation) | T-6 | main | |
+| 4 | spdx-java-v3jsonld-store | [`support-custom-extensions`](https://github.com/bact/spdx-java-v3jsonld-store/tree/support-custom-extensions) | T-5, S-4, S-6 | `fix-number-truncation` | Store 1.0.6 cannot read blank-node string references it writes (release note). |
+| 5 | spdx-spec | [`serialize-extensions`](https://github.com/bact/spdx-spec/tree/serialize-extensions) | S-2, S-4 | develop | After the context and schema decisions (orders 2 and 3). |
+| 5 | using | [`extension-guide`](https://github.com/bact/using/tree/extension-guide) | S-2 | main | After `serialize-extensions`. |
+
+Related prior work, not in the merge order: spec-parser
+[`use-protected`](https://github.com/bact/spec-parser/tree/use-protected) (2026-01) protects terms
+and lists every vocabulary entry (option A+ in S-1, P-1), with new
+per-namespace prefixes.
+
 ## Related issues and pull requests
 
 | Link | State | Related finding | Relation |
@@ -477,9 +517,9 @@ can be protected with no exceptions:
 
 | Name | Property (since) | Vocabulary entry (since) | Proposal | Cost |
 | --- | --- | --- | --- | --- |
-| `extension` | `Core/extension` (3.0) | `ProfileIdentifierType/extension` (3.0) | Deprecate the entry in 3.1, remove it in 4.0. | Documents that list it still parse; in JSON-LD they are already wrong in 3.0.x (Example 1). |
+| `extension` | `Core/extension` (3.0) | `ProfileIdentifierType/extension` (3.0) | Deprecate the entry in 3.1, remove it in 4.0. ([branch](https://github.com/bact/spdx-3-model/tree/deprecate-profile-extension)) | Documents that list it still parse; in JSON-LD they are already wrong in 3.0.x (Example 1). |
 | `requirementUID` | `Core/requirementUID` (3.1-dev) | `ExternalIdentifierType/requirementUID` (3.1-dev) | Rename one of them before 3.1 is released (e.g. the entry to `requirementIdentifier`). | None: both are unreleased. |
-| `createdBy` | `Core/createdBy` (3.0, on CreationInfo, used by every document) | `RelationshipType/createdBy` (3.1-dev) | Rename the entry before 3.1 is released; keep the property. | None for the entry: unreleased. |
+| `createdBy` | `Core/createdBy` (3.0, on CreationInfo, used by every document) | `RelationshipType/createdBy` (3.1-dev) | Rename the entry before 3.1 is released (e.g. to `authoredBy`, [branch](https://github.com/bact/spdx-3-model/tree/rename-relationshiptype-createdby)); keep the property. | None for the entry: unreleased. |
 
 - **`extension` in `profileConformance` declares nothing checkable.**
   Listing a profile "shall constitute a declaration that all constituent
@@ -508,8 +548,17 @@ can be protected with no exceptions:
   SupplyChain separation, 2025-08) and is not in 3.0.0 or 3.0.1.
   [spdx-3-model#1274](https://github.com/spdx/spdx-3-model/issues/1274)
   already asks to rename one of them, for meaning. A name in the style of
-  the other `...By` entries (`performedBy`, `invokedBy`) works, for example
-  `originatedBy`.
+  the other `...By` entries (`performedBy`, `invokedBy`) works, as long as it
+  is not a context term itself: `originatedBy`, for example, is already a
+  Core property (`Artifact`). `authoredBy` is free
+  ([branch](https://github.com/bact/spdx-3-model/tree/rename-relationshiptype-createdby)).
+- **Which side to rename for `requirementUID`**: it matches its siblings
+  `evidenceUID` and `verificationUID`, which are also both a property and an
+  `ExternalIdentifierType` entry. Those do not collide only because their
+  properties are in the FunctionalSafety namespace, so their terms are
+  prefixed (`functionalSafety_evidenceUID`). Renaming the Core property keeps
+  the three entries uniform; renaming the entry keeps the three properties
+  uniform.
 
 Drafts: an [issue for the naming rule](issue-drafts/spdx-3-model-vocab-entry-term-collision.md)
 and a [comment for spdx-3-model#1274](issue-drafts/spdx-3-model-1274-comment.md).
@@ -744,7 +793,7 @@ Repros:
 | rdflib, pyld, pySHACL | Read correctly. |
 | spdx-python-model (upstream and shacl2code branch) | **Rejected** on read: "Extensible object properties must be IRIs. Got 'generationMethod'". The bindings use the generated SPDX context only and ignore the document's. |
 | tools-java master | **Rejected:** "Missing type for core object" (T-5). |
-| tools-java with the `support-custom-extensions` branches | `Verify` reports the schema error, but `Convert` **silently changes the data**: it writes the SPDX context only and keeps the compact keys, so `generationMethod`, `syntheticFraction` and `generatorModel` are dropped and the type becomes the IRI `sd:SyntheticDataExtension` (scheme `sd`). |
+| tools-java with the `support-custom-extensions` branches | Before `25d2db5`: `Verify` reported the schema error, but `Convert` **silently changed the data**: it wrote the SPDX context only and kept the compact keys, so `generationMethod`, `syntheticFraction` and `generatorModel` were dropped and the type became the IRI `sd:SyntheticDataExtension` (scheme `sd`). Since [`25d2db5`](https://github.com/bact/spdx-java-v3jsonld-store/commit/25d2db5): rejected with "Unsupported @context item ...: this store only processes the SPDX context". |
 
 **Why it happens.** The schema pins `@context` (3.0.x) or limits it to a
 prefix map (3.1-dev) so that every SPDX key keeps one meaning and JSON
@@ -937,7 +986,7 @@ Repro:
 | JSON schema 3.0.1 | Valid. |
 | spdx3-validate 0.0.7 | **Pass.** |
 | pyld, rdflib | The AIPackage has no SPDX `name` or `packageVersion`; its name and version are `https://example.org/not-spdx/...` properties. |
-| spdx-python-model (upstream and branch), tools-java (master and branches) | Rejected: `@context` is not an IRI / "Missing type for core object". |
+| spdx-python-model (upstream and branch), tools-java (master and branches) | Rejected: `@context` is not an IRI / "Missing type for core object"; with the store branch at `25d2db5`, "Unsupported embedded @context ...". |
 
 So the same valid document means different things to JSON readers (which
 ignore the embedded context, or reject it) and JSON-LD readers, and the
@@ -1473,9 +1522,12 @@ For release notes: core and store add public API (`TypedLiteral`,
 A node shared by blank-node id is written inline once and referenced as
 `"_:..."` elsewhere, which the released store (1.0.6) cannot read back.
 
-Still open in the Java stack: the store ignores a document's own `@context`
-and reads its keys as if only the SPDX context applied, so `Convert` silently
-drops extension properties defined by an extension context (S-4); an Element
+The store also rejects any `@context` other than the SPDX context URL(s), and
+any embedded `@context`, instead of reading the keys as if only the SPDX
+context applied, which silently dropped extension properties defined by an
+extension context (S-4; [`25d2db5`](https://github.com/bact/spdx-java-v3jsonld-store/commit/25d2db5)).
+
+Still open in the Java stack: an Element
 written inline in an extension value is moved to the top level on write and
 then added to the SpdxDocument's `element` list on the next read; `@language`,
 `@list` and untyped nested nodes in extension values are rejected with an
@@ -1648,9 +1700,10 @@ notes that protection interacts with context order.
 **Design.** Protect all SPDX terms, and make sure no SPDX term ever needs to
 be overridden: with P-1 plus the naming rule (no vocabulary entry named like
 a term, checked in CI by `tools/check_vocab_term_collisions.py`), the only
-overrides left are the three legacy names of S-1. Leave exactly those
-unprotected (as the specmd fix does), or rename them in the next major
-version.
+overrides left are the three names of S-1. Leave exactly those
+unprotected (as the specmd fix does) until they are removed: two are
+unreleased and can be renamed before 3.1, and `extension` can be deprecated
+(see [S-1, root fix](#root-fix-remove-the-collisions-in-the-model)).
 
 **Why.** Protection then works the same in every processor, without relying
 on the property-scoped exception that rdflib does not implement (T-3).
