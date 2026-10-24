@@ -24,13 +24,13 @@ and another SpdxDocument.
 - amendedBy: The `from` Element is amended by each `to` Element.
 - ancestorOf: The `from` Element is an ancestor of each `to` Element.
 - assumes: The `from` Element assumes each `to` /FunctionalSafety/Assumption.
+- authoredBy: The `from` Action or DefinedProcess is authoredBy `to` Agent(s).
 - availableFrom: The `from` Element is available from the additional supplier described by each `to` Element.
 - configures: The `from` Element is a configuration applied to each `to` Element, during a LifecycleScopeType period.
 - conformsTo: The `from` Element conforms to each `to` /FunctionalSafety/Assumption or Specification.
 - contains: The `from` Element contains each `to` Element.
 - coordinatedBy: The `from` /Security/Vulnerability is coordinatedBy the `to` Agent(s) (vendor, researcher, or consumer agent).
 - copiedTo: The `from` Element has been copied to each `to` Element.
-- createdBy: The `from` Action or DefinedProcess is createdBy `to` Agent(s).
 - delegatedTo: The `from` Agent is delegating an action to the Agent of the `to` Relationship (which shall be of type invokedBy), during a LifecycleScopeType period (e.g. the `to` invokedBy Relationship is being done on behalf of `from`).
 - dependsOn: The `from` Element depends on each `to` Element, during a LifecycleScopeType period.
 - descendantOf: The `from` Element is a descendant of each `to` Element.
@@ -126,6 +126,27 @@ and another SpdxDocument.
             FILTER NOT EXISTS { ?to rdf:type/rdfs:subClassOf* <FunctionalSafety/Assumption> }
         }
 
+- authoredBy_from
+  - message: When relationship is authoredBy, from must be an Action or DefinedProcess
+  - query: <<<
+
+        SELECT $this WHERE {
+            $this <Core/relationshipType> <Core/RelationshipType/authoredBy> .
+            $this <Core/from> ?from .
+            FILTER NOT EXISTS { ?from rdf:type/rdfs:subClassOf* <Core/Action> }
+            FILTER NOT EXISTS { ?from rdf:type/rdfs:subClassOf* <Core/DefinedProcess> }
+        }
+
+- authoredBy_to
+  - message: When relationship is authoredBy, to must be an Agent
+  - query: <<<
+
+        SELECT $this WHERE {
+            $this <Core/relationshipType> <Core/RelationshipType/authoredBy> .
+            $this <Core/to> ?to .
+            FILTER NOT EXISTS { ?to rdf:type/rdfs:subClassOf* <Core/Agent> }
+        }
+
 - configures_type
   - message: When relationship is configures, class must be LifecycleScopedRelationship
   - query: <<<
@@ -154,27 +175,6 @@ and another SpdxDocument.
             $this <Core/relationshipType> <Core/RelationshipType/coordinatedBy> .
             $this <Core/from> ?from .
             FILTER NOT EXISTS { ?from rdf:type/rdfs:subClassOf* <Security/Vulnerability> }
-        }
-
-- createdBy_from
-  - message: When relationship is createdBy, from must be an Action or DefinedProcess
-  - query: <<<
-
-        SELECT $this WHERE {
-            $this <Core/relationshipType> <Core/RelationshipType/createdBy> .
-            $this <Core/from> ?from .
-            FILTER NOT EXISTS { ?from rdf:type/rdfs:subClassOf* <Core/Action> }
-            FILTER NOT EXISTS { ?from rdf:type/rdfs:subClassOf* <Core/DefinedProcess> }
-        }
-
-- createdBy_to
-  - message: When relationship is createdBy, to must be an Agent
-  - query: <<<
-
-        SELECT $this WHERE {
-            $this <Core/relationshipType> <Core/RelationshipType/createdBy> .
-            $this <Core/to> ?to .
-            FILTER NOT EXISTS { ?to rdf:type/rdfs:subClassOf* <Core/Agent> }
         }
 
 - delegatedTo_from
