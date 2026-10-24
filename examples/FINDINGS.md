@@ -66,6 +66,7 @@ branch. Checked 2026-10-24.
 | --- | --- | --- | --- | --- | --- |
 | 1 | spdx-3-model | [`rename-relationshiptype-createdby`](https://github.com/bact/spdx-3-model/tree/rename-relationshiptype-createdby) | S-1 | develop | Before 3.1. |
 | 1 | spdx-3-model | [`deprecate-profile-extension`](https://github.com/bact/spdx-3-model/tree/deprecate-profile-extension) | S-1 | develop | Before 3.1. |
+| 1 | spdx-3-model | [`rename-requirementuid-property`](https://github.com/bact/spdx-3-model/tree/rename-requirementuid-property) | S-1 | develop | Before 3.1. |
 | 1 | spdx-3-model | [`extension-definition`](https://github.com/bact/spdx-3-model/tree/extension-definition) | M-1 | develop | Model proposal; needs discussion. |
 | 1 | spdx-3-model | [`extension-semantics`](https://github.com/bact/spdx-3-model/tree/extension-semantics) | M-2 | develop | |
 | 2 | spec-parser | [`fix-vocab-term-collision`](https://github.com/bact/spec-parser/tree/fix-vocab-term-collision) | S-1 | main | |
@@ -518,7 +519,7 @@ can be protected with no exceptions:
 | Name | Property (since) | Vocabulary entry (since) | Proposal | Cost |
 | --- | --- | --- | --- | --- |
 | `extension` | `Core/extension` (3.0) | `ProfileIdentifierType/extension` (3.0) | Deprecate the entry in 3.1, remove it in 4.0. ([branch](https://github.com/bact/spdx-3-model/tree/deprecate-profile-extension)) | Documents that list it still parse; in JSON-LD they are already wrong in 3.0.x (Example 1). |
-| `requirementUID` | `Core/requirementUID` (3.1-dev) | `ExternalIdentifierType/requirementUID` (3.1-dev) | Rename one of them before 3.1 is released (e.g. the entry to `requirementIdentifier`). | None: both are unreleased. |
+| `requirementUID` | `Core/requirementUID` (3.1-dev) | `ExternalIdentifierType/requirementUID` (3.1-dev) | Rename the property to `requirementIdentifier` before 3.1 is released; keep the entry ([branch](https://github.com/bact/spdx-3-model/tree/rename-requirementuid-property)). | None: both are unreleased. |
 | `createdBy` | `Core/createdBy` (3.0, on CreationInfo, used by every document) | `RelationshipType/createdBy` (3.1-dev) | Rename the entry before 3.1 is released (e.g. to `definedBy`, [branch](https://github.com/bact/spdx-3-model/tree/rename-relationshiptype-createdby)); keep the property. | None for the entry: unreleased. |
 
 - **`extension` in `profileConformance` declares nothing checkable.**
@@ -558,12 +559,17 @@ can be protected with no exceptions:
   `evidenceUID` and `verificationUID`, which are also both a property and an
   `ExternalIdentifierType` entry. Those do not collide only because their
   properties are in the FunctionalSafety namespace, so their terms are
-  prefixed (`functionalSafety_evidenceUID`). Renaming the Core property keeps
-  the three entries uniform; renaming the entry keeps the three properties
-  uniform.
+  prefixed (`functionalSafety_evidenceUID`). Rename the Core property, so the
+  three entries stay uniform: `requirementIdentifier`, which is not a context
+  term and matches `requirementStatement` and `requirementStatus`.
 
 Drafts: an [issue for the naming rule](issue-drafts/spdx-3-model-vocab-entry-term-collision.md)
 and a [comment for spdx-3-model#1274](issue-drafts/spdx-3-model-1274-comment.md).
+
+With the three branches merged, one collision is left: `extension`, which a
+deprecated entry still causes until it is removed in 4.0. spec-parser's
+`protect-context-terms` then leaves only that term unprotected (checked
+2026-10-25).
 
 Once these are gone, the generators' collision handling has nothing to do:
 spec-parser's `protect-context-terms` computes its exceptions from the

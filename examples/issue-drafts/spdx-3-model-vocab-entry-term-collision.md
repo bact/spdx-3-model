@@ -144,8 +144,10 @@ that are not yet released.
 2. **Fix the existing cases:**
    - `RelationshipType/createdBy`: rename the entry before 3.1 is released.
      The property is from 3.0. See also #1274.
-   - `requirementUID`: rename the entry or the property before 3.1 is
-     released. Both are new in 3.1.
+   - `requirementUID`: rename the property (e.g. to
+     `requirementIdentifier`) before 3.1 is released, and keep the entry, so
+     the `ExternalIdentifierType` entries `requirementUID`, `evidenceUID` and
+     `verificationUID` stay uniform. Both are new in 3.1.
    - `ProfileIdentifierType/extension`: deprecate it in 3.1 and remove it in
      4.0. It declares nothing a tool can check (see #991).
 3. **Check in CI:** fail the build when the generated context has an
