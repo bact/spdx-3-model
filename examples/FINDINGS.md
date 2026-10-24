@@ -23,7 +23,7 @@ Add new findings at the end of the relevant section and keep IDs stable.
 
 | ID | Title | Category | Severity | Affects | Status | In specmd 0.3.5 |
 | --- | --- | --- | --- | --- | --- | --- |
-| [S-1](#s-1-vocabulary-entries-that-share-a-name-with-a-context-term-expand-to-the-wrong-iri) | Vocabulary entries that share a name with a context term expand to the wrong IRI | Serialization | **High** | 3.0.0, 3.0.1, 3.1-dev | Fix proposed: [spec-parser branch](https://github.com/bact/spec-parser/tree/fix-vocab-term-collision), [specmd branch](https://github.com/bact/specmd/tree/fix-vocab-term-collision) | Partial |
+| [S-1](#s-1-vocabulary-entries-that-share-a-name-with-a-context-term-expand-to-the-wrong-iri) | Vocabulary entries that share a name with a context term expand to the wrong IRI | Serialization | **High** | 3.0.0, 3.0.1, 3.1-dev | Fix proposed: [spec-parser branch](https://github.com/bact/spec-parser/tree/fix-vocab-term-collision), [specmd branch](https://github.com/bact/specmd/tree/fix-vocab-term-collision); root fix: [rename or drop the entries](#root-fix-remove-the-collisions-in-the-model) | Partial |
 | [S-2](#s-2-extension-property-values-need-json-ld-value-objects) | Extension property values need JSON-LD value objects | Serialization | Medium | 3.0.1, 3.1-dev | Spec text proposed: [spdx-spec branch](https://github.com/bact/spdx-spec/tree/serialize-extensions) | No |
 | [S-3](#s-3-spdx-shacl-shapes-target-nothing-outside-pyshacl) | SPDX SHACL shapes target nothing outside pySHACL | Serialization | **High** | 3.0.0, 3.0.1, 3.1-dev | Fix proposed: [spec-parser branch](https://github.com/bact/spec-parser/tree/fix-shacl-target-class), [specmd branch](https://github.com/bact/specmd/tree/fix-shacl-target-class) | No |
 | [S-4](#s-4-the-spdx-json-schema-does-not-accept-an-extension-context) | The SPDX JSON schema does not accept an extension context | Serialization | Medium | 3.0.0, 3.0.1, 3.1-dev | Fix proposed: [shacl2code `allow-extra-contexts`](https://github.com/bact/shacl2code/tree/allow-extra-contexts), [spec-parser `protect-context-terms`](https://github.com/bact/spec-parser/tree/protect-context-terms), [spdx3-validate `context-array-version`](https://github.com/bact/spdx3-validate/tree/context-array-version) | No |
@@ -461,6 +461,55 @@ the rdflib expansion) and with the error cases.
 5. **Later, consider A+** (list every entry, as spdx-3-model#1167 proposes) to also stop
    unknown words resolving into the SPDX namespace. If `@protected` is added
    at the same time, check rdflib first (T-3).
+
+#### Root fix: remove the collisions in the model
+
+The generator fix (option A) and the `@protected` exceptions it needs (S-4)
+are workarounds. The collisions can be removed at the source, one name at a
+time, by renaming or dropping the vocabulary entry, so that every SPDX term
+can be protected with no exceptions:
+
+| Name | Property (since) | Vocabulary entry (since) | Proposal | Cost |
+| --- | --- | --- | --- | --- |
+| `extension` | `Core/extension` (3.0) | `ProfileIdentifierType/extension` (3.0) | Deprecate the entry in 3.1, remove it in 4.0. | Documents that list it still parse; in JSON-LD they are already wrong in 3.0.x (Example 1). |
+| `requirementUID` | `Core/requirementUID` (3.1-dev) | `ExternalIdentifierType/requirementUID` (3.1-dev) | Rename one of them before 3.1 is released (e.g. the entry to `requirementIdentifier`). | None: both are unreleased. |
+| `createdBy` | `Core/createdBy` (3.0, on CreationInfo, used by every document) | `RelationshipType/createdBy` (3.1-dev) | Rename the entry before 3.1 is released; keep the property. | None for the entry: unreleased. |
+
+- **`extension` in `profileConformance` declares nothing checkable.**
+  Listing a profile "shall constitute a declaration that all constituent
+  elements conform to the restrictions specified by that profile"
+  (ElementCollection), but the Extension profile adds no restriction beyond
+  the abstract `Extension` class, and since
+  [spdx-3-model#991](https://github.com/spdx/spdx-3-model/issues/991)
+  (closed by [#1470](https://github.com/spdx/spdx-3-model/pull/1470))
+  profile conformance no longer refers to schema files. A consumer cannot
+  check an extension from this value, since it does not say which extension
+  or where its definition is; that is what an `ExtensionDefinition` would do
+  (M-1). The spec has no requirement to list `extension` when a document uses
+  extensions, so dropping the entry removes no obligation. Tools that read
+  3.0 documents should accept and ignore the value.
+- **`requirementUID`**: both names came in as `requirementUUID` with the
+  FunctionalSafety work ([#1177](https://github.com/spdx/spdx-3-model/pull/1177),
+  [#1178](https://github.com/spdx/spdx-3-model/pull/1178), 2025-12) and were
+  renamed together in [#1276](https://github.com/spdx/spdx-3-model/pull/1276)
+  (2026-05), so the collision has existed since they were added. The
+  property's range is `ExternalIdentifier`, and the entry is the type of that
+  identifier, so the pair is intended to match; only one name can be the bare
+  term.
+- **`createdBy`**: the property has been in Core since 3.0 and cannot be
+  renamed. The relationship type was added in
+  [#1092](https://github.com/spdx/spdx-3-model/pull/1092) (Hardware and
+  SupplyChain separation, 2025-08) and is not in 3.0.0 or 3.0.1.
+  [spdx-3-model#1274](https://github.com/spdx/spdx-3-model/issues/1274)
+  already asks to rename one of them, for meaning. A name in the style of
+  the other `...By` entries (`performedBy`, `invokedBy`) works, for example
+  `originatedBy`.
+
+Once these are gone, the generators' collision handling has nothing to do:
+spec-parser's `protect-context-terms` computes its exceptions from the
+collisions it finds, so with none it protects every term. Keep the CI check
+(Recommendation 3) and the naming guideline (4) so new collisions fail the
+build instead of shipping.
 
 #### specmd 0.3.5
 
