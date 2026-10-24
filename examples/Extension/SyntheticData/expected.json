@@ -4,6 +4,7 @@
   "documents/valid-iri-node.spdx3.json": {"spdx3-validate": "pass", "extension-shacl": "pass"},
   "documents/valid-minimal.spdx3.json": {"spdx3-validate": "pass", "extension-shacl": "pass"},
   "known-issues/custom-extension-3-0-0.spdx3.json": {"spdx3-validate": "fail", "extension-shacl": "pass"},
+  "known-issues/embedded-context.spdx3.json": {"spdx3-validate": "pass", "extension-shacl": "pass"},
   "known-issues/extension-context.spdx3.json": {"spdx3-validate": "fail", "extension-shacl": "pass"},
   "known-issues/plain-scalar-values.spdx3.json": {"spdx3-validate": "pass", "extension-shacl": "fail"},
   "known-issues/profile-conformance-extension.spdx3.json": {"spdx3-validate": "fail", "extension-shacl": "pass"}

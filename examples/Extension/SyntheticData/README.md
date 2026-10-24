@@ -95,6 +95,7 @@ with a custom extension.
 | [`known-issues/plain-scalar-values.spdx3.json`](known-issues/plain-scalar-values.spdx3.json) | Extension values written as plain JSON strings and numbers | pass | fail (6 violations) |
 | [`known-issues/custom-extension-3-0-0.spdx3.json`](known-issues/custom-extension-3-0-0.spdx3.json) | `valid-minimal` with the SPDX 3.0.0 context: the 3.0.0 SHACL rejects every custom extension | **fail** | pass |
 | [`known-issues/extension-context.spdx3.json`](known-issues/extension-context.spdx3.json) | `valid-full` with an extension context after the SPDX context, so extension keys and values are plain JSON. Same RDF graph as `valid-full` | **fail** (`@context` must be the SPDX URL) | pass |
+| [`known-issues/embedded-context.spdx3.json`](known-issues/embedded-context.spdx3.json) | `valid-minimal` with an inline `ai_AIPackage` as `generatorModel`, and a `@context` in the extension object that remaps `name` and `software_packageVersion` | **pass** (but the AIPackage has no SPDX `name` in RDF) | pass |
 
 ### How to validate
 
@@ -154,6 +155,9 @@ in [examples/FINDINGS.md](../../FINDINGS.md):
   `known-issues/extension-context` and by URL by
   [`proposed/extension-context-url.spdx3.json`](proposed/extension-context-url.spdx3.json)
   (3.1-dev; the URL is not published, so map it to the local file).
+- S-5: the 3.1-dev prefix map can redefine SPDX terms.
+- S-6: an extension object can carry a `@context` that redefines SPDX terms
+  (`known-issues/embedded-context`).
 - M-1: no way to declare which extensions a document uses.
 - M-2: extension objects cannot be top-level in `@graph`, and their sharing
   and multiplicity are unspecified.

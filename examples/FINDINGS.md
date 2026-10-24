@@ -28,6 +28,7 @@ Add new findings at the end of the relevant section and keep IDs stable.
 | [S-3](#s-3-spdx-shacl-shapes-target-nothing-outside-pyshacl) | SPDX SHACL shapes target nothing outside pySHACL | Serialization | **High** | 3.0.0, 3.0.1, 3.1-dev | Fix proposed: [spec-parser branch](https://github.com/bact/spec-parser/tree/fix-shacl-target-class), [specmd branch](https://github.com/bact/specmd/tree/fix-shacl-target-class) | No |
 | [S-4](#s-4-the-spdx-json-schema-does-not-accept-an-extension-context) | The SPDX JSON schema does not accept an extension context | Serialization | Medium | 3.0.0, 3.0.1, 3.1-dev | Open; proposal in S-4 | No |
 | [S-5](#s-5-the-31-dev-prefix-map-can-redefine-spdx-terms) | The 3.1-dev prefix map can redefine SPDX terms | Serialization | **High** | 3.1-dev | Open; proposal in S-4 | Partial (terms protected; rdflib ignores it, T-3) |
+| [S-6](#s-6-an-extension-object-can-carry-a-context-that-redefines-spdx-terms) | An extension object can carry a `@context` that redefines SPDX terms | Serialization | **High** | 3.0.1, 3.1-dev | Open; proposal in S-6 | Partial (terms protected; rdflib ignores it, T-3) |
 | [M-1](#m-1-no-way-to-declare-which-extensions-a-document-uses) | No way to declare which extensions a document uses | Model design | Medium | 3.0, 3.1-dev | Model change proposed: [spdx-3-model branch](https://github.com/bact/spdx-3-model/tree/extension-definition) | No (model issue) |
 | [M-2](#m-2-extension-objects-cannot-be-top-level-and-their-sharing-is-unspecified) | Extension objects cannot be top-level, and their sharing is unspecified | Model design | Low | 3.0, 3.1-dev | Spec text proposed: [spdx-3-model branch](https://github.com/bact/spdx-3-model/tree/extension-semantics) | No (model issue) |
 | [M-3](#m-3-shacl-for-extension-is-a-deny-list) | SHACL for `extension` is a deny-list (3.0.1+), or rejects every custom extension (3.0.0) | Model / generator | **High** in 3.0.0, Low in 3.0.1+ | 3.0.0, 3.0.1, 3.1-dev | Validator check proposed: [spdx3-validate branch](https://github.com/bact/spdx3-validate/tree/extension-class-check) | No |
@@ -70,7 +71,8 @@ generating the 3.1-dev model with specmd and running the same tests.
 | [RDFLib/rdflib#3534](https://github.com/RDFLib/rdflib/issues/3534) Property-scoped context does not override a protected term (W3C test pr40); [PR #3553](https://github.com/RDFLib/rdflib/pull/3553) (closed unmerged) | open | T-3 | The rdflib half of T-3. |
 | [spdx/tools-java#241](https://github.com/spdx/tools-java/issues/241) Add Extension class to SpdxV3Example | open | T-5 | Extension support in tools-java examples. |
 | [spdx/spdx-spec#1307](https://github.com/spdx/spdx-spec/issues/1307) JSON-LD Context fails to compact | open | S-1 | Same root area: compacting with the SPDX context does not give schema-valid JSON. S-1 adds one more cause (compacted vocabulary IRIs). |
-| [spdx/spdx-spec#1312](https://github.com/spdx/spdx-spec/issues/1312) Use `@protected` rather than a fixed `@context` | open | S-2, S-4, T-3 | Would let extensions add terms (fixes much of S-2). If done with option A of S-1, rdflib must handle property-scoped overrides (T-3). |
+| [spdx/spdx-spec#1312](https://github.com/spdx/spdx-spec/issues/1312) Use `@protected` rather than a fixed `@context` | open | S-2, S-4, S-5, T-3 | Would let extensions add terms (fixes much of S-2). If done with option A of S-1, rdflib must handle property-scoped overrides (T-3). |
+| [TNG/KernelSbom#68](https://github.com/TNG/KernelSbom/issues/68) Compact IRIs | closed | S-4 | The producer report behind spdx-spec#1312: a custom prefix in `@context`, rejected by the 3.0.1 schema although spdx-3-model's JSON-LD examples use one. |
 | [spdx/spdx-3-model#1476](https://github.com/spdx/spdx-3-model/issues/1476) NamespaceMap collides with JSON Schema validation | open | S-2, S-4 | Same cause as S-2: the fixed `@context` blocks prefixes. |
 | [spdx/spdx-spec#650](https://github.com/spdx/spdx-spec/issues/650) Support for additional properties disabled in JSON schema | open | S-2 | Earlier (2.x) form of the same need: carrying data beyond the spec. |
 | [spdx/spdx-3-model#1017](https://github.com/spdx/spdx-3-model/issues/1017) Does the JSON schema support serialization of Extensions? | closed | S-2, M-3 | Confirms extensions need a full-IRI `type`; led to spec-parser#186 and an in-place re-publication of the 3.0.1 SHACL (see P-4: a precedent not to repeat). Asked for "Adding Extensions" documentation, still missing. |
@@ -693,6 +695,33 @@ SPDX key to another IRI (as S-5 shows, the 3.1-dev prefix map already can).
 The JSON-only reading of the spec ("Parsing @context") also only knows
 prefixes. Tools then assume the SPDX context alone, and some do not check.
 
+**Related.** [spdx-spec#1312](https://github.com/spdx/spdx-spec/issues/1312)
+("Use @protect rather than a fixed @context", open since 2025-11-18) came
+from [TNG/KernelSbom#68](https://github.com/TNG/KernelSbom/issues/68), a
+producer that wanted a custom prefix in `@context` to shorten its own IRIs
+and found that SPDX's own JSON-LD examples in spdx-3-model use one, while
+the 3.0.1 schema rejects it. #1312 proposes allowing more contexts and
+protecting SPDX terms with `@protected` instead. The discussion so far,
+rechecked against JSON-LD 1.1 and with pyld and rdflib
+([`proposed/extension-context-url.spdx3.json`](Extension/SyntheticData/proposed/extension-context-url.spdx3.json),
+S-5, S-6):
+
+| Point made in #1312 | Recheck |
+| --- | --- |
+| The fixed `@context` is how SPDX prevents term overriding today. | Only partly. The schema fixes the top-level `@context`, but not a `@context` inside an extension object, which can already redefine SPDX terms (S-6). |
+| With extra contexts, the last one wins, so a later context could take over `spdxId`. | Correct for unprotected terms (pyld, rdflib). |
+| `@protected` on every SPDX term prevents that. | Mostly. A later or embedded context that redefines a protected SPDX term is an error in pyld and jsonld.js (rdflib silently keeps the SPDX meaning, T-3). Not covered: a **property-scoped** context of an extension term may redefine protected SPDX terms inside that term's values (JSON-LD 1.1 §4.1.11 allows it), so an SPDX Element nested there can still be changed (tested with pyld). Not covered, but harmless with the schema: `@base` (spdxIds must be absolute) and `@vocab` (SPDX objects are closed). Default `@language` has no effect, since every SPDX term has an `@type`. |
+| Draft schema: `@context` is the SPDX URL, or an array that `contains` it, with string or object items. | Allows the hijacks above, since items are not checked. Position does not matter for safety (an earlier context loses to the protected SPDX terms, or errors if it protects the same term), but validators detect the version from `@context` by exact match today (spdx3-validate), so a fixed position (first) is simpler. |
+| Two places to change: the shacl2code schema template and the spec-parser context. | Also: validators' version detection, the spec's "Parsing @context" (JSON-only readers know prefixes only), and readers that ignore `@context` (spdx-python-model, tools-java). |
+| (JPEWdev) If `@protected` goes in the published context file, no problem adding it now. | It does go there; documents need no change. |
+| You can generate your own schema with several `--context` URLs in shacl2code. | Correct (the template requires every given URL), but a document valid against a custom schema is not valid against the SPDX schema. |
+
+The issue was moved to 3.1-rc2. Since then, shacl2code 1.0.0
+(2026-03-08) generates an array form that accepts the SPDX URL with
+string-valued objects only, and the SPDX context is still not protected,
+which leaves the hole in S-5. A context with `@protected` terms is in a
+[comment on spdx-3-model#1167](https://github.com/spdx/spdx-3-model/issues/1167#issuecomment-3787848517).
+
 **Fix.** Accept extension contexts after the SPDX context, and make sure
 they cannot change SPDX terms:
 
@@ -705,8 +734,11 @@ they cannot change SPDX terms:
    is the SPDX context URL, or an array whose **first** item is the SPDX
    context URL, followed by extension contexts: absolute URLs, or objects
    whose keys are not SPDX terms (generated `propertyNames` exclusion, which
-   also closes S-5) and whose values are strings or term definitions. Allow a
-   term as an extension `type` if it is not an SPDX class name.
+   also closes S-5), not `@base`, and whose values are strings or term
+   definitions. A term definition's own (property-scoped) `@context` must
+   not define SPDX terms either: `@protected` does not stop that. No
+   `@context` anywhere else in the document (S-6). Allow a term as an
+   extension `type` if it is not an SPDX class name.
 3. **Spec:** replace the "list comprising a string and an object" text with
    that rule, and state that a reader processing SPDX JSON as plain JSON
    cannot interpret extension terms and must either expand the document with
@@ -716,13 +748,17 @@ they cannot change SPDX terms:
    already scopes it so).
 4. **Validators and tools:** detect the SPDX version from the first item of
    the array; process the extension contexts (loading a URL, or a local
-   copy). A tool that cannot process them must reject the document, not read
+   copy). JSON Schema cannot see inside a context given by URL, so a
+   validator must check a loaded context against the rules in item 2. A tool that cannot process them must reject the document, not read
    its keys under the SPDX context alone (tools-java branch, T-5). An
    ExtensionDefinition (M-1) could also give the location and hash of the
    extension's context, as it does for its ontology.
 
-**Why the fix works.** With SPDX terms protected and listed first, every
-SPDX key means the same IRI whatever follows, so the SPDX part of a document
+**Why the fix works.** Protected SPDX terms stop any later or embedded
+context from redefining them; the schema rules (and the validator, for
+contexts by URL) close the one case protection allows, a property-scoped
+context, and remove embedded contexts. So every SPDX key means the same IRI
+whatever the extension context says, and the SPDX part of a document
 validates against the same closed schema and means the same thing. The
 extension context only adds terms, so an extension's plain JSON values
 expand to the intended IRIs and datatypes, and S-2's value objects become
@@ -763,7 +799,11 @@ document means different things to JSON and JSON-LD readers.
 
 **Why it happens.** The schema's `Context` object allows
 `patternProperties: {".*": {"type": "string"}}`, meant for prefixes, and the
-spec-parser context does not protect SPDX terms. specmd protects every term
+spec-parser context does not protect SPDX terms. This is the term
+hijacking that [spdx-spec#1312](https://github.com/spdx/spdx-spec/issues/1312)
+warned about (a later context "wins" unless SPDX terms are `@protected`):
+the array form shipped in shacl2code 1.0.0 without protecting the
+context. specmd protects every term
 (so pyld and jsonld.js raise a protected-term error), but rdflib silently
 keeps the first definition (T-3, case 2).
 
@@ -775,6 +815,57 @@ the `@context` object in the schema.
 redefinition; the schema rule rejects it for JSON Schema validators and
 JSON-only readers too, so no valid document can change an SPDX key's
 meaning.
+
+### S-6. An extension object can carry a `@context` that redefines SPDX terms
+
+- **Found by:** rechecking the arguments of spdx-spec#1312 (S-4).
+- **Affects:** SPDX 3.0.1 and 3.1-dev JSON schemas and contexts (no SPDX
+  term is `@protected`). 3.0.0 not tested.
+
+**Problem.** The schema fixes the top-level `@context`, but an extension
+object allows any key, including `@context`. An embedded context applies to
+that object and everything nested in it, so it can change what SPDX keys
+mean for an SPDX Element nested in an extension value:
+
+```json
+"extension": [{
+  "@context": {"name": "https://example.org/not-spdx/name",
+               "software_packageVersion": "https://example.org/not-spdx/version"},
+  "type": "https://example.org/spdx3-ext/synthetic-data/SyntheticDataExtension",
+  "https://example.org/spdx3-ext/synthetic-data/generatorModel": {
+    "type": "ai_AIPackage", "spdxId": "https://example.org/spdx/model/teacher-llm",
+    "name": "teacher-llm", "software_packageVersion": "2.1", ...}
+}]
+```
+
+Repro:
+[known-issues/embedded-context.spdx3.json](Extension/SyntheticData/known-issues/embedded-context.spdx3.json).
+
+| Tool | Result |
+| --- | --- |
+| JSON schema 3.0.1 | Valid. |
+| spdx3-validate 0.0.7 | **Pass.** |
+| pyld, rdflib | The AIPackage has no SPDX `name` or `packageVersion`; its name and version are `https://example.org/not-spdx/...` properties. |
+| spdx-python-model (upstream and branch), tools-java (master and branches) | Rejected: `@context` is not an IRI / "Missing type for core object". |
+
+So the same valid document means different things to JSON readers (which
+ignore the embedded context, or reject it) and JSON-LD readers, and the
+validator does not notice.
+
+**Why it happens.** Extension objects are open in the schema, to allow
+custom properties, and JSON-LD allows `@context` in any node object. The SPDX
+context does not protect its terms, so nothing stops the redefinition.
+
+**Fix.** In the schema, forbid `@context` in extension objects and in any
+object nested in them (a `not: {required: ["@context"]}` on the extension
+item and on its nested values), and protect SPDX terms in the context (S-4,
+item 1), which makes the redefinition an error in pyld and jsonld.js even
+for schema-unaware readers. In the spec, state that `@context` appears only
+at the top level.
+
+**Why the fix works.** With no embedded contexts, the only contexts are the
+top-level ones, which S-4 constrains; with protected terms, any redefinition
+that slips through is an error rather than a silent change.
 
 ## Model design
 
