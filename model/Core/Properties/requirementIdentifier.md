@@ -1,10 +1,10 @@
 SPDX-License-Identifier: Community-Spec-1.0
 
-# requirementUID
+# requirementIdentifier
 
 ## Summary
 
-A requirementUID is a unique identifier assigned to a Requirement.
+A requirementIdentifier is a unique identifier assigned to a Requirement.
 
 ## Description
 
@@ -12,8 +12,11 @@ A unique identifier, as used by requirements management or other lifecycle
 management tools, usually a string that follows a project specific naming
 convention.
 
+The identifier is an ExternalIdentifier, typically with the
+externalIdentifierType `requirementUID`.
+
 ## Metadata
 
-- name: requirementUID
+- name: requirementIdentifier
 - Nature: ObjectProperty
 - Range: ExternalIdentifier
