@@ -1093,9 +1093,9 @@ same path and fail the same way. On write, type IRIs are split on `.` and
 inlined objects lose their `@id`.
 
 **Fix** ([`bact/spdx-java-v3jsonld-store` `support-custom-extensions`](https://github.com/bact/spdx-java-v3jsonld-store/tree/support-custom-extensions),
-with companion branches of the same name in
-[`bact/Spdx-Java-Library`](https://github.com/bact/Spdx-Java-Library/tree/support-custom-extensions)
-and [`bact/spdx-java-core`](https://github.com/bact/spdx-java-core/tree/support-custom-extensions)).
+with [`bact/spdx-java-core` `support-custom-extensions`](https://github.com/bact/spdx-java-core/tree/support-custom-extensions)
+and [`bact/Spdx-Java-Library` `fix-number-truncation`](https://github.com/bact/Spdx-Java-Library/tree/fix-number-truncation),
+which has the library change both fixes need).
 Accept an absolute IRI outside the SPDX namespace as a type where the model
 allows an extension (values of `extension`, and inside extension property
 values), and represent it with a generic `Extension` subclass through the
