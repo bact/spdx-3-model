@@ -72,6 +72,9 @@ semantic changes to the model and may affect compatibility.
   - New documents should use `/Core/intendedUse` instead.
 - `/SimpleLicensing/customIdToUri` property
   - New documents should use `/SimpleLicensing/customIdToLicense` instead.
+- `extension` entry of `/Core/ProfileIdentifierType` vocabulary
+  - New documents should omit it from `profileConformance`;
+    the Extension profile has no profile conformance requirements.
 
 ## 3.0.1 (2024-12-10)
 

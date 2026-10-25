@@ -31,7 +31,7 @@ classes defined in other profiles.
 - build: The element follows the Build profile specification.
 - ai: The element follows the AI profile specification.
 - dataset: The element follows the Dataset profile specification.
-- extension: **DEPRECATED in SPDX 3.1.** The element follows the Extension profile specification. This profile defines no restriction beyond the Extension class, so the value declares nothing that can be checked; in JSON-LD, "extension" also expands to the extension property instead of this entry.
+- extension: **DEPRECATED in SPDX 3.1.** The element follows the Extension profile specification. The Extension profile has no profile conformance requirements, and its class constraints apply whether or not it is declared. New documents should omit it from profileConformance; removal is planned for SPDX 4.0.
 - lite: The element follows the Lite profile specification.
 - hardware: The element follows the Hardware profile specification.
 - supplyChain: The element follows the SupplyChain profile specification.
