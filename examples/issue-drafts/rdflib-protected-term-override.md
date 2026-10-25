@@ -2,7 +2,11 @@ SPDX-License-Identifier: Community-Spec-1.0
 
 # Draft for RDFLib/rdflib
 
-Not filed. Case 1 is already reported as
+Not filed. Update 2026-10-24: #3534 is closed, fixed on rdflib `main` by
+[PR #3623](https://github.com/RDFLib/rdflib/pull/3623) (not released). Case 1
+needs no new report; Case 2 is not covered by that fix.
+
+Case 1 was reported as
 [RDFLib/rdflib#3534](https://github.com/RDFLib/rdflib/issues/3534)
 ("Property-scoped context does not override a protected term (W3C toRdf
 test #tpr40)", open since 2026-09-02); a fix,

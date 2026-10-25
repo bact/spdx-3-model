@@ -2,7 +2,8 @@ SPDX-License-Identifier: Community-Spec-1.0
 
 # Draft comment for spdx/spdx-3-model#1274
 
-Not posted. Issue: "Differentiation between `createdBy` property (3.0) and
+Posted in a shorter form on 2026-10-24, followed by a comment proposing
+`definedBy`. Issue: "Differentiation between `createdBy` property (3.0) and
 "createdBy" relationship type (3.1)". Related finding:
 [S-1 in FINDINGS.md](../FINDINGS.md#root-fix-remove-the-collisions-in-the-model).
 

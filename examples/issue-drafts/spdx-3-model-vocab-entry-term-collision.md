@@ -2,7 +2,8 @@ SPDX-License-Identifier: Community-Spec-1.0
 
 # Draft for spdx/spdx-3-model
 
-Not filed. Related finding:
+Filed as [spdx/spdx-3-model#1477](https://github.com/spdx/spdx-3-model/issues/1477)
+on 2026-10-24 (the filed text differs slightly). Related finding:
 [S-1 in FINDINGS.md](../FINDINGS.md#s-1-vocabulary-entries-that-share-a-name-with-a-context-term-expand-to-the-wrong-iri).
 Tool results were run on 2026-10-24 with the document below: spdx3-validate
 0.0.7, tools-java master `86ddcc9` (store 1.0.6), spdx-python-model upstream
@@ -124,7 +125,7 @@ The mapped terms then cannot safely be `@protected`:
   4.2) gives no permission to override a protected term for a plain string
   value.
 - pyld and jsonld.js allow the override anyway.
-- rdflib ignores the override and still expands to the property IRI, which
+- rdflib 7.6.0 ignores the override and still expands to the property IRI, which
   is wrong (RDFLib/rdflib#3534).
 
 Protecting every SPDX term is what would allow extension contexts in

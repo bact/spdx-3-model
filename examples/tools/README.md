@@ -98,8 +98,10 @@ using `check_vocab_term_collisions.py`.
 
 Download the `tools-java-<version>.zip` release from
 <https://github.com/spdx/tools-java/releases> and unzip it. Then run `Verify`
-and `Convert` on each document and compare the `extension` arrays (findings
-T-5, T-6):
+and `Convert` on each document, then compare the `extension` arrays and the
+RDF graphs of input and output (findings T-5, T-6). A document whose
+`@context` rdflib cannot load (e.g. an unpublished context URL) cannot be
+compared:
 
 ```shell
 .venv/bin/python roundtrip_tools_java.py --out /tmp/tj \
