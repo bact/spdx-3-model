@@ -12,7 +12,7 @@ Boundaries can be physical or abstract. This is the act of defining the boundari
 
 Relationship:
 
-For each `BoundaryDefinitionAction` there is one and only one `/Core/Relationship` class or subclass with the relationshipType of `definedBy` on the to and a `/Core/Agent` class or subclass on the from.
+For each `BoundaryDefinitionAction` there is one and only one `/Core/Relationship` class or subclass with the relationshipType of `definedBy`, the `BoundaryDefinitionAction` as `from` and a `/Core/Agent` class or subclass as `to`.
 
 ## Metadata
 
