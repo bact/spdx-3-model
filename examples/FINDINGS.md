@@ -33,6 +33,7 @@ Add new findings at the end of the relevant section and keep IDs stable.
 | [M-2](#m-2-extension-objects-cannot-be-top-level-and-their-sharing-is-unspecified) | Extension objects cannot be top-level, and their sharing is unspecified | Model design | Low | 3.0, 3.1-dev | Spec text proposed: [spdx-3-model branch](https://github.com/bact/spdx-3-model/tree/extension-semantics) | No (model issue) |
 | [M-3](#m-3-shacl-for-extension-is-a-deny-list) | SHACL for `extension` is a deny-list (3.0.1+), or rejects every custom extension (3.0.0) | Model / generator | **High** in 3.0.0, Low in 3.0.1+ | 3.0.0, 3.0.1, 3.1-dev | Validator check proposed: [spdx3-validate branch](https://github.com/bact/spdx3-validate/tree/extension-class-check) | No |
 | [M-4](#m-4-only-elements-can-have-extensions) | Only Elements can have extensions | Model design | Low | 3.0, 3.1-dev | Open (options listed) | No (model issue) |
+| [M-5](#m-5-annotationtype-other-invites-using-annotation-for-element-data) | AnnotationType `other` invites using Annotation for Element data | Model design | Low | 3.0, 3.1-dev | Open (text proposed) | No (model issue) |
 | [T-1](#t-1-spdx-python-model-cannot-write-json-ld-value-objects-in-extensions) | spdx-python-model cannot write JSON-LD value objects in extensions | Tool | Medium | spdx-python-model `v3_0_1`, `v3_1` | Fix proposed: [shacl2code branch](https://github.com/bact/shacl2code/tree/fix-extensible-value-objects) | n/a |
 | [T-2](#t-2-spdx3-validate-cannot-check-extension-constraints) | spdx3-validate cannot check extension constraints | Tool | Low | spdx3-validate 0.0.7 | Fix proposed: [spdx3-validate branch](https://github.com/bact/spdx3-validate/tree/extra-shacl) | n/a |
 | [T-3](#t-3-rdflib-does-not-let-a-property-scoped-context-override-a-protected-term) | rdflib does not let a property-scoped context override a `@protected` term (and JSON-LD 1.1 API step 4.2 omits the override) | Tool / spec | Medium | rdflib 7.6.0 (so spdx3-validate, pyshacl); JSON-LD 1.1 API | rdflib: fixed on `main` by [RDFLib/rdflib#3623](https://github.com/RDFLib/rdflib/pull/3623) (2026-10-24, not released; [#3534](https://github.com/RDFLib/rdflib/issues/3534) closed); JSON-LD API: open; drafts ([rdflib comment + issue](issue-drafts/rdflib-protected-term-override.md), [json-ld-api](issue-drafts/json-ld-api-scalar-override-protected.md)); worked around in [specmd branch](https://github.com/bact/specmd/tree/fix-vocab-term-collision) | Affected (see S-1) |
@@ -1261,6 +1262,59 @@ classes are treated as closed structured values.
    (`ExternalIdentifier`, `ExternalRef`, `IntegrityMethod`).
 
 Option 1 costs nothing and removes the surprise; 3 can follow on demand.
+
+### M-5. AnnotationType `other` invites using Annotation for Element data
+
+- **Found by:** [Extension/SyntheticData](Extension/SyntheticData/), while
+  writing the "Do you need an extension?" options of the
+  [extension guide](https://github.com/bact/using/tree/extension-guide).
+- **Affects:** SPDX 3.0, 3.1-dev.
+
+**Problem.** The core Annotation definitions say that an Annotation is an
+assertion that an annotator makes about an Element:
+
+- `Annotation`: "An assertion made in relation to one or more elements."
+- `subject`: "An Element an annotator has made an assertion about."
+- `statement`: "Commentary on an assertion that an annotator has made."
+
+Characteristics of the Element itself belong in its properties, in
+`additionalInformation` (3.1) or in an extension. How it relates to other
+Elements belongs in a Relationship.
+
+The `AnnotationType` entry `other` says something else: "Used to store
+extra information about an Element which is not part of a review (e.g.
+extra information provided during the creation of the Element)". That
+reads as a general store for Element data, which is the job of properties
+and extensions. Tools do use it that way. For example,
+[spdx-3-model#477](https://github.com/spdx/spdx-3-model/issues/477)
+discussed carrying CycloneDX `properties` in Annotations, which led to the
+idea of a properties map on Annotation.
+
+A smaller mismatch: the summary says "one or more elements", but `subject`
+has `maxCount: 1`.
+
+**Why it happens.** The `other` text comes from SPDX 2.3 (clause 12.3,
+annotation type `OTHER`: "If the author wants to store extra information
+about one of the elements during creation"). SPDX 2.3 had no extensions, no
+`additionalInformation`, and fewer properties, so Annotation was the only
+place for such data. SPDX 3 added those places but kept the 2.3 wording.
+
+**Fix.** Proposed text, not on a branch yet:
+
+1. `AnnotationType/other`: "An assertion about the Element that is not a
+   review." Remove "store extra information".
+2. `Annotation` description: add that an Annotation states the annotator's
+   view of the Element, and is not for characteristics of the Element (use
+   its properties, `additionalInformation` or an extension) or for links to
+   other Elements (use a Relationship).
+3. `Annotation` summary: "An assertion made in relation to an Element", to
+   match `subject` `maxCount: 1`.
+
+**Why the fix works.** Only descriptions change, so no data and no
+serialization changes. Existing `other` Annotations stay valid. The text
+separates the three places clearly: Annotation for assertions about an
+Element by someone, Relationship for links between Elements, and
+properties or extensions for the Element's own characteristics.
 
 ---
 
