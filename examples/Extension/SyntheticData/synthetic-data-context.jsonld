@@ -5,7 +5,7 @@
       "@id": "sd:generationMethod",
       "@type": "@vocab",
       "@context": {
-        "@vocab": "https://example.org/spdx3-ext/synthetic-data/DataGenerationMethodType/"
+        "@vocab": "https://example.org/spdx3-ext/synthetic-data/DataGenerationMethod/"
       }
     },
     "syntheticFraction": {

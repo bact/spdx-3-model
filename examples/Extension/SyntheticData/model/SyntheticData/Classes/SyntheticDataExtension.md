@@ -25,7 +25,7 @@ It is intended to be attached to a `/Dataset/DatasetPackage` using
 ## Properties
 
 - generationMethod
-  - type: DataGenerationMethodType
+  - type: DataGenerationMethod
   - minCount: 1
   - maxCount: 1
 - syntheticFraction

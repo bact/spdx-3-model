@@ -1,6 +1,6 @@
 SPDX-License-Identifier: Community-Spec-1.0
 
-# DataGenerationMethodType
+# DataGenerationMethod
 
 ## Summary
 
@@ -13,7 +13,7 @@ machine, or both.
 
 ## Metadata
 
-- name: DataGenerationMethodType
+- name: DataGenerationMethod
 
 ## Entries
 

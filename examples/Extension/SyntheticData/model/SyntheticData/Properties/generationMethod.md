@@ -15,4 +15,4 @@ machine, or a mix of both.
 
 - name: generationMethod
 - Nature: ObjectProperty
-- Range: DataGenerationMethodType
+- Range: DataGenerationMethod

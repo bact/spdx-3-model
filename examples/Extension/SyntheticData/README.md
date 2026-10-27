@@ -33,8 +33,8 @@ Namespace: `https://example.org/spdx3-ext/synthetic-data/`
 | Definition | Kind | Range / values | Cardinality | What it exercises in tools |
 | --- | --- | --- | --- | --- |
 | `SyntheticDataExtension` | Class, subclass of `/Extension/Extension` | | | custom extension type |
-| `generationMethod` | Object property | `DataGenerationMethodType` | 1..1 | IRI value (vocabulary entry) |
-| `DataGenerationMethodType` | Vocabulary | `humanGenerated`, `machineGenerated`, `mixed`, `noAssertion` | | vocabulary outside SPDX |
+| `generationMethod` | Object property | `DataGenerationMethod` | 1..1 | IRI value (vocabulary entry) |
+| `DataGenerationMethod` | Vocabulary | `humanGenerated`, `machineGenerated`, `mixed`, `noAssertion` | | vocabulary outside SPDX |
 | `syntheticFraction` | Data property | `xsd:decimal`, 0 to 1 | 0..1 | typed literal |
 | `generatorModel` | Object property | `/AI/AIPackage` | 0..* | reference from an extension to an SPDX Element |
 
@@ -66,7 +66,7 @@ Therefore:
   {
     "type": "https://example.org/spdx3-ext/synthetic-data/SyntheticDataExtension",
     "https://example.org/spdx3-ext/synthetic-data/generationMethod": {
-      "@id": "https://example.org/spdx3-ext/synthetic-data/DataGenerationMethodType/mixed"
+      "@id": "https://example.org/spdx3-ext/synthetic-data/DataGenerationMethod/mixed"
     },
     "https://example.org/spdx3-ext/synthetic-data/syntheticFraction": {
       "@value": "0.35",

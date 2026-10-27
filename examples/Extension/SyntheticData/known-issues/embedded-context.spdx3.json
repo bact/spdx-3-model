@@ -54,7 +54,7 @@
           },
           "type": "https://example.org/spdx3-ext/synthetic-data/SyntheticDataExtension",
           "https://example.org/spdx3-ext/synthetic-data/generationMethod": {
-            "@id": "https://example.org/spdx3-ext/synthetic-data/DataGenerationMethodType/machineGenerated"
+            "@id": "https://example.org/spdx3-ext/synthetic-data/DataGenerationMethod/machineGenerated"
           },
           "https://example.org/spdx3-ext/synthetic-data/generatorModel": {
             "type": "ai_AIPackage",

@@ -777,7 +777,7 @@ with the extension's context
 {"@context": {
   "sd": "https://example.org/spdx3-ext/synthetic-data/",
   "generationMethod": {"@id": "sd:generationMethod", "@type": "@vocab",
-    "@context": {"@vocab": "https://example.org/spdx3-ext/synthetic-data/DataGenerationMethodType/"}},
+    "@context": {"@vocab": "https://example.org/spdx3-ext/synthetic-data/DataGenerationMethod/"}},
   "syntheticFraction": {"@id": "sd:syntheticFraction",
     "@type": "http://www.w3.org/2001/XMLSchema#decimal"},
   "generatorModel": {"@id": "sd:generatorModel", "@type": "@id"}
