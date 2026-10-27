@@ -58,6 +58,10 @@ semantic changes to the model and may affect compatibility.
 - **Clarified:** Serialization and validation documents -
   [#1019](https://github.com/spdx/spdx-3-model/pull/1019)
   - Use "SPDX 3 JSON" name (instead of "SPDX 3 JSON-LD").
+- **Clarified:** `/Core/Annotation` class and `other` entry in
+  `/Core/AnnotationType`
+  - An Annotation is an assertion by an annotator about one Element,
+    not a store for characteristics of the Element.
 - Fixed typos, formatting issues, and broken examples; updated reference links.
 
 ### Deprecations since 3.0.1
