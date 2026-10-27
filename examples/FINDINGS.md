@@ -41,6 +41,7 @@ Add new findings at the end of the relevant section and keep IDs stable.
 | [T-6](#t-6-spdx-java-library-truncates-numbers-in-extension-properties) | SPDX Java library truncates numbers in extension properties | Tool | Medium | spdx-java-v3jsonld-store | Fix proposed: [store branch](https://github.com/bact/spdx-java-v3jsonld-store/tree/fix-number-truncation) (+ library, core) | n/a |
 | [T-7](#t-7-tools-java-verify-does-not-check-shacl) | tools-java `Verify` does not check SHACL | Tool | Low | tools-java 2.0.7, `master` | Open | n/a |
 | [T-8](#t-8-rdflib-types-json-numbers-by-notation-not-by-value) | rdflib types JSON numbers by notation, not by value | Tool | Low | rdflib 7.6.0 (so pyshacl, spdx3-validate) | Open; issue drafted ([draft](issue-drafts/rdflib-jsonld-number-datatype.md)) | n/a |
+| [T-9](#t-9-sparql-constraints-in-the-31-dev-shacl-use-undeclared-prefixes) | SPARQL constraints in the 3.1-dev SHACL use undeclared prefixes | Tool (generator) | Medium | spec-parser `main` (3.1-dev SHACL) | Fix proposed: [spec-parser branch](https://github.com/bact/spec-parser/tree/fix-sparql-prefixes) | No (specmd emits no SPARQL constraints) |
 
 Severity:
 
@@ -60,7 +61,7 @@ All branches are in the forks under [github.com/bact](https://github.com/bact/),
 requests yet. Order: 1 model, 2 context and SHACL generators, 3 schema and
 binding generator, 4 validators and libraries, 5 spec text and guides.
 Within an order, branches are independent unless "Based on" names another
-branch. Checked 2026-10-25. The shacl2code branches based on `main` are 2
+branch. Checked 2026-10-27. The shacl2code branches based on `main` are 2
 dependabot commits behind JPEWdev/main.
 
 | Order | Repository | Branch | Findings | Based on | Notes |
@@ -70,9 +71,11 @@ dependabot commits behind JPEWdev/main.
 | 1 | spdx-3-model | [`rename-requirementuid-property`](https://github.com/bact/spdx-3-model/tree/rename-requirementuid-property) | S-1 | develop | Before 3.1. |
 | 1 | spdx-3-model | [`extension-definition`](https://github.com/bact/spdx-3-model/tree/extension-definition) | M-1 | develop | Model proposal; needs discussion. |
 | 1 | spdx-3-model | [`extension-semantics`](https://github.com/bact/spdx-3-model/tree/extension-semantics) | M-2 | develop | |
+| 1 | spdx-3-model | [`fix-bytesize-references`](https://github.com/bact/spdx-3-model/tree/fix-bytesize-references) | T-6 | develop | CHANGELOG, `docs/model.drawio` and the validation example said `artifactSize`; the property is `byteSize`. |
 | 2 | spec-parser | [`fix-vocab-term-collision`](https://github.com/bact/spec-parser/tree/fix-vocab-term-collision) | S-1 | main | |
 | 2 | spec-parser | [`protect-context-terms`](https://github.com/bact/spec-parser/tree/protect-context-terms) | S-4, S-5, S-6 | `fix-vocab-term-collision` | `@protected` on each term, not on the context: shacl2code (1.3.2 and `main`) fails on a context-level `@protected` or `@version`. The `createdBy` and `requirementUID` exceptions disappear once the S-1 renames land; `extension` stays unprotected until the entry is removed (4.0). |
 | 2 | spec-parser | [`fix-shacl-target-class`](https://github.com/bact/spec-parser/tree/fix-shacl-target-class) | S-3 | main | |
+| 2 | spec-parser | [`fix-sparql-prefixes`](https://github.com/bact/spec-parser/tree/fix-sparql-prefixes) | T-9 | main | Needed before spdx-model-to-java can read the 3.1 SHACL. The older `preferred-prefix` branch (2026-09) binds `spdx3:` instead of `spdx:`; spdx-model-to-java reads the `spdx` and `ns1` prefixes, so that branch breaks it. |
 | 2 | specmd | [`fix-empty-context-term`](https://github.com/bact/specmd/tree/fix-empty-context-term) | T-4 | main | Merge with `fix-vocab-term-collision`. |
 | 2 | specmd | [`fix-vocab-term-collision`](https://github.com/bact/specmd/tree/fix-vocab-term-collision) | S-1 | main | |
 | 2 | specmd | [`fix-shacl-target-class`](https://github.com/bact/specmd/tree/fix-shacl-target-class) | S-3 | main | |
@@ -86,9 +89,11 @@ dependabot commits behind JPEWdev/main.
 | 4 | spdx3-validate | [`context-array-version`](https://github.com/bact/spdx3-validate/tree/context-array-version) | S-4 | main | Accepts only inline objects after the SPDX URL, so a document cannot make the validator fetch a URL or read a local file. Rebase on `extra-shacl` for the exit-code fix. With model-bundle's `--context`, replace only the first array item. |
 | 4 | spdx-java-core | [`fix-number-truncation`](https://github.com/bact/spdx-java-core/tree/fix-number-truncation) | T-6 | main | Release order: core, library, store, tools-java. Core and store add public API (minor version). |
 | 4 | spdx-java-core | [`support-custom-extensions`](https://github.com/bact/spdx-java-core/tree/support-custom-extensions) | T-5 | `fix-number-truncation` | |
+| 4 | spdx-java-core | [`big-integer-properties`](https://github.com/bact/spdx-java-core/tree/big-integer-properties) | T-6 | `fix-number-truncation` | Independent of `support-custom-extensions`. |
 | 4 | Spdx-Java-Library | [`fix-number-truncation`](https://github.com/bact/Spdx-Java-Library/tree/fix-number-truncation) | T-5, T-6 | master | Needs core `TypedLiteral`. |
 | 4 | spdx-java-v3jsonld-store | [`fix-number-truncation`](https://github.com/bact/spdx-java-v3jsonld-store/tree/fix-number-truncation) | T-6 | main | Keeps integers above 2^31−1 (e.g., `datasetSize`) exactly instead of wrapping them; `Verify` reports that they do not fit the Java model. Widen the type in spdx-model-to-java for the 3.1 model (see T-6). |
 | 4 | spdx-java-v3jsonld-store | [`support-custom-extensions`](https://github.com/bact/spdx-java-v3jsonld-store/tree/support-custom-extensions) | T-5, S-4, S-6 | `fix-number-truncation` | Store 1.0.6 cannot read blank-node string references it writes (release note). |
+| 4 | spdx-model-to-java | [`widen-unbounded-integers`](https://github.com/bact/spdx-model-to-java/tree/widen-unbounded-integers) | T-6 | main | After core `big-integer-properties` is released: the POM template names core 1.0.6-SNAPSHOT until then. The store's private `integerToStoredValue` can then use core's. |
 | 5 | spdx-spec | [`serialize-extensions`](https://github.com/bact/spdx-spec/tree/serialize-extensions) | S-2, S-4 | develop | After the context and schema decisions (orders 2 and 3). |
 | 5 | using | [`extension-guide`](https://github.com/bact/using/tree/extension-guide) | S-2 | main | After `serialize-extensions`. |
 
@@ -1626,16 +1631,36 @@ change reports `"abc"` in an integer or decimal property as an invalid
 value, instead of an uncaught `NumberFormatException`, and rejects
 non-finite decimals (`1e400`, `"NaN"`) when reading.
 
-`Verify` still calls these valid documents invalid. The root fix is in
-[spdx-model-to-java](https://github.com/spdx/spdx-model-to-java)
-(`ShaclToJava`), which maps all XSD integer types to `Integer`: map the
-unbounded types (`xsd:integer`, `xsd:nonNegativeInteger`,
-`xsd:positiveInteger` and the like) to `BigInteger`, or at least `Long`. In
-3.0.1 that changes the public getters of `beginIntegerRange`,
-`endIntegerRange` and `datasetSize`, a breaking change. 3.1 adds
-`byteSize`, for which files over 2 GiB are common, and `weight`; the 3.1
-Java model is a new package, so widening there breaks no existing API. Do
-it before the 3.1 bindings are generated.
+`Verify` still calls these valid documents invalid with the 3.0.1 Java
+model. The root fix is in the generator. spdx-model-to-java
+[`widen-unbounded-integers`](https://github.com/bact/spdx-model-to-java/tree/widen-unbounded-integers)
+maps the unbounded XSD integer types (`xsd:integer`,
+`xsd:nonNegativeInteger`, `xsd:positiveInteger`, `xsd:long`,
+`xsd:unsignedInt` and the like) to `BigInteger`; `xsd:int` and smaller stay
+`Integer`. Range checks come from each XSD type's value space. It needs
+core
+[`big-integer-properties`](https://github.com/bact/spdx-java-core/tree/big-integer-properties)
+(`getBigIntegerPropertyValue`), which stores a value as an `Integer` when it
+fits and as an `xsd:integer` TypedLiteral otherwise. That is the form the
+store branch already reads and writes, so the store needs no change.
+
+The generator's `main` now writes one merged `org.spdx.library.model.v3`
+package for 3.0.1 and 3.1, not yet released, so the wider getters break no
+published API. The published `v3_0_1` package keeps `Integer`.
+
+Checked (2026-10-27) with 3.0.1 and the current 3.1-dev model:
+
+- 3.1 `/Software/byteSize`, `datasetSize`, `beginIntegerRange`,
+  `endIntegerRange` and `/Operations/weight` are `BigInteger`.
+- The 2600 generated tests pass. They now use 21474836480 for every
+  `BigInteger` property.
+- A byteSize test sets and reads 21474836480 and 2^64 on `SpdxFile` and
+  `DatasetPackage`. A negative value is rejected by the strict setter and
+  reported by `verify()`.
+
+The JSON-LD store is still bound to the `v3_0_1` package, so a 3.1 document
+cannot be read end to end yet. Generating the 3.1 model needed T-9 fixed
+first.
 
 Also left: the canonical `xsd:double` form uses Java's shortest
 representation, not the 15-digit form of JSON-LD API §8.6, so a few values
@@ -1685,6 +1710,33 @@ passes in a validator built on a conformant processor.
 not filed). Until then, write integers
 without a fraction or exponent (the spdx-spec text and the guide say so), and
 write any other non-integer number as a value object.
+
+### T-9. SPARQL constraints in the 3.1-dev SHACL use undeclared prefixes
+
+- **Found by:** generating the Java model from the 3.1-dev model for T-6.
+- **Affects:** spec-parser `main` (since spdx/spec-parser#213), so the
+  3.1-dev SHACL; any SHACL processor that follows the spec on prefixes,
+  such as Apache Jena and so spdx-model-to-java.
+
+**Problem.** The `## SPARQL` sections in the model (all in
+`Core/Vocabularies/RelationshipType.md`) use `rdf:type` and
+`rdfs:subClassOf`. spec-parser writes each query with a `BASE` line only.
+SHACL resolves prefixed names only from `PREFIX` lines in the query or from
+`sh:prefixes` (SHACL §5.2.1), so Jena rejects the whole shapes graph:
+"Unresolved prefixed name: rdf:type". spdx-model-to-java cannot load the
+3.1-dev model at all. pySHACL accepts the graph because it also uses the
+shapes graph's namespace bindings, so spdx3-validate does not show the
+problem.
+
+specmd has no SPARQL support, so its 3.1-dev SHACL leaves these 72
+constraints out (a different gap: the checks are missing, not broken).
+
+**Fix.** spec-parser
+[`fix-sparql-prefixes`](https://github.com/bact/spec-parser/tree/fix-sparql-prefixes)
+adds `PREFIX` lines for `rdf`, `rdfs`, `owl` and `xsd` after `BASE`. Checked:
+Jena (through spdx-model-to-java) loads the result, and pySHACL reports the
+same violations as before (for example a `hasDeclaredLicense` relationship
+to a package).
 
 ## Proposal: JSON-LD context design following semantic web best practices
 
