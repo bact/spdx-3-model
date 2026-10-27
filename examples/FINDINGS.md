@@ -33,7 +33,7 @@ Add new findings at the end of the relevant section and keep IDs stable.
 | [M-2](#m-2-extension-objects-cannot-be-top-level-and-their-sharing-is-unspecified) | Extension objects cannot be top-level, and their sharing is unspecified | Model design | Low | 3.0, 3.1-dev | Spec text proposed: [spdx-3-model branch](https://github.com/bact/spdx-3-model/tree/extension-semantics) | No (model issue) |
 | [M-3](#m-3-shacl-for-extension-is-a-deny-list) | SHACL for `extension` is a deny-list (3.0.1+), or rejects every custom extension (3.0.0) | Model / generator | **High** in 3.0.0, Low in 3.0.1+ | 3.0.0, 3.0.1, 3.1-dev | Validator check proposed: [spdx3-validate branch](https://github.com/bact/spdx3-validate/tree/extension-class-check) | No |
 | [M-4](#m-4-only-elements-can-have-extensions) | Only Elements can have extensions | Model design | Low | 3.0, 3.1-dev | Open (options listed) | No (model issue) |
-| [M-5](#m-5-annotationtype-other-invites-using-annotation-for-element-data) | AnnotationType `other` invites using Annotation for Element data | Model design | Low | 3.0, 3.1-dev | Open (text proposed) | No (model issue) |
+| [M-5](#m-5-annotationtype-other-invites-using-annotation-for-element-data) | AnnotationType `other` invites using Annotation for Element data | Model design | Low | 3.0, 3.1-dev | Fix proposed: [spdx-3-model branch](https://github.com/bact/spdx-3-model/tree/clarify-annotation-purpose) | No (model issue) |
 | [T-1](#t-1-spdx-python-model-cannot-write-json-ld-value-objects-in-extensions) | spdx-python-model cannot write JSON-LD value objects in extensions | Tool | Medium | spdx-python-model `v3_0_1`, `v3_1` | Fix proposed: [shacl2code branch](https://github.com/bact/shacl2code/tree/fix-extensible-value-objects) | n/a |
 | [T-2](#t-2-spdx3-validate-cannot-check-extension-constraints) | spdx3-validate cannot check extension constraints | Tool | Low | spdx3-validate 0.0.7 | Fix proposed: [spdx3-validate branch](https://github.com/bact/spdx3-validate/tree/extra-shacl) | n/a |
 | [T-3](#t-3-rdflib-does-not-let-a-property-scoped-context-override-a-protected-term) | rdflib does not let a property-scoped context override a `@protected` term (and JSON-LD 1.1 API step 4.2 omits the override) | Tool / spec | Medium | rdflib 7.6.0 (so spdx3-validate, pyshacl); JSON-LD 1.1 API | rdflib: fixed on `main` by [RDFLib/rdflib#3623](https://github.com/RDFLib/rdflib/pull/3623) (2026-10-24, not released; [#3534](https://github.com/RDFLib/rdflib/issues/3534) closed); JSON-LD API: open; drafts ([rdflib comment + issue](issue-drafts/rdflib-protected-term-override.md), [json-ld-api](issue-drafts/json-ld-api-scalar-override-protected.md)); worked around in [specmd branch](https://github.com/bact/specmd/tree/fix-vocab-term-collision) | Affected (see S-1) |
@@ -73,6 +73,7 @@ dependabot commits behind JPEWdev/main.
 | 1 | spdx-3-model | [`extension-definition`](https://github.com/bact/spdx-3-model/tree/extension-definition) | M-1 | develop | Model proposal; needs discussion. |
 | 1 | spdx-3-model | [`extension-semantics`](https://github.com/bact/spdx-3-model/tree/extension-semantics) | M-2 | develop | |
 | 1 | spdx-3-model | [`fix-bytesize-references`](https://github.com/bact/spdx-3-model/tree/fix-bytesize-references) | T-6 | develop | CHANGELOG, `docs/model.drawio` and the validation example said `artifactSize`; the property is `byteSize`. |
+| 1 | spdx-3-model | [`clarify-annotation-purpose`](https://github.com/bact/spdx-3-model/tree/clarify-annotation-purpose) | M-5 | develop | Descriptions only. |
 | 2 | spec-parser | [`fix-vocab-term-collision`](https://github.com/bact/spec-parser/tree/fix-vocab-term-collision) | S-1 | main | |
 | 2 | spec-parser | [`protect-context-terms`](https://github.com/bact/spec-parser/tree/protect-context-terms) | S-4, S-5, S-6 | `fix-vocab-term-collision` | `@protected` on each term, not on the context: shacl2code (1.3.2 and `main`) fails on a context-level `@protected` or `@version`. The `createdBy` and `requirementUID` exceptions disappear once the S-1 renames land; `extension` stays unprotected until the entry is removed (4.0). |
 | 2 | spec-parser | [`fix-shacl-target-class`](https://github.com/bact/spec-parser/tree/fix-shacl-target-class) | S-3 | main | |
@@ -1299,7 +1300,7 @@ about one of the elements during creation"). SPDX 2.3 had no extensions, no
 `additionalInformation`, and fewer properties, so Annotation was the only
 place for such data. SPDX 3 added those places but kept the 2.3 wording.
 
-**Fix.** Proposed text, not on a branch yet:
+**Fix.** [spdx-3-model `clarify-annotation-purpose`](https://github.com/bact/spdx-3-model/tree/clarify-annotation-purpose):
 
 1. `AnnotationType/other`: "An assertion about the Element that is not a
    review." Remove "store extra information".
