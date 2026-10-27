@@ -87,7 +87,7 @@ dependabot commits behind JPEWdev/main.
 | 4 | spdx-java-core | [`fix-number-truncation`](https://github.com/bact/spdx-java-core/tree/fix-number-truncation) | T-6 | main | Release order: core, library, store, tools-java. Core and store add public API (minor version). |
 | 4 | spdx-java-core | [`support-custom-extensions`](https://github.com/bact/spdx-java-core/tree/support-custom-extensions) | T-5 | `fix-number-truncation` | |
 | 4 | Spdx-Java-Library | [`fix-number-truncation`](https://github.com/bact/Spdx-Java-Library/tree/fix-number-truncation) | T-5, T-6 | master | Needs core `TypedLiteral`. |
-| 4 | spdx-java-v3jsonld-store | [`fix-number-truncation`](https://github.com/bact/spdx-java-v3jsonld-store/tree/fix-number-truncation) | T-6 | main | Rejects `datasetSize` values above 2^31−1, which upstream silently wraps; 4 of 7 spdx-examples dataset documents then fail to load. The Java model types `xsd:nonNegativeInteger` as `Integer`; widen it in the model generator before release (see T-6). |
+| 4 | spdx-java-v3jsonld-store | [`fix-number-truncation`](https://github.com/bact/spdx-java-v3jsonld-store/tree/fix-number-truncation) | T-6 | main | Keeps integers above 2^31−1 (e.g., `datasetSize`) exactly instead of wrapping them; `Verify` reports that they do not fit the Java model. Widen the type in spdx-model-to-java for the 3.1 model (see T-6). |
 | 4 | spdx-java-v3jsonld-store | [`support-custom-extensions`](https://github.com/bact/spdx-java-v3jsonld-store/tree/support-custom-extensions) | T-5, S-4, S-6 | `fix-number-truncation` | Store 1.0.6 cannot read blank-node string references it writes (release note). |
 | 5 | spdx-spec | [`serialize-extensions`](https://github.com/bact/spdx-spec/tree/serialize-extensions) | S-2, S-4 | develop | After the context and schema decisions (orders 2 and 3). |
 | 5 | using | [`extension-guide`](https://github.com/bact/using/tree/extension-guide) | S-2 | main | After `serialize-extensions`. |
@@ -1611,17 +1611,35 @@ or does not fit in an `int`, instead of truncating or wrapping it.
 **Why the fix works.** The value read is the value JSON-LD defines for the
 number, so nothing is lost, and the written JSON means the same as the input.
 
-**Known limit (round 3, 2026-10-25).** The Java model types
-`xsd:nonNegativeInteger` properties as `Integer`. Upstream wraps a large
-`dataset_datasetSize` silently (21474836480 is read as `0`); the branch
-rejects it, so 4 of the 7 spdx-examples dataset documents (`example02` to
-`example05`) no longer load. Both are wrong for a valid document: the model
-generator should map unbounded XSD integer types to `Long` or `BigInteger`
-before this ships. Also left: a string value such as `"99999999999"` in an
-integer property, or `"abc"` in a decimal property, still ends in an uncaught
-`NumberFormatException`; and the canonical `xsd:double` form uses Java's
-shortest representation, not the 15-digit form of JSON-LD API §8.6, so a few
-values (e.g. 0.30000000000000004) change on a JSON-LD round trip.
+**Integers too large for the Java model (round 3, fixed 2026-10-27).** The
+Java model types every XSD integer property as `Integer`, but
+`xsd:nonNegativeInteger` and `xsd:positiveInteger` are unbounded. Upstream
+wraps a large `dataset_datasetSize` silently (21474836480 is read as `0`).
+An earlier version of the branch rejected it instead, so 4 of the 7
+spdx-examples dataset documents (`example02` to `example05`) no longer
+loaded. The store now keeps such a value exactly, as an `xsd:integer`
+TypedLiteral, and writes it back as the same JSON number. Reading it through
+the model gives "value 21474836480 does not fit in a Java Integer" (core), so
+`Verify` reports that message instead of aborting. The 4 documents load,
+`Convert` keeps every size, and the output passes spdx3-validate. The same
+change reports `"abc"` in an integer or decimal property as an invalid
+value, instead of an uncaught `NumberFormatException`, and rejects
+non-finite decimals (`1e400`, `"NaN"`) when reading.
+
+`Verify` still calls these valid documents invalid. The root fix is in
+[spdx-model-to-java](https://github.com/spdx/spdx-model-to-java)
+(`ShaclToJava`), which maps all XSD integer types to `Integer`: map the
+unbounded types (`xsd:integer`, `xsd:nonNegativeInteger`,
+`xsd:positiveInteger` and the like) to `BigInteger`, or at least `Long`. In
+3.0.1 that changes the public getters of `beginIntegerRange`,
+`endIntegerRange` and `datasetSize`, a breaking change. 3.1 adds
+`byteSize`, for which files over 2 GiB are common, and `weight`; the 3.1
+Java model is a new package, so widening there breaks no existing API. Do
+it before the 3.1 bindings are generated.
+
+Also left: the canonical `xsd:double` form uses Java's shortest
+representation, not the 15-digit form of JSON-LD API §8.6, so a few values
+(e.g. 0.30000000000000004) change on a JSON-LD round trip.
 
 ### T-7. tools-java `Verify` does not check SHACL
 
