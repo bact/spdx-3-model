@@ -12,7 +12,8 @@ The `referenceProperty` property identifies what the `referenceQuantity` of
 a `Measurement` counts or measures, in the same way that `observedProperty`
 identifies what was observed.
 For example, `/Dataset/DatasetObservablePropertyType/tokenCount` for a rate
-per 1000 tokens, or <http://qudt.org/vocab/quantitykind/Mass> for a rate per kilogram.
+per 1000 tokens, or `/AI/AIObservablePropertyType/inferenceCount` for a rate
+per inference.
 
 It shall be given together with `referenceQuantity`.
 

@@ -24,7 +24,8 @@ The value should be chosen as follows:
   a shipment).
 - Otherwise, an entry of an SPDX observable property vocabulary should be
   used, if one fits.
-  These are `ObservablePropertyType` and
+  These are `ObservablePropertyType`,
+  `/AI/AIObservablePropertyType`, and
   `/Dataset/DatasetObservablePropertyType`.
 - Otherwise, an IRI from another published vocabulary may be used.
 
