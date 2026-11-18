@@ -22,7 +22,11 @@ The value should be chosen as follows:
   subject, its IRI shall be used (for example,
   <http://qudt.org/vocab/quantitykind/Temperature> for the temperature of
   a shipment).
-- Otherwise, an IRI from a published vocabulary should be used.
+- Otherwise, an entry of an SPDX observable property vocabulary should be
+  used, if one fits.
+  These are `ObservablePropertyType` and
+  `/Dataset/DatasetObservablePropertyType`.
+- Otherwise, an IRI from another published vocabulary may be used.
 
 A QUDT quantity kind does not fully identify the observed property if the
 same subject could have two different Observations of that quantity kind.

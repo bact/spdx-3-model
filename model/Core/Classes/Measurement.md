@@ -40,7 +40,8 @@ A value "per" an amount of something else (a rate) is recorded using the
 property for what that amount is of.
 For example, an `observedValue` of 0.3 W·h with a `referenceQuantity` of
 1000 <http://qudt.org/vocab/unit/COUNT> and a `referenceProperty` of
-<https://example.com/terms/tokenCount> means 0.3 W·h per 1000 tokens.
+`/Dataset/DatasetObservablePropertyType/tokenCount` means 0.3 W·h per 1000
+tokens.
 A rate per unit of time may instead use a rate unit, such as
 <http://qudt.org/vocab/unit/W> for an average power.
 
@@ -145,7 +146,7 @@ images"), `lowerBound` and `upperBound` are given instead of `observedValue`.
       "creationInfo": "_:creationinfo",
       "originatedBy": ["https://example.com/spdx/acme"],
       "subject": "https://example.com/spdx/street-images",
-      "observedProperty": "https://example.com/terms/imageCount",
+      "observedProperty": "https://spdx.org/rdf/3/terms/Dataset/DatasetObservablePropertyType/imageCount",
       "observationType": "measured",
       "observationStatistic": "total",
       "observationProcedure": "Distinct image files, after removing exact duplicates by SHA-256 hash.",

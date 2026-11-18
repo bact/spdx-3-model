@@ -14,7 +14,8 @@ The `referenceProperty` property identifies what the amount is of.
 
 For example, an `observedValue` of 0.3 W·h with a `referenceQuantity` of
 1000 <http://qudt.org/vocab/unit/COUNT> and a `referenceProperty` of
-<https://example.com/terms/tokenCount> means 0.3 W·h per 1000 tokens.
+`/Dataset/DatasetObservablePropertyType/tokenCount` means 0.3 W·h per 1000
+tokens.
 A functional unit of one kilogram of a product is a `referenceQuantity` of
 1 <http://qudt.org/vocab/unit/KiloGM> with a `referenceProperty` of
 <http://qudt.org/vocab/quantitykind/Mass>.
