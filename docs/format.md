@@ -79,6 +79,10 @@ from the location of the file:
 - Profiles should be organised into subdirectories (e.g., `Core/`, `Dataset/`).
 - Elements should be categorised by their type in subdirectories (e.g.,
   `Classes/`, `Datatypes/`, `Individuals/`, `Properties/`, `Vocabularies/`).
+- The model version is set once, as SemVer `version` in the Metadata of
+  `model/Core/Core.md` (e.g., `- version: 3.1-dev`).
+  Note that it is not `specVersion` and is an ontology-level metadata
+  that will be not part of actual SPDX 3 model.
 
 File and directory organisation:
 
